@@ -1,0 +1,6 @@
+set(DIR_TARGET_NAME projectlib)
+set(DIR_TARGET_TYPE LIBRARY)
+set(DIR_ALIAS_PREFIX proj)
+set(DIR_PUBLIC_DEPS net::network;utils::utils)
+set(DIR_ENABLE_INSTALL ON)
+include(${CMAKE_SOURCE_DIR}/cmake/AddTarget.cmake)

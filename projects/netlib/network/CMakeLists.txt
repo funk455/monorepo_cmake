@@ -1,0 +1,5 @@
+set(DIR_TARGET_NAME network)
+set(DIR_TARGET_TYPE LIBRARY)
+set(DIR_ALIAS_PREFIX net)
+set(DIR_ENABLE_INSTALL ON)
+include(${CMAKE_SOURCE_DIR}/cmake/AddTarget.cmake)
