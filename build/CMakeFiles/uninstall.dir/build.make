@@ -53,10 +53,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/monorepo-cmake-sample
+CMAKE_SOURCE_DIR = /mnt/c/Users/HP/Desktop/我的作品/monorepo-cmake-sample
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/monorepo-cmake-sample/build
+CMAKE_BINARY_DIR = /mnt/c/Users/HP/Desktop/我的作品/monorepo-cmake-sample/build
 
 # Utility rule file for uninstall.
 
@@ -67,8 +67,8 @@ include CMakeFiles/uninstall.dir/compiler_depend.make
 include CMakeFiles/uninstall.dir/progress.make
 
 CMakeFiles/uninstall:
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/monorepo-cmake-sample/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Remove files listed in install_manifest.txt"
-	/usr/bin/cmake -P /home/monorepo-cmake-sample/build/cmake_uninstall.cmake
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/mnt/c/Users/HP/Desktop/我的作品/monorepo-cmake-sample/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Remove files listed in install_manifest.txt"
+	/usr/bin/cmake -P /mnt/c/Users/HP/Desktop/我的作品/monorepo-cmake-sample/build/cmake_uninstall.cmake
 
 CMakeFiles/uninstall.dir/codegen:
 .PHONY : CMakeFiles/uninstall.dir/codegen
@@ -86,6 +86,6 @@ CMakeFiles/uninstall.dir/clean:
 .PHONY : CMakeFiles/uninstall.dir/clean
 
 CMakeFiles/uninstall.dir/depend:
-	cd /home/monorepo-cmake-sample/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/monorepo-cmake-sample /home/monorepo-cmake-sample /home/monorepo-cmake-sample/build /home/monorepo-cmake-sample/build /home/monorepo-cmake-sample/build/CMakeFiles/uninstall.dir/DependInfo.cmake "--color=$(COLOR)"
+	cd /mnt/c/Users/HP/Desktop/我的作品/monorepo-cmake-sample/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /mnt/c/Users/HP/Desktop/我的作品/monorepo-cmake-sample /mnt/c/Users/HP/Desktop/我的作品/monorepo-cmake-sample /mnt/c/Users/HP/Desktop/我的作品/monorepo-cmake-sample/build /mnt/c/Users/HP/Desktop/我的作品/monorepo-cmake-sample/build /mnt/c/Users/HP/Desktop/我的作品/monorepo-cmake-sample/build/CMakeFiles/uninstall.dir/DependInfo.cmake "--color=$(COLOR)"
 .PHONY : CMakeFiles/uninstall.dir/depend
 

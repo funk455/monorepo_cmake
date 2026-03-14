@@ -1,9 +1,9 @@
-if(NOT EXISTS "/home/monorepo-cmake-sample/build/install_manifest.txt")
-  message(FATAL_ERROR "Cannot find install manifest: /home/monorepo-cmake-sample/build/install_manifest.txt
+if(NOT EXISTS "/mnt/c/Users/HP/Desktop/我的作品/monorepo-cmake-sample/build/install_manifest.txt")
+  message(FATAL_ERROR "Cannot find install manifest: /mnt/c/Users/HP/Desktop/我的作品/monorepo-cmake-sample/build/install_manifest.txt
 Hint: run 'cmake --install <build>' once before uninstall.")
 endif()
 
-file(READ "/home/monorepo-cmake-sample/build/install_manifest.txt" _manifest)
+file(READ "/mnt/c/Users/HP/Desktop/我的作品/monorepo-cmake-sample/build/install_manifest.txt" _manifest)
 
 string(REPLACE "\r\n" "\n" _manifest "${_manifest}")
 string(REPLACE "\r"   "\n" _manifest "${_manifest}")

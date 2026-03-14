@@ -53,10 +53,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/monorepo-cmake-sample
+CMAKE_SOURCE_DIR = /mnt/c/Users/HP/Desktop/我的作品/monorepo-cmake-sample
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/monorepo-cmake-sample/build
+CMAKE_BINARY_DIR = /mnt/c/Users/HP/Desktop/我的作品/monorepo-cmake-sample/build
 
 # Utility rule file for NightlyTest.
 
@@ -85,6 +85,6 @@ CMakeFiles/NightlyTest.dir/clean:
 .PHONY : CMakeFiles/NightlyTest.dir/clean
 
 CMakeFiles/NightlyTest.dir/depend:
-	cd /home/monorepo-cmake-sample/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/monorepo-cmake-sample /home/monorepo-cmake-sample /home/monorepo-cmake-sample/build /home/monorepo-cmake-sample/build /home/monorepo-cmake-sample/build/CMakeFiles/NightlyTest.dir/DependInfo.cmake "--color=$(COLOR)"
+	cd /mnt/c/Users/HP/Desktop/我的作品/monorepo-cmake-sample/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /mnt/c/Users/HP/Desktop/我的作品/monorepo-cmake-sample /mnt/c/Users/HP/Desktop/我的作品/monorepo-cmake-sample /mnt/c/Users/HP/Desktop/我的作品/monorepo-cmake-sample/build /mnt/c/Users/HP/Desktop/我的作品/monorepo-cmake-sample/build /mnt/c/Users/HP/Desktop/我的作品/monorepo-cmake-sample/build/CMakeFiles/NightlyTest.dir/DependInfo.cmake "--color=$(COLOR)"
 .PHONY : CMakeFiles/NightlyTest.dir/depend
 

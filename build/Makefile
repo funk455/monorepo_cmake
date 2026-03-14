@@ -57,10 +57,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/monorepo-cmake-sample
+CMAKE_SOURCE_DIR = /mnt/c/Users/HP/Desktop/我的作品/monorepo-cmake-sample
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/monorepo-cmake-sample/build
+CMAKE_BINARY_DIR = /mnt/c/Users/HP/Desktop/我的作品/monorepo-cmake-sample/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -95,56 +95,11 @@ rebuild_cache:
 rebuild_cache/fast: rebuild_cache
 .PHONY : rebuild_cache/fast
 
-# Special rule for the target list_install_components
-list_install_components:
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Available install components are: \"Unspecified\""
-.PHONY : list_install_components
-
-# Special rule for the target list_install_components
-list_install_components/fast: list_install_components
-.PHONY : list_install_components/fast
-
-# Special rule for the target install
-install: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Install the project..."
-	/usr/bin/cmake -P cmake_install.cmake
-.PHONY : install
-
-# Special rule for the target install
-install/fast: preinstall/fast
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Install the project..."
-	/usr/bin/cmake -P cmake_install.cmake
-.PHONY : install/fast
-
-# Special rule for the target install/local
-install/local: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Installing only the local directory..."
-	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
-.PHONY : install/local
-
-# Special rule for the target install/local
-install/local/fast: preinstall/fast
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Installing only the local directory..."
-	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
-.PHONY : install/local/fast
-
-# Special rule for the target install/strip
-install/strip: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Installing the project stripped..."
-	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
-.PHONY : install/strip
-
-# Special rule for the target install/strip
-install/strip/fast: preinstall/fast
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Installing the project stripped..."
-	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
-.PHONY : install/strip/fast
-
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/monorepo-cmake-sample/build/CMakeFiles /home/monorepo-cmake-sample/build//CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/c/Users/HP/Desktop/我的作品/monorepo-cmake-sample/build/CMakeFiles /mnt/c/Users/HP/Desktop/我的作品/monorepo-cmake-sample/build//CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/monorepo-cmake-sample/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/c/Users/HP/Desktop/我的作品/monorepo-cmake-sample/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -168,7 +123,6 @@ preinstall/fast:
 
 # clear depends
 depend:
-	$(CMAKE_COMMAND) -P /home/monorepo-cmake-sample/build/CMakeFiles/VerifyGlobs.cmake
 	$(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
@@ -549,71 +503,6 @@ ContinuousSubmit/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/ContinuousSubmit.dir/build.make CMakeFiles/ContinuousSubmit.dir/build
 .PHONY : ContinuousSubmit/fast
 
-#=============================================================================
-# Target rules for targets named network
-
-# Build rule for target.
-network: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 network
-.PHONY : network
-
-# fast build rule for target.
-network/fast:
-	$(MAKE) $(MAKESILENT) -f projects/netlib/network/CMakeFiles/network.dir/build.make projects/netlib/network/CMakeFiles/network.dir/build
-.PHONY : network/fast
-
-#=============================================================================
-# Target rules for targets named projectlib
-
-# Build rule for target.
-projectlib: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 projectlib
-.PHONY : projectlib
-
-# fast build rule for target.
-projectlib/fast:
-	$(MAKE) $(MAKESILENT) -f projects/projectlib/projectlib/CMakeFiles/projectlib.dir/build.make projects/projectlib/projectlib/CMakeFiles/projectlib.dir/build
-.PHONY : projectlib/fast
-
-#=============================================================================
-# Target rules for targets named proj_demo
-
-# Build rule for target.
-proj_demo: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 proj_demo
-.PHONY : proj_demo
-
-# fast build rule for target.
-proj_demo/fast:
-	$(MAKE) $(MAKESILENT) -f projects/projectlib/app/CMakeFiles/proj_demo.dir/build.make projects/projectlib/app/CMakeFiles/proj_demo.dir/build
-.PHONY : proj_demo/fast
-
-#=============================================================================
-# Target rules for targets named proj_smoke
-
-# Build rule for target.
-proj_smoke: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 proj_smoke
-.PHONY : proj_smoke
-
-# fast build rule for target.
-proj_smoke/fast:
-	$(MAKE) $(MAKESILENT) -f projects/projectlib/tests/smoke/CMakeFiles/proj_smoke.dir/build.make projects/projectlib/tests/smoke/CMakeFiles/proj_smoke.dir/build
-.PHONY : proj_smoke/fast
-
-#=============================================================================
-# Target rules for targets named utils
-
-# Build rule for target.
-utils: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 utils
-.PHONY : utils
-
-# fast build rule for target.
-utils/fast:
-	$(MAKE) $(MAKESILENT) -f projects/utils/utils/CMakeFiles/utils.dir/build.make projects/utils/utils/CMakeFiles/utils.dir/build
-.PHONY : utils/fast
-
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -621,10 +510,6 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... edit_cache"
-	@echo "... install"
-	@echo "... install/local"
-	@echo "... install/strip"
-	@echo "... list_install_components"
 	@echo "... rebuild_cache"
 	@echo "... test"
 	@echo "... Continuous"
@@ -656,11 +541,6 @@ help:
 	@echo "... NightlyTest"
 	@echo "... NightlyUpdate"
 	@echo "... uninstall"
-	@echo "... network"
-	@echo "... proj_demo"
-	@echo "... proj_smoke"
-	@echo "... projectlib"
-	@echo "... utils"
 .PHONY : help
 
 
@@ -672,7 +552,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	$(CMAKE_COMMAND) -P /home/monorepo-cmake-sample/build/CMakeFiles/VerifyGlobs.cmake
 	$(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

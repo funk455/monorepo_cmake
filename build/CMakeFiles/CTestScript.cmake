@@ -5,8 +5,8 @@
 cmake_minimum_required(VERSION 4.1.1)
 
 # CTest Start Step
-set(CTEST_SOURCE_DIRECTORY "/home/monorepo-cmake-sample")
-set(CTEST_BINARY_DIRECTORY "/home/monorepo-cmake-sample/build")
+set(CTEST_SOURCE_DIRECTORY "/mnt/c/Users/HP/Desktop/我的作品/monorepo-cmake-sample")
+set(CTEST_BINARY_DIRECTORY "/mnt/c/Users/HP/Desktop/我的作品/monorepo-cmake-sample/build")
 
 # CTest Update Step
 set(CTEST_UPDATE_COMMAND "/usr/bin/git")

@@ -20,7 +20,6 @@ events:
     names:
       - "uname"
     candidate_directories:
-      - "/root/.vscode-server/bin/6f17636121051a53c88d3e605c491d22af2ba755/bin/remote-cli/"
       - "/usr/local/sbin/"
       - "/usr/local/bin/"
       - "/usr/sbin/"
@@ -41,7 +40,7 @@ events:
       - "/mnt/c/windows/System32/OpenSSH/"
       - "/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common/"
       - "/mnt/c/Program Files/Common Files/Autodesk Shared/"
-      - "/mnt/d/\u4f20\u8f93\u6587\u4ef6\u5de5\u5177/AOMEI/AOMEI Backupper/6.9.1/"
+      - "/mnt/d/\ufffd\ufffd\ufffd\ufffd\ufffd\u013c\ufffd\ufffd\ufffd\ufffd\ufffd/AOMEI/AOMEI Backupper/6.9.1/"
       - "/mnt/c/Pr/"
       - "/mnt/c/Program Files/nodejs/"
       - "/mnt/c/ProgramData/chocolatey/bin/"
@@ -52,6 +51,7 @@ events:
       - "/mnt/c/Program Files/Zero Install/"
       - "/mnt/c/Users/HP/AppData/Local/Muse Hub/lib/"
       - "/mnt/c/Program Files/CursorModifier/"
+      - "/mnt/c/Program Files/MySQL/MySQL Shell 8.0/bin/"
       - "/mnt/f/python3/Scripts/"
       - "/mnt/f/python3/"
       - "/mnt/c/Users/HP/AppData/Local/Microsoft/WindowsApps/"
@@ -64,16 +64,14 @@ events:
       - "/mnt/f/cursor/cursor/resources/app/bin/"
       - "/mnt/c/Users/HP/AppData/Roaming/Programs/Zero Install/"
       - "/mnt/f/curl-8.15.0_4-win64-mingw/bin/"
-      - "/root/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand/"
+      - "/mnt/c/Users/HP/AppData/Local/GitHubDesktop/bin/"
     searched_directories:
-      - "/root/.vscode-server/bin/6f17636121051a53c88d3e605c491d22af2ba755/bin/remote-cli/uname"
       - "/usr/local/sbin/uname"
       - "/usr/local/bin/uname"
       - "/usr/sbin/uname"
     found: "/usr/bin/uname"
     search_context:
       ENV{PATH}:
-        - "/root/.vscode-server/bin/6f17636121051a53c88d3e605c491d22af2ba755/bin/remote-cli"
         - "/usr/local/sbin"
         - "/usr/local/bin"
         - "/usr/sbin"
@@ -94,7 +92,7 @@ events:
         - "/mnt/c/windows/System32/OpenSSH/"
         - "/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common"
         - "/mnt/c/Program Files/Common Files/Autodesk Shared/"
-        - "/mnt/d/\u4f20\u8f93\u6587\u4ef6\u5de5\u5177/AOMEI/AOMEI Backupper/6.9.1"
+        - "/mnt/d/\ufffd\ufffd\ufffd\ufffd\ufffd\u013c\ufffd\ufffd\ufffd\ufffd\ufffd/AOMEI/AOMEI Backupper/6.9.1"
         - "/mnt/c/Pr"
         - "/mnt/c/Program Files/nodejs/"
         - "/mnt/c/ProgramData/chocolatey/bin"
@@ -105,6 +103,7 @@ events:
         - "/mnt/c/Program Files/Zero Install"
         - "/mnt/c/Users/HP/AppData/Local/Muse Hub/lib"
         - "/mnt/c/Program Files/CursorModifier"
+        - "/mnt/c/Program Files/MySQL/MySQL Shell 8.0/bin/"
         - "/mnt/f/python3/Scripts/"
         - "/mnt/f/python3/"
         - "/mnt/c/Users/HP/AppData/Local/Microsoft/WindowsApps"
@@ -112,14 +111,12 @@ events:
         - "/mnt/c/Users/HP/AppData/Roaming/npm"
         - "/mnt/d/vscode/Microsoft VS Code/bin"
         - "/mnt/c/Program Files (x86)/Nmap"
-        - "/mnt/c/Users/HP/AppData/Local/Muse Hub/lib"
         - "/mnt/f/ffmpeg_v7.1/ffmpeg-7.1-essentials_build/bin"
         - "/mnt/f/BBDown_1.6.3_20240814_win-x64"
         - "/mnt/f/cursor/cursor/resources/app/bin"
         - "/mnt/c/Users/HP/AppData/Roaming/Programs/Zero Install"
-        - "/mnt/c/Users/HP/AppData/Local/Muse Hub/lib"
         - "/mnt/f/curl-8.15.0_4-win64-mingw/bin"
-        - "/root/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand"
+        - "/mnt/c/Users/HP/AppData/Local/GitHubDesktop/bin"
   -
     kind: "message-v1"
     backtrace:
@@ -148,7 +145,6 @@ events:
       - "make"
       - "smake"
     candidate_directories:
-      - "/root/.vscode-server/bin/6f17636121051a53c88d3e605c491d22af2ba755/bin/remote-cli/"
       - "/usr/local/sbin/"
       - "/usr/local/bin/"
       - "/usr/sbin/"
@@ -169,7 +165,7 @@ events:
       - "/mnt/c/windows/System32/OpenSSH/"
       - "/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common/"
       - "/mnt/c/Program Files/Common Files/Autodesk Shared/"
-      - "/mnt/d/\u4f20\u8f93\u6587\u4ef6\u5de5\u5177/AOMEI/AOMEI Backupper/6.9.1/"
+      - "/mnt/d/\ufffd\ufffd\ufffd\ufffd\ufffd\u013c\ufffd\ufffd\ufffd\ufffd\ufffd/AOMEI/AOMEI Backupper/6.9.1/"
       - "/mnt/c/Pr/"
       - "/mnt/c/Program Files/nodejs/"
       - "/mnt/c/ProgramData/chocolatey/bin/"
@@ -180,6 +176,7 @@ events:
       - "/mnt/c/Program Files/Zero Install/"
       - "/mnt/c/Users/HP/AppData/Local/Muse Hub/lib/"
       - "/mnt/c/Program Files/CursorModifier/"
+      - "/mnt/c/Program Files/MySQL/MySQL Shell 8.0/bin/"
       - "/mnt/f/python3/Scripts/"
       - "/mnt/f/python3/"
       - "/mnt/c/Users/HP/AppData/Local/Microsoft/WindowsApps/"
@@ -192,16 +189,14 @@ events:
       - "/mnt/f/cursor/cursor/resources/app/bin/"
       - "/mnt/c/Users/HP/AppData/Roaming/Programs/Zero Install/"
       - "/mnt/f/curl-8.15.0_4-win64-mingw/bin/"
-      - "/root/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand/"
+      - "/mnt/c/Users/HP/AppData/Local/GitHubDesktop/bin/"
     searched_directories:
-      - "/root/.vscode-server/bin/6f17636121051a53c88d3e605c491d22af2ba755/bin/remote-cli/gmake"
       - "/usr/local/sbin/gmake"
       - "/usr/local/bin/gmake"
       - "/usr/sbin/gmake"
     found: "/usr/bin/gmake"
     search_context:
       ENV{PATH}:
-        - "/root/.vscode-server/bin/6f17636121051a53c88d3e605c491d22af2ba755/bin/remote-cli"
         - "/usr/local/sbin"
         - "/usr/local/bin"
         - "/usr/sbin"
@@ -222,7 +217,7 @@ events:
         - "/mnt/c/windows/System32/OpenSSH/"
         - "/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common"
         - "/mnt/c/Program Files/Common Files/Autodesk Shared/"
-        - "/mnt/d/\u4f20\u8f93\u6587\u4ef6\u5de5\u5177/AOMEI/AOMEI Backupper/6.9.1"
+        - "/mnt/d/\ufffd\ufffd\ufffd\ufffd\ufffd\u013c\ufffd\ufffd\ufffd\ufffd\ufffd/AOMEI/AOMEI Backupper/6.9.1"
         - "/mnt/c/Pr"
         - "/mnt/c/Program Files/nodejs/"
         - "/mnt/c/ProgramData/chocolatey/bin"
@@ -233,6 +228,7 @@ events:
         - "/mnt/c/Program Files/Zero Install"
         - "/mnt/c/Users/HP/AppData/Local/Muse Hub/lib"
         - "/mnt/c/Program Files/CursorModifier"
+        - "/mnt/c/Program Files/MySQL/MySQL Shell 8.0/bin/"
         - "/mnt/f/python3/Scripts/"
         - "/mnt/f/python3/"
         - "/mnt/c/Users/HP/AppData/Local/Microsoft/WindowsApps"
@@ -240,14 +236,12 @@ events:
         - "/mnt/c/Users/HP/AppData/Roaming/npm"
         - "/mnt/d/vscode/Microsoft VS Code/bin"
         - "/mnt/c/Program Files (x86)/Nmap"
-        - "/mnt/c/Users/HP/AppData/Local/Muse Hub/lib"
         - "/mnt/f/ffmpeg_v7.1/ffmpeg-7.1-essentials_build/bin"
         - "/mnt/f/BBDown_1.6.3_20240814_win-x64"
         - "/mnt/f/cursor/cursor/resources/app/bin"
         - "/mnt/c/Users/HP/AppData/Roaming/Programs/Zero Install"
-        - "/mnt/c/Users/HP/AppData/Local/Muse Hub/lib"
         - "/mnt/f/curl-8.15.0_4-win64-mingw/bin"
-        - "/root/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand"
+        - "/mnt/c/Users/HP/AppData/Local/GitHubDesktop/bin"
   -
     kind: "find-v1"
     backtrace:
@@ -277,7 +271,6 @@ events:
       - "icx"
       - "clang++"
     candidate_directories:
-      - "/root/.vscode-server/bin/6f17636121051a53c88d3e605c491d22af2ba755/bin/remote-cli/"
       - "/usr/local/sbin/"
       - "/usr/local/bin/"
       - "/usr/sbin/"
@@ -298,7 +291,7 @@ events:
       - "/mnt/c/windows/System32/OpenSSH/"
       - "/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common/"
       - "/mnt/c/Program Files/Common Files/Autodesk Shared/"
-      - "/mnt/d/\u4f20\u8f93\u6587\u4ef6\u5de5\u5177/AOMEI/AOMEI Backupper/6.9.1/"
+      - "/mnt/d/\ufffd\ufffd\ufffd\ufffd\ufffd\u013c\ufffd\ufffd\ufffd\ufffd\ufffd/AOMEI/AOMEI Backupper/6.9.1/"
       - "/mnt/c/Pr/"
       - "/mnt/c/Program Files/nodejs/"
       - "/mnt/c/ProgramData/chocolatey/bin/"
@@ -309,6 +302,7 @@ events:
       - "/mnt/c/Program Files/Zero Install/"
       - "/mnt/c/Users/HP/AppData/Local/Muse Hub/lib/"
       - "/mnt/c/Program Files/CursorModifier/"
+      - "/mnt/c/Program Files/MySQL/MySQL Shell 8.0/bin/"
       - "/mnt/f/python3/Scripts/"
       - "/mnt/f/python3/"
       - "/mnt/c/Users/HP/AppData/Local/Microsoft/WindowsApps/"
@@ -321,16 +315,14 @@ events:
       - "/mnt/f/cursor/cursor/resources/app/bin/"
       - "/mnt/c/Users/HP/AppData/Roaming/Programs/Zero Install/"
       - "/mnt/f/curl-8.15.0_4-win64-mingw/bin/"
-      - "/root/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand/"
+      - "/mnt/c/Users/HP/AppData/Local/GitHubDesktop/bin/"
     searched_directories:
-      - "/root/.vscode-server/bin/6f17636121051a53c88d3e605c491d22af2ba755/bin/remote-cli/c++"
       - "/usr/local/sbin/c++"
       - "/usr/local/bin/c++"
       - "/usr/sbin/c++"
     found: "/usr/bin/c++"
     search_context:
       ENV{PATH}:
-        - "/root/.vscode-server/bin/6f17636121051a53c88d3e605c491d22af2ba755/bin/remote-cli"
         - "/usr/local/sbin"
         - "/usr/local/bin"
         - "/usr/sbin"
@@ -351,7 +343,7 @@ events:
         - "/mnt/c/windows/System32/OpenSSH/"
         - "/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common"
         - "/mnt/c/Program Files/Common Files/Autodesk Shared/"
-        - "/mnt/d/\u4f20\u8f93\u6587\u4ef6\u5de5\u5177/AOMEI/AOMEI Backupper/6.9.1"
+        - "/mnt/d/\ufffd\ufffd\ufffd\ufffd\ufffd\u013c\ufffd\ufffd\ufffd\ufffd\ufffd/AOMEI/AOMEI Backupper/6.9.1"
         - "/mnt/c/Pr"
         - "/mnt/c/Program Files/nodejs/"
         - "/mnt/c/ProgramData/chocolatey/bin"
@@ -362,6 +354,7 @@ events:
         - "/mnt/c/Program Files/Zero Install"
         - "/mnt/c/Users/HP/AppData/Local/Muse Hub/lib"
         - "/mnt/c/Program Files/CursorModifier"
+        - "/mnt/c/Program Files/MySQL/MySQL Shell 8.0/bin/"
         - "/mnt/f/python3/Scripts/"
         - "/mnt/f/python3/"
         - "/mnt/c/Users/HP/AppData/Local/Microsoft/WindowsApps"
@@ -369,14 +362,12 @@ events:
         - "/mnt/c/Users/HP/AppData/Roaming/npm"
         - "/mnt/d/vscode/Microsoft VS Code/bin"
         - "/mnt/c/Program Files (x86)/Nmap"
-        - "/mnt/c/Users/HP/AppData/Local/Muse Hub/lib"
         - "/mnt/f/ffmpeg_v7.1/ffmpeg-7.1-essentials_build/bin"
         - "/mnt/f/BBDown_1.6.3_20240814_win-x64"
         - "/mnt/f/cursor/cursor/resources/app/bin"
         - "/mnt/c/Users/HP/AppData/Roaming/Programs/Zero Install"
-        - "/mnt/c/Users/HP/AppData/Local/Muse Hub/lib"
         - "/mnt/f/curl-8.15.0_4-win64-mingw/bin"
-        - "/root/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand"
+        - "/mnt/c/Users/HP/AppData/Local/GitHubDesktop/bin"
   -
     kind: "find-v1"
     backtrace:
@@ -404,7 +395,6 @@ events:
     found: "/usr/share/cmake-4.1/Modules/CMakeCXXCompilerId.cpp.in"
     search_context:
       ENV{PATH}:
-        - "/root/.vscode-server/bin/6f17636121051a53c88d3e605c491d22af2ba755/bin/remote-cli"
         - "/usr/local/sbin"
         - "/usr/local/bin"
         - "/usr/sbin"
@@ -425,7 +415,7 @@ events:
         - "/mnt/c/windows/System32/OpenSSH/"
         - "/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common"
         - "/mnt/c/Program Files/Common Files/Autodesk Shared/"
-        - "/mnt/d/\u4f20\u8f93\u6587\u4ef6\u5de5\u5177/AOMEI/AOMEI Backupper/6.9.1"
+        - "/mnt/d/\ufffd\ufffd\ufffd\ufffd\ufffd\u013c\ufffd\ufffd\ufffd\ufffd\ufffd/AOMEI/AOMEI Backupper/6.9.1"
         - "/mnt/c/Pr"
         - "/mnt/c/Program Files/nodejs/"
         - "/mnt/c/ProgramData/chocolatey/bin"
@@ -436,6 +426,7 @@ events:
         - "/mnt/c/Program Files/Zero Install"
         - "/mnt/c/Users/HP/AppData/Local/Muse Hub/lib"
         - "/mnt/c/Program Files/CursorModifier"
+        - "/mnt/c/Program Files/MySQL/MySQL Shell 8.0/bin/"
         - "/mnt/f/python3/Scripts/"
         - "/mnt/f/python3/"
         - "/mnt/c/Users/HP/AppData/Local/Microsoft/WindowsApps"
@@ -443,14 +434,12 @@ events:
         - "/mnt/c/Users/HP/AppData/Roaming/npm"
         - "/mnt/d/vscode/Microsoft VS Code/bin"
         - "/mnt/c/Program Files (x86)/Nmap"
-        - "/mnt/c/Users/HP/AppData/Local/Muse Hub/lib"
         - "/mnt/f/ffmpeg_v7.1/ffmpeg-7.1-essentials_build/bin"
         - "/mnt/f/BBDown_1.6.3_20240814_win-x64"
         - "/mnt/f/cursor/cursor/resources/app/bin"
         - "/mnt/c/Users/HP/AppData/Roaming/Programs/Zero Install"
-        - "/mnt/c/Users/HP/AppData/Local/Muse Hub/lib"
         - "/mnt/f/curl-8.15.0_4-win64-mingw/bin"
-        - "/root/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand"
+        - "/mnt/c/Users/HP/AppData/Local/GitHubDesktop/bin"
   -
     kind: "message-v1"
     backtrace:
@@ -471,7 +460,7 @@ events:
       Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "a.out"
       
       The CXX compiler identification is GNU, found in:
-        /home/monorepo-cmake-sample/build/CMakeFiles/4.1.1/CompilerIdCXX/a.out
+        /mnt/c/Users/HP/Desktop/我的作品/monorepo-cmake-sample/build/CMakeFiles/4.1.1/CompilerIdCXX/a.out
       
   -
     kind: "find-v1"
@@ -494,7 +483,6 @@ events:
       - "ar"
     candidate_directories:
       - "/usr/bin/"
-      - "/root/.vscode-server/bin/6f17636121051a53c88d3e605c491d22af2ba755/bin/remote-cli/"
       - "/usr/local/sbin/"
       - "/usr/local/bin/"
       - "/usr/sbin/"
@@ -514,7 +502,7 @@ events:
       - "/mnt/c/windows/System32/OpenSSH/"
       - "/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common/"
       - "/mnt/c/Program Files/Common Files/Autodesk Shared/"
-      - "/mnt/d/\u4f20\u8f93\u6587\u4ef6\u5de5\u5177/AOMEI/AOMEI Backupper/6.9.1/"
+      - "/mnt/d/\ufffd\ufffd\ufffd\ufffd\ufffd\u013c\ufffd\ufffd\ufffd\ufffd\ufffd/AOMEI/AOMEI Backupper/6.9.1/"
       - "/mnt/c/Pr/"
       - "/mnt/c/Program Files/nodejs/"
       - "/mnt/c/ProgramData/chocolatey/bin/"
@@ -525,6 +513,7 @@ events:
       - "/mnt/c/Program Files/Zero Install/"
       - "/mnt/c/Users/HP/AppData/Local/Muse Hub/lib/"
       - "/mnt/c/Program Files/CursorModifier/"
+      - "/mnt/c/Program Files/MySQL/MySQL Shell 8.0/bin/"
       - "/mnt/f/python3/Scripts/"
       - "/mnt/f/python3/"
       - "/mnt/c/Users/HP/AppData/Local/Microsoft/WindowsApps/"
@@ -537,11 +526,10 @@ events:
       - "/mnt/f/cursor/cursor/resources/app/bin/"
       - "/mnt/c/Users/HP/AppData/Roaming/Programs/Zero Install/"
       - "/mnt/f/curl-8.15.0_4-win64-mingw/bin/"
-      - "/root/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand/"
+      - "/mnt/c/Users/HP/AppData/Local/GitHubDesktop/bin/"
     found: "/usr/bin/ar"
     search_context:
       ENV{PATH}:
-        - "/root/.vscode-server/bin/6f17636121051a53c88d3e605c491d22af2ba755/bin/remote-cli"
         - "/usr/local/sbin"
         - "/usr/local/bin"
         - "/usr/sbin"
@@ -562,7 +550,7 @@ events:
         - "/mnt/c/windows/System32/OpenSSH/"
         - "/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common"
         - "/mnt/c/Program Files/Common Files/Autodesk Shared/"
-        - "/mnt/d/\u4f20\u8f93\u6587\u4ef6\u5de5\u5177/AOMEI/AOMEI Backupper/6.9.1"
+        - "/mnt/d/\ufffd\ufffd\ufffd\ufffd\ufffd\u013c\ufffd\ufffd\ufffd\ufffd\ufffd/AOMEI/AOMEI Backupper/6.9.1"
         - "/mnt/c/Pr"
         - "/mnt/c/Program Files/nodejs/"
         - "/mnt/c/ProgramData/chocolatey/bin"
@@ -573,6 +561,7 @@ events:
         - "/mnt/c/Program Files/Zero Install"
         - "/mnt/c/Users/HP/AppData/Local/Muse Hub/lib"
         - "/mnt/c/Program Files/CursorModifier"
+        - "/mnt/c/Program Files/MySQL/MySQL Shell 8.0/bin/"
         - "/mnt/f/python3/Scripts/"
         - "/mnt/f/python3/"
         - "/mnt/c/Users/HP/AppData/Local/Microsoft/WindowsApps"
@@ -580,14 +569,12 @@ events:
         - "/mnt/c/Users/HP/AppData/Roaming/npm"
         - "/mnt/d/vscode/Microsoft VS Code/bin"
         - "/mnt/c/Program Files (x86)/Nmap"
-        - "/mnt/c/Users/HP/AppData/Local/Muse Hub/lib"
         - "/mnt/f/ffmpeg_v7.1/ffmpeg-7.1-essentials_build/bin"
         - "/mnt/f/BBDown_1.6.3_20240814_win-x64"
         - "/mnt/f/cursor/cursor/resources/app/bin"
         - "/mnt/c/Users/HP/AppData/Roaming/Programs/Zero Install"
-        - "/mnt/c/Users/HP/AppData/Local/Muse Hub/lib"
         - "/mnt/f/curl-8.15.0_4-win64-mingw/bin"
-        - "/root/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand"
+        - "/mnt/c/Users/HP/AppData/Local/GitHubDesktop/bin"
   -
     kind: "find-v1"
     backtrace:
@@ -609,7 +596,6 @@ events:
       - "ranlib"
     candidate_directories:
       - "/usr/bin/"
-      - "/root/.vscode-server/bin/6f17636121051a53c88d3e605c491d22af2ba755/bin/remote-cli/"
       - "/usr/local/sbin/"
       - "/usr/local/bin/"
       - "/usr/sbin/"
@@ -629,7 +615,7 @@ events:
       - "/mnt/c/windows/System32/OpenSSH/"
       - "/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common/"
       - "/mnt/c/Program Files/Common Files/Autodesk Shared/"
-      - "/mnt/d/\u4f20\u8f93\u6587\u4ef6\u5de5\u5177/AOMEI/AOMEI Backupper/6.9.1/"
+      - "/mnt/d/\ufffd\ufffd\ufffd\ufffd\ufffd\u013c\ufffd\ufffd\ufffd\ufffd\ufffd/AOMEI/AOMEI Backupper/6.9.1/"
       - "/mnt/c/Pr/"
       - "/mnt/c/Program Files/nodejs/"
       - "/mnt/c/ProgramData/chocolatey/bin/"
@@ -640,6 +626,7 @@ events:
       - "/mnt/c/Program Files/Zero Install/"
       - "/mnt/c/Users/HP/AppData/Local/Muse Hub/lib/"
       - "/mnt/c/Program Files/CursorModifier/"
+      - "/mnt/c/Program Files/MySQL/MySQL Shell 8.0/bin/"
       - "/mnt/f/python3/Scripts/"
       - "/mnt/f/python3/"
       - "/mnt/c/Users/HP/AppData/Local/Microsoft/WindowsApps/"
@@ -652,11 +639,10 @@ events:
       - "/mnt/f/cursor/cursor/resources/app/bin/"
       - "/mnt/c/Users/HP/AppData/Roaming/Programs/Zero Install/"
       - "/mnt/f/curl-8.15.0_4-win64-mingw/bin/"
-      - "/root/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand/"
+      - "/mnt/c/Users/HP/AppData/Local/GitHubDesktop/bin/"
     found: "/usr/bin/ranlib"
     search_context:
       ENV{PATH}:
-        - "/root/.vscode-server/bin/6f17636121051a53c88d3e605c491d22af2ba755/bin/remote-cli"
         - "/usr/local/sbin"
         - "/usr/local/bin"
         - "/usr/sbin"
@@ -677,7 +663,7 @@ events:
         - "/mnt/c/windows/System32/OpenSSH/"
         - "/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common"
         - "/mnt/c/Program Files/Common Files/Autodesk Shared/"
-        - "/mnt/d/\u4f20\u8f93\u6587\u4ef6\u5de5\u5177/AOMEI/AOMEI Backupper/6.9.1"
+        - "/mnt/d/\ufffd\ufffd\ufffd\ufffd\ufffd\u013c\ufffd\ufffd\ufffd\ufffd\ufffd/AOMEI/AOMEI Backupper/6.9.1"
         - "/mnt/c/Pr"
         - "/mnt/c/Program Files/nodejs/"
         - "/mnt/c/ProgramData/chocolatey/bin"
@@ -688,6 +674,7 @@ events:
         - "/mnt/c/Program Files/Zero Install"
         - "/mnt/c/Users/HP/AppData/Local/Muse Hub/lib"
         - "/mnt/c/Program Files/CursorModifier"
+        - "/mnt/c/Program Files/MySQL/MySQL Shell 8.0/bin/"
         - "/mnt/f/python3/Scripts/"
         - "/mnt/f/python3/"
         - "/mnt/c/Users/HP/AppData/Local/Microsoft/WindowsApps"
@@ -695,14 +682,12 @@ events:
         - "/mnt/c/Users/HP/AppData/Roaming/npm"
         - "/mnt/d/vscode/Microsoft VS Code/bin"
         - "/mnt/c/Program Files (x86)/Nmap"
-        - "/mnt/c/Users/HP/AppData/Local/Muse Hub/lib"
         - "/mnt/f/ffmpeg_v7.1/ffmpeg-7.1-essentials_build/bin"
         - "/mnt/f/BBDown_1.6.3_20240814_win-x64"
         - "/mnt/f/cursor/cursor/resources/app/bin"
         - "/mnt/c/Users/HP/AppData/Roaming/Programs/Zero Install"
-        - "/mnt/c/Users/HP/AppData/Local/Muse Hub/lib"
         - "/mnt/f/curl-8.15.0_4-win64-mingw/bin"
-        - "/root/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand"
+        - "/mnt/c/Users/HP/AppData/Local/GitHubDesktop/bin"
   -
     kind: "find-v1"
     backtrace:
@@ -724,7 +709,6 @@ events:
       - "strip"
     candidate_directories:
       - "/usr/bin/"
-      - "/root/.vscode-server/bin/6f17636121051a53c88d3e605c491d22af2ba755/bin/remote-cli/"
       - "/usr/local/sbin/"
       - "/usr/local/bin/"
       - "/usr/sbin/"
@@ -744,7 +728,7 @@ events:
       - "/mnt/c/windows/System32/OpenSSH/"
       - "/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common/"
       - "/mnt/c/Program Files/Common Files/Autodesk Shared/"
-      - "/mnt/d/\u4f20\u8f93\u6587\u4ef6\u5de5\u5177/AOMEI/AOMEI Backupper/6.9.1/"
+      - "/mnt/d/\ufffd\ufffd\ufffd\ufffd\ufffd\u013c\ufffd\ufffd\ufffd\ufffd\ufffd/AOMEI/AOMEI Backupper/6.9.1/"
       - "/mnt/c/Pr/"
       - "/mnt/c/Program Files/nodejs/"
       - "/mnt/c/ProgramData/chocolatey/bin/"
@@ -755,6 +739,7 @@ events:
       - "/mnt/c/Program Files/Zero Install/"
       - "/mnt/c/Users/HP/AppData/Local/Muse Hub/lib/"
       - "/mnt/c/Program Files/CursorModifier/"
+      - "/mnt/c/Program Files/MySQL/MySQL Shell 8.0/bin/"
       - "/mnt/f/python3/Scripts/"
       - "/mnt/f/python3/"
       - "/mnt/c/Users/HP/AppData/Local/Microsoft/WindowsApps/"
@@ -767,11 +752,10 @@ events:
       - "/mnt/f/cursor/cursor/resources/app/bin/"
       - "/mnt/c/Users/HP/AppData/Roaming/Programs/Zero Install/"
       - "/mnt/f/curl-8.15.0_4-win64-mingw/bin/"
-      - "/root/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand/"
+      - "/mnt/c/Users/HP/AppData/Local/GitHubDesktop/bin/"
     found: "/usr/bin/strip"
     search_context:
       ENV{PATH}:
-        - "/root/.vscode-server/bin/6f17636121051a53c88d3e605c491d22af2ba755/bin/remote-cli"
         - "/usr/local/sbin"
         - "/usr/local/bin"
         - "/usr/sbin"
@@ -792,7 +776,7 @@ events:
         - "/mnt/c/windows/System32/OpenSSH/"
         - "/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common"
         - "/mnt/c/Program Files/Common Files/Autodesk Shared/"
-        - "/mnt/d/\u4f20\u8f93\u6587\u4ef6\u5de5\u5177/AOMEI/AOMEI Backupper/6.9.1"
+        - "/mnt/d/\ufffd\ufffd\ufffd\ufffd\ufffd\u013c\ufffd\ufffd\ufffd\ufffd\ufffd/AOMEI/AOMEI Backupper/6.9.1"
         - "/mnt/c/Pr"
         - "/mnt/c/Program Files/nodejs/"
         - "/mnt/c/ProgramData/chocolatey/bin"
@@ -803,6 +787,7 @@ events:
         - "/mnt/c/Program Files/Zero Install"
         - "/mnt/c/Users/HP/AppData/Local/Muse Hub/lib"
         - "/mnt/c/Program Files/CursorModifier"
+        - "/mnt/c/Program Files/MySQL/MySQL Shell 8.0/bin/"
         - "/mnt/f/python3/Scripts/"
         - "/mnt/f/python3/"
         - "/mnt/c/Users/HP/AppData/Local/Microsoft/WindowsApps"
@@ -810,14 +795,12 @@ events:
         - "/mnt/c/Users/HP/AppData/Roaming/npm"
         - "/mnt/d/vscode/Microsoft VS Code/bin"
         - "/mnt/c/Program Files (x86)/Nmap"
-        - "/mnt/c/Users/HP/AppData/Local/Muse Hub/lib"
         - "/mnt/f/ffmpeg_v7.1/ffmpeg-7.1-essentials_build/bin"
         - "/mnt/f/BBDown_1.6.3_20240814_win-x64"
         - "/mnt/f/cursor/cursor/resources/app/bin"
         - "/mnt/c/Users/HP/AppData/Roaming/Programs/Zero Install"
-        - "/mnt/c/Users/HP/AppData/Local/Muse Hub/lib"
         - "/mnt/f/curl-8.15.0_4-win64-mingw/bin"
-        - "/root/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand"
+        - "/mnt/c/Users/HP/AppData/Local/GitHubDesktop/bin"
   -
     kind: "find-v1"
     backtrace:
@@ -839,7 +822,6 @@ events:
       - "ld"
     candidate_directories:
       - "/usr/bin/"
-      - "/root/.vscode-server/bin/6f17636121051a53c88d3e605c491d22af2ba755/bin/remote-cli/"
       - "/usr/local/sbin/"
       - "/usr/local/bin/"
       - "/usr/sbin/"
@@ -859,7 +841,7 @@ events:
       - "/mnt/c/windows/System32/OpenSSH/"
       - "/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common/"
       - "/mnt/c/Program Files/Common Files/Autodesk Shared/"
-      - "/mnt/d/\u4f20\u8f93\u6587\u4ef6\u5de5\u5177/AOMEI/AOMEI Backupper/6.9.1/"
+      - "/mnt/d/\ufffd\ufffd\ufffd\ufffd\ufffd\u013c\ufffd\ufffd\ufffd\ufffd\ufffd/AOMEI/AOMEI Backupper/6.9.1/"
       - "/mnt/c/Pr/"
       - "/mnt/c/Program Files/nodejs/"
       - "/mnt/c/ProgramData/chocolatey/bin/"
@@ -870,6 +852,7 @@ events:
       - "/mnt/c/Program Files/Zero Install/"
       - "/mnt/c/Users/HP/AppData/Local/Muse Hub/lib/"
       - "/mnt/c/Program Files/CursorModifier/"
+      - "/mnt/c/Program Files/MySQL/MySQL Shell 8.0/bin/"
       - "/mnt/f/python3/Scripts/"
       - "/mnt/f/python3/"
       - "/mnt/c/Users/HP/AppData/Local/Microsoft/WindowsApps/"
@@ -882,11 +865,10 @@ events:
       - "/mnt/f/cursor/cursor/resources/app/bin/"
       - "/mnt/c/Users/HP/AppData/Roaming/Programs/Zero Install/"
       - "/mnt/f/curl-8.15.0_4-win64-mingw/bin/"
-      - "/root/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand/"
+      - "/mnt/c/Users/HP/AppData/Local/GitHubDesktop/bin/"
     found: "/usr/bin/ld"
     search_context:
       ENV{PATH}:
-        - "/root/.vscode-server/bin/6f17636121051a53c88d3e605c491d22af2ba755/bin/remote-cli"
         - "/usr/local/sbin"
         - "/usr/local/bin"
         - "/usr/sbin"
@@ -907,7 +889,7 @@ events:
         - "/mnt/c/windows/System32/OpenSSH/"
         - "/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common"
         - "/mnt/c/Program Files/Common Files/Autodesk Shared/"
-        - "/mnt/d/\u4f20\u8f93\u6587\u4ef6\u5de5\u5177/AOMEI/AOMEI Backupper/6.9.1"
+        - "/mnt/d/\ufffd\ufffd\ufffd\ufffd\ufffd\u013c\ufffd\ufffd\ufffd\ufffd\ufffd/AOMEI/AOMEI Backupper/6.9.1"
         - "/mnt/c/Pr"
         - "/mnt/c/Program Files/nodejs/"
         - "/mnt/c/ProgramData/chocolatey/bin"
@@ -918,6 +900,7 @@ events:
         - "/mnt/c/Program Files/Zero Install"
         - "/mnt/c/Users/HP/AppData/Local/Muse Hub/lib"
         - "/mnt/c/Program Files/CursorModifier"
+        - "/mnt/c/Program Files/MySQL/MySQL Shell 8.0/bin/"
         - "/mnt/f/python3/Scripts/"
         - "/mnt/f/python3/"
         - "/mnt/c/Users/HP/AppData/Local/Microsoft/WindowsApps"
@@ -925,14 +908,12 @@ events:
         - "/mnt/c/Users/HP/AppData/Roaming/npm"
         - "/mnt/d/vscode/Microsoft VS Code/bin"
         - "/mnt/c/Program Files (x86)/Nmap"
-        - "/mnt/c/Users/HP/AppData/Local/Muse Hub/lib"
         - "/mnt/f/ffmpeg_v7.1/ffmpeg-7.1-essentials_build/bin"
         - "/mnt/f/BBDown_1.6.3_20240814_win-x64"
         - "/mnt/f/cursor/cursor/resources/app/bin"
         - "/mnt/c/Users/HP/AppData/Roaming/Programs/Zero Install"
-        - "/mnt/c/Users/HP/AppData/Local/Muse Hub/lib"
         - "/mnt/f/curl-8.15.0_4-win64-mingw/bin"
-        - "/root/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand"
+        - "/mnt/c/Users/HP/AppData/Local/GitHubDesktop/bin"
   -
     kind: "find-v1"
     backtrace:
@@ -954,7 +935,6 @@ events:
       - "nm"
     candidate_directories:
       - "/usr/bin/"
-      - "/root/.vscode-server/bin/6f17636121051a53c88d3e605c491d22af2ba755/bin/remote-cli/"
       - "/usr/local/sbin/"
       - "/usr/local/bin/"
       - "/usr/sbin/"
@@ -974,7 +954,7 @@ events:
       - "/mnt/c/windows/System32/OpenSSH/"
       - "/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common/"
       - "/mnt/c/Program Files/Common Files/Autodesk Shared/"
-      - "/mnt/d/\u4f20\u8f93\u6587\u4ef6\u5de5\u5177/AOMEI/AOMEI Backupper/6.9.1/"
+      - "/mnt/d/\ufffd\ufffd\ufffd\ufffd\ufffd\u013c\ufffd\ufffd\ufffd\ufffd\ufffd/AOMEI/AOMEI Backupper/6.9.1/"
       - "/mnt/c/Pr/"
       - "/mnt/c/Program Files/nodejs/"
       - "/mnt/c/ProgramData/chocolatey/bin/"
@@ -985,6 +965,7 @@ events:
       - "/mnt/c/Program Files/Zero Install/"
       - "/mnt/c/Users/HP/AppData/Local/Muse Hub/lib/"
       - "/mnt/c/Program Files/CursorModifier/"
+      - "/mnt/c/Program Files/MySQL/MySQL Shell 8.0/bin/"
       - "/mnt/f/python3/Scripts/"
       - "/mnt/f/python3/"
       - "/mnt/c/Users/HP/AppData/Local/Microsoft/WindowsApps/"
@@ -997,11 +978,10 @@ events:
       - "/mnt/f/cursor/cursor/resources/app/bin/"
       - "/mnt/c/Users/HP/AppData/Roaming/Programs/Zero Install/"
       - "/mnt/f/curl-8.15.0_4-win64-mingw/bin/"
-      - "/root/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand/"
+      - "/mnt/c/Users/HP/AppData/Local/GitHubDesktop/bin/"
     found: "/usr/bin/nm"
     search_context:
       ENV{PATH}:
-        - "/root/.vscode-server/bin/6f17636121051a53c88d3e605c491d22af2ba755/bin/remote-cli"
         - "/usr/local/sbin"
         - "/usr/local/bin"
         - "/usr/sbin"
@@ -1022,7 +1002,7 @@ events:
         - "/mnt/c/windows/System32/OpenSSH/"
         - "/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common"
         - "/mnt/c/Program Files/Common Files/Autodesk Shared/"
-        - "/mnt/d/\u4f20\u8f93\u6587\u4ef6\u5de5\u5177/AOMEI/AOMEI Backupper/6.9.1"
+        - "/mnt/d/\ufffd\ufffd\ufffd\ufffd\ufffd\u013c\ufffd\ufffd\ufffd\ufffd\ufffd/AOMEI/AOMEI Backupper/6.9.1"
         - "/mnt/c/Pr"
         - "/mnt/c/Program Files/nodejs/"
         - "/mnt/c/ProgramData/chocolatey/bin"
@@ -1033,6 +1013,7 @@ events:
         - "/mnt/c/Program Files/Zero Install"
         - "/mnt/c/Users/HP/AppData/Local/Muse Hub/lib"
         - "/mnt/c/Program Files/CursorModifier"
+        - "/mnt/c/Program Files/MySQL/MySQL Shell 8.0/bin/"
         - "/mnt/f/python3/Scripts/"
         - "/mnt/f/python3/"
         - "/mnt/c/Users/HP/AppData/Local/Microsoft/WindowsApps"
@@ -1040,14 +1021,12 @@ events:
         - "/mnt/c/Users/HP/AppData/Roaming/npm"
         - "/mnt/d/vscode/Microsoft VS Code/bin"
         - "/mnt/c/Program Files (x86)/Nmap"
-        - "/mnt/c/Users/HP/AppData/Local/Muse Hub/lib"
         - "/mnt/f/ffmpeg_v7.1/ffmpeg-7.1-essentials_build/bin"
         - "/mnt/f/BBDown_1.6.3_20240814_win-x64"
         - "/mnt/f/cursor/cursor/resources/app/bin"
         - "/mnt/c/Users/HP/AppData/Roaming/Programs/Zero Install"
-        - "/mnt/c/Users/HP/AppData/Local/Muse Hub/lib"
         - "/mnt/f/curl-8.15.0_4-win64-mingw/bin"
-        - "/root/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand"
+        - "/mnt/c/Users/HP/AppData/Local/GitHubDesktop/bin"
   -
     kind: "find-v1"
     backtrace:
@@ -1069,7 +1048,6 @@ events:
       - "objdump"
     candidate_directories:
       - "/usr/bin/"
-      - "/root/.vscode-server/bin/6f17636121051a53c88d3e605c491d22af2ba755/bin/remote-cli/"
       - "/usr/local/sbin/"
       - "/usr/local/bin/"
       - "/usr/sbin/"
@@ -1089,7 +1067,7 @@ events:
       - "/mnt/c/windows/System32/OpenSSH/"
       - "/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common/"
       - "/mnt/c/Program Files/Common Files/Autodesk Shared/"
-      - "/mnt/d/\u4f20\u8f93\u6587\u4ef6\u5de5\u5177/AOMEI/AOMEI Backupper/6.9.1/"
+      - "/mnt/d/\ufffd\ufffd\ufffd\ufffd\ufffd\u013c\ufffd\ufffd\ufffd\ufffd\ufffd/AOMEI/AOMEI Backupper/6.9.1/"
       - "/mnt/c/Pr/"
       - "/mnt/c/Program Files/nodejs/"
       - "/mnt/c/ProgramData/chocolatey/bin/"
@@ -1100,6 +1078,7 @@ events:
       - "/mnt/c/Program Files/Zero Install/"
       - "/mnt/c/Users/HP/AppData/Local/Muse Hub/lib/"
       - "/mnt/c/Program Files/CursorModifier/"
+      - "/mnt/c/Program Files/MySQL/MySQL Shell 8.0/bin/"
       - "/mnt/f/python3/Scripts/"
       - "/mnt/f/python3/"
       - "/mnt/c/Users/HP/AppData/Local/Microsoft/WindowsApps/"
@@ -1112,11 +1091,10 @@ events:
       - "/mnt/f/cursor/cursor/resources/app/bin/"
       - "/mnt/c/Users/HP/AppData/Roaming/Programs/Zero Install/"
       - "/mnt/f/curl-8.15.0_4-win64-mingw/bin/"
-      - "/root/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand/"
+      - "/mnt/c/Users/HP/AppData/Local/GitHubDesktop/bin/"
     found: "/usr/bin/objdump"
     search_context:
       ENV{PATH}:
-        - "/root/.vscode-server/bin/6f17636121051a53c88d3e605c491d22af2ba755/bin/remote-cli"
         - "/usr/local/sbin"
         - "/usr/local/bin"
         - "/usr/sbin"
@@ -1137,7 +1115,7 @@ events:
         - "/mnt/c/windows/System32/OpenSSH/"
         - "/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common"
         - "/mnt/c/Program Files/Common Files/Autodesk Shared/"
-        - "/mnt/d/\u4f20\u8f93\u6587\u4ef6\u5de5\u5177/AOMEI/AOMEI Backupper/6.9.1"
+        - "/mnt/d/\ufffd\ufffd\ufffd\ufffd\ufffd\u013c\ufffd\ufffd\ufffd\ufffd\ufffd/AOMEI/AOMEI Backupper/6.9.1"
         - "/mnt/c/Pr"
         - "/mnt/c/Program Files/nodejs/"
         - "/mnt/c/ProgramData/chocolatey/bin"
@@ -1148,6 +1126,7 @@ events:
         - "/mnt/c/Program Files/Zero Install"
         - "/mnt/c/Users/HP/AppData/Local/Muse Hub/lib"
         - "/mnt/c/Program Files/CursorModifier"
+        - "/mnt/c/Program Files/MySQL/MySQL Shell 8.0/bin/"
         - "/mnt/f/python3/Scripts/"
         - "/mnt/f/python3/"
         - "/mnt/c/Users/HP/AppData/Local/Microsoft/WindowsApps"
@@ -1155,14 +1134,12 @@ events:
         - "/mnt/c/Users/HP/AppData/Roaming/npm"
         - "/mnt/d/vscode/Microsoft VS Code/bin"
         - "/mnt/c/Program Files (x86)/Nmap"
-        - "/mnt/c/Users/HP/AppData/Local/Muse Hub/lib"
         - "/mnt/f/ffmpeg_v7.1/ffmpeg-7.1-essentials_build/bin"
         - "/mnt/f/BBDown_1.6.3_20240814_win-x64"
         - "/mnt/f/cursor/cursor/resources/app/bin"
         - "/mnt/c/Users/HP/AppData/Roaming/Programs/Zero Install"
-        - "/mnt/c/Users/HP/AppData/Local/Muse Hub/lib"
         - "/mnt/f/curl-8.15.0_4-win64-mingw/bin"
-        - "/root/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand"
+        - "/mnt/c/Users/HP/AppData/Local/GitHubDesktop/bin"
   -
     kind: "find-v1"
     backtrace:
@@ -1184,7 +1161,6 @@ events:
       - "objcopy"
     candidate_directories:
       - "/usr/bin/"
-      - "/root/.vscode-server/bin/6f17636121051a53c88d3e605c491d22af2ba755/bin/remote-cli/"
       - "/usr/local/sbin/"
       - "/usr/local/bin/"
       - "/usr/sbin/"
@@ -1204,7 +1180,7 @@ events:
       - "/mnt/c/windows/System32/OpenSSH/"
       - "/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common/"
       - "/mnt/c/Program Files/Common Files/Autodesk Shared/"
-      - "/mnt/d/\u4f20\u8f93\u6587\u4ef6\u5de5\u5177/AOMEI/AOMEI Backupper/6.9.1/"
+      - "/mnt/d/\ufffd\ufffd\ufffd\ufffd\ufffd\u013c\ufffd\ufffd\ufffd\ufffd\ufffd/AOMEI/AOMEI Backupper/6.9.1/"
       - "/mnt/c/Pr/"
       - "/mnt/c/Program Files/nodejs/"
       - "/mnt/c/ProgramData/chocolatey/bin/"
@@ -1215,6 +1191,7 @@ events:
       - "/mnt/c/Program Files/Zero Install/"
       - "/mnt/c/Users/HP/AppData/Local/Muse Hub/lib/"
       - "/mnt/c/Program Files/CursorModifier/"
+      - "/mnt/c/Program Files/MySQL/MySQL Shell 8.0/bin/"
       - "/mnt/f/python3/Scripts/"
       - "/mnt/f/python3/"
       - "/mnt/c/Users/HP/AppData/Local/Microsoft/WindowsApps/"
@@ -1227,11 +1204,10 @@ events:
       - "/mnt/f/cursor/cursor/resources/app/bin/"
       - "/mnt/c/Users/HP/AppData/Roaming/Programs/Zero Install/"
       - "/mnt/f/curl-8.15.0_4-win64-mingw/bin/"
-      - "/root/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand/"
+      - "/mnt/c/Users/HP/AppData/Local/GitHubDesktop/bin/"
     found: "/usr/bin/objcopy"
     search_context:
       ENV{PATH}:
-        - "/root/.vscode-server/bin/6f17636121051a53c88d3e605c491d22af2ba755/bin/remote-cli"
         - "/usr/local/sbin"
         - "/usr/local/bin"
         - "/usr/sbin"
@@ -1252,7 +1228,7 @@ events:
         - "/mnt/c/windows/System32/OpenSSH/"
         - "/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common"
         - "/mnt/c/Program Files/Common Files/Autodesk Shared/"
-        - "/mnt/d/\u4f20\u8f93\u6587\u4ef6\u5de5\u5177/AOMEI/AOMEI Backupper/6.9.1"
+        - "/mnt/d/\ufffd\ufffd\ufffd\ufffd\ufffd\u013c\ufffd\ufffd\ufffd\ufffd\ufffd/AOMEI/AOMEI Backupper/6.9.1"
         - "/mnt/c/Pr"
         - "/mnt/c/Program Files/nodejs/"
         - "/mnt/c/ProgramData/chocolatey/bin"
@@ -1263,6 +1239,7 @@ events:
         - "/mnt/c/Program Files/Zero Install"
         - "/mnt/c/Users/HP/AppData/Local/Muse Hub/lib"
         - "/mnt/c/Program Files/CursorModifier"
+        - "/mnt/c/Program Files/MySQL/MySQL Shell 8.0/bin/"
         - "/mnt/f/python3/Scripts/"
         - "/mnt/f/python3/"
         - "/mnt/c/Users/HP/AppData/Local/Microsoft/WindowsApps"
@@ -1270,14 +1247,12 @@ events:
         - "/mnt/c/Users/HP/AppData/Roaming/npm"
         - "/mnt/d/vscode/Microsoft VS Code/bin"
         - "/mnt/c/Program Files (x86)/Nmap"
-        - "/mnt/c/Users/HP/AppData/Local/Muse Hub/lib"
         - "/mnt/f/ffmpeg_v7.1/ffmpeg-7.1-essentials_build/bin"
         - "/mnt/f/BBDown_1.6.3_20240814_win-x64"
         - "/mnt/f/cursor/cursor/resources/app/bin"
         - "/mnt/c/Users/HP/AppData/Roaming/Programs/Zero Install"
-        - "/mnt/c/Users/HP/AppData/Local/Muse Hub/lib"
         - "/mnt/f/curl-8.15.0_4-win64-mingw/bin"
-        - "/root/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand"
+        - "/mnt/c/Users/HP/AppData/Local/GitHubDesktop/bin"
   -
     kind: "find-v1"
     backtrace:
@@ -1299,7 +1274,6 @@ events:
       - "readelf"
     candidate_directories:
       - "/usr/bin/"
-      - "/root/.vscode-server/bin/6f17636121051a53c88d3e605c491d22af2ba755/bin/remote-cli/"
       - "/usr/local/sbin/"
       - "/usr/local/bin/"
       - "/usr/sbin/"
@@ -1319,7 +1293,7 @@ events:
       - "/mnt/c/windows/System32/OpenSSH/"
       - "/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common/"
       - "/mnt/c/Program Files/Common Files/Autodesk Shared/"
-      - "/mnt/d/\u4f20\u8f93\u6587\u4ef6\u5de5\u5177/AOMEI/AOMEI Backupper/6.9.1/"
+      - "/mnt/d/\ufffd\ufffd\ufffd\ufffd\ufffd\u013c\ufffd\ufffd\ufffd\ufffd\ufffd/AOMEI/AOMEI Backupper/6.9.1/"
       - "/mnt/c/Pr/"
       - "/mnt/c/Program Files/nodejs/"
       - "/mnt/c/ProgramData/chocolatey/bin/"
@@ -1330,6 +1304,7 @@ events:
       - "/mnt/c/Program Files/Zero Install/"
       - "/mnt/c/Users/HP/AppData/Local/Muse Hub/lib/"
       - "/mnt/c/Program Files/CursorModifier/"
+      - "/mnt/c/Program Files/MySQL/MySQL Shell 8.0/bin/"
       - "/mnt/f/python3/Scripts/"
       - "/mnt/f/python3/"
       - "/mnt/c/Users/HP/AppData/Local/Microsoft/WindowsApps/"
@@ -1342,11 +1317,10 @@ events:
       - "/mnt/f/cursor/cursor/resources/app/bin/"
       - "/mnt/c/Users/HP/AppData/Roaming/Programs/Zero Install/"
       - "/mnt/f/curl-8.15.0_4-win64-mingw/bin/"
-      - "/root/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand/"
+      - "/mnt/c/Users/HP/AppData/Local/GitHubDesktop/bin/"
     found: "/usr/bin/readelf"
     search_context:
       ENV{PATH}:
-        - "/root/.vscode-server/bin/6f17636121051a53c88d3e605c491d22af2ba755/bin/remote-cli"
         - "/usr/local/sbin"
         - "/usr/local/bin"
         - "/usr/sbin"
@@ -1367,7 +1341,7 @@ events:
         - "/mnt/c/windows/System32/OpenSSH/"
         - "/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common"
         - "/mnt/c/Program Files/Common Files/Autodesk Shared/"
-        - "/mnt/d/\u4f20\u8f93\u6587\u4ef6\u5de5\u5177/AOMEI/AOMEI Backupper/6.9.1"
+        - "/mnt/d/\ufffd\ufffd\ufffd\ufffd\ufffd\u013c\ufffd\ufffd\ufffd\ufffd\ufffd/AOMEI/AOMEI Backupper/6.9.1"
         - "/mnt/c/Pr"
         - "/mnt/c/Program Files/nodejs/"
         - "/mnt/c/ProgramData/chocolatey/bin"
@@ -1378,6 +1352,7 @@ events:
         - "/mnt/c/Program Files/Zero Install"
         - "/mnt/c/Users/HP/AppData/Local/Muse Hub/lib"
         - "/mnt/c/Program Files/CursorModifier"
+        - "/mnt/c/Program Files/MySQL/MySQL Shell 8.0/bin/"
         - "/mnt/f/python3/Scripts/"
         - "/mnt/f/python3/"
         - "/mnt/c/Users/HP/AppData/Local/Microsoft/WindowsApps"
@@ -1385,14 +1360,12 @@ events:
         - "/mnt/c/Users/HP/AppData/Roaming/npm"
         - "/mnt/d/vscode/Microsoft VS Code/bin"
         - "/mnt/c/Program Files (x86)/Nmap"
-        - "/mnt/c/Users/HP/AppData/Local/Muse Hub/lib"
         - "/mnt/f/ffmpeg_v7.1/ffmpeg-7.1-essentials_build/bin"
         - "/mnt/f/BBDown_1.6.3_20240814_win-x64"
         - "/mnt/f/cursor/cursor/resources/app/bin"
         - "/mnt/c/Users/HP/AppData/Roaming/Programs/Zero Install"
-        - "/mnt/c/Users/HP/AppData/Local/Muse Hub/lib"
         - "/mnt/f/curl-8.15.0_4-win64-mingw/bin"
-        - "/root/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand"
+        - "/mnt/c/Users/HP/AppData/Local/GitHubDesktop/bin"
   -
     kind: "find-v1"
     backtrace:
@@ -1414,7 +1387,6 @@ events:
       - "dlltool"
     candidate_directories:
       - "/usr/bin/"
-      - "/root/.vscode-server/bin/6f17636121051a53c88d3e605c491d22af2ba755/bin/remote-cli/"
       - "/usr/local/sbin/"
       - "/usr/local/bin/"
       - "/usr/sbin/"
@@ -1434,7 +1406,7 @@ events:
       - "/mnt/c/windows/System32/OpenSSH/"
       - "/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common/"
       - "/mnt/c/Program Files/Common Files/Autodesk Shared/"
-      - "/mnt/d/\u4f20\u8f93\u6587\u4ef6\u5de5\u5177/AOMEI/AOMEI Backupper/6.9.1/"
+      - "/mnt/d/\ufffd\ufffd\ufffd\ufffd\ufffd\u013c\ufffd\ufffd\ufffd\ufffd\ufffd/AOMEI/AOMEI Backupper/6.9.1/"
       - "/mnt/c/Pr/"
       - "/mnt/c/Program Files/nodejs/"
       - "/mnt/c/ProgramData/chocolatey/bin/"
@@ -1445,6 +1417,7 @@ events:
       - "/mnt/c/Program Files/Zero Install/"
       - "/mnt/c/Users/HP/AppData/Local/Muse Hub/lib/"
       - "/mnt/c/Program Files/CursorModifier/"
+      - "/mnt/c/Program Files/MySQL/MySQL Shell 8.0/bin/"
       - "/mnt/f/python3/Scripts/"
       - "/mnt/f/python3/"
       - "/mnt/c/Users/HP/AppData/Local/Microsoft/WindowsApps/"
@@ -1457,10 +1430,9 @@ events:
       - "/mnt/f/cursor/cursor/resources/app/bin/"
       - "/mnt/c/Users/HP/AppData/Roaming/Programs/Zero Install/"
       - "/mnt/f/curl-8.15.0_4-win64-mingw/bin/"
-      - "/root/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand/"
+      - "/mnt/c/Users/HP/AppData/Local/GitHubDesktop/bin/"
     searched_directories:
       - "/usr/bin/dlltool"
-      - "/root/.vscode-server/bin/6f17636121051a53c88d3e605c491d22af2ba755/bin/remote-cli/dlltool"
       - "/usr/local/sbin/dlltool"
       - "/usr/local/bin/dlltool"
       - "/usr/sbin/dlltool"
@@ -1480,7 +1452,7 @@ events:
       - "/mnt/c/windows/System32/OpenSSH/dlltool"
       - "/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common/dlltool"
       - "/mnt/c/Program Files/Common Files/Autodesk Shared/dlltool"
-      - "/mnt/d/\u4f20\u8f93\u6587\u4ef6\u5de5\u5177/AOMEI/AOMEI Backupper/6.9.1/dlltool"
+      - "/mnt/d/\ufffd\ufffd\ufffd\ufffd\ufffd\u013c\ufffd\ufffd\ufffd\ufffd\ufffd/AOMEI/AOMEI Backupper/6.9.1/dlltool"
       - "/mnt/c/Pr/dlltool"
       - "/mnt/c/Program Files/nodejs/dlltool"
       - "/mnt/c/ProgramData/chocolatey/bin/dlltool"
@@ -1491,6 +1463,7 @@ events:
       - "/mnt/c/Program Files/Zero Install/dlltool"
       - "/mnt/c/Users/HP/AppData/Local/Muse Hub/lib/dlltool"
       - "/mnt/c/Program Files/CursorModifier/dlltool"
+      - "/mnt/c/Program Files/MySQL/MySQL Shell 8.0/bin/dlltool"
       - "/mnt/f/python3/Scripts/dlltool"
       - "/mnt/f/python3/dlltool"
       - "/mnt/c/Users/HP/AppData/Local/Microsoft/WindowsApps/dlltool"
@@ -1503,11 +1476,10 @@ events:
       - "/mnt/f/cursor/cursor/resources/app/bin/dlltool"
       - "/mnt/c/Users/HP/AppData/Roaming/Programs/Zero Install/dlltool"
       - "/mnt/f/curl-8.15.0_4-win64-mingw/bin/dlltool"
-      - "/root/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand/dlltool"
+      - "/mnt/c/Users/HP/AppData/Local/GitHubDesktop/bin/dlltool"
     found: false
     search_context:
       ENV{PATH}:
-        - "/root/.vscode-server/bin/6f17636121051a53c88d3e605c491d22af2ba755/bin/remote-cli"
         - "/usr/local/sbin"
         - "/usr/local/bin"
         - "/usr/sbin"
@@ -1528,7 +1500,7 @@ events:
         - "/mnt/c/windows/System32/OpenSSH/"
         - "/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common"
         - "/mnt/c/Program Files/Common Files/Autodesk Shared/"
-        - "/mnt/d/\u4f20\u8f93\u6587\u4ef6\u5de5\u5177/AOMEI/AOMEI Backupper/6.9.1"
+        - "/mnt/d/\ufffd\ufffd\ufffd\ufffd\ufffd\u013c\ufffd\ufffd\ufffd\ufffd\ufffd/AOMEI/AOMEI Backupper/6.9.1"
         - "/mnt/c/Pr"
         - "/mnt/c/Program Files/nodejs/"
         - "/mnt/c/ProgramData/chocolatey/bin"
@@ -1539,6 +1511,7 @@ events:
         - "/mnt/c/Program Files/Zero Install"
         - "/mnt/c/Users/HP/AppData/Local/Muse Hub/lib"
         - "/mnt/c/Program Files/CursorModifier"
+        - "/mnt/c/Program Files/MySQL/MySQL Shell 8.0/bin/"
         - "/mnt/f/python3/Scripts/"
         - "/mnt/f/python3/"
         - "/mnt/c/Users/HP/AppData/Local/Microsoft/WindowsApps"
@@ -1546,14 +1519,12 @@ events:
         - "/mnt/c/Users/HP/AppData/Roaming/npm"
         - "/mnt/d/vscode/Microsoft VS Code/bin"
         - "/mnt/c/Program Files (x86)/Nmap"
-        - "/mnt/c/Users/HP/AppData/Local/Muse Hub/lib"
         - "/mnt/f/ffmpeg_v7.1/ffmpeg-7.1-essentials_build/bin"
         - "/mnt/f/BBDown_1.6.3_20240814_win-x64"
         - "/mnt/f/cursor/cursor/resources/app/bin"
         - "/mnt/c/Users/HP/AppData/Roaming/Programs/Zero Install"
-        - "/mnt/c/Users/HP/AppData/Local/Muse Hub/lib"
         - "/mnt/f/curl-8.15.0_4-win64-mingw/bin"
-        - "/root/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand"
+        - "/mnt/c/Users/HP/AppData/Local/GitHubDesktop/bin"
   -
     kind: "find-v1"
     backtrace:
@@ -1575,7 +1546,6 @@ events:
       - "addr2line"
     candidate_directories:
       - "/usr/bin/"
-      - "/root/.vscode-server/bin/6f17636121051a53c88d3e605c491d22af2ba755/bin/remote-cli/"
       - "/usr/local/sbin/"
       - "/usr/local/bin/"
       - "/usr/sbin/"
@@ -1595,7 +1565,7 @@ events:
       - "/mnt/c/windows/System32/OpenSSH/"
       - "/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common/"
       - "/mnt/c/Program Files/Common Files/Autodesk Shared/"
-      - "/mnt/d/\u4f20\u8f93\u6587\u4ef6\u5de5\u5177/AOMEI/AOMEI Backupper/6.9.1/"
+      - "/mnt/d/\ufffd\ufffd\ufffd\ufffd\ufffd\u013c\ufffd\ufffd\ufffd\ufffd\ufffd/AOMEI/AOMEI Backupper/6.9.1/"
       - "/mnt/c/Pr/"
       - "/mnt/c/Program Files/nodejs/"
       - "/mnt/c/ProgramData/chocolatey/bin/"
@@ -1606,6 +1576,7 @@ events:
       - "/mnt/c/Program Files/Zero Install/"
       - "/mnt/c/Users/HP/AppData/Local/Muse Hub/lib/"
       - "/mnt/c/Program Files/CursorModifier/"
+      - "/mnt/c/Program Files/MySQL/MySQL Shell 8.0/bin/"
       - "/mnt/f/python3/Scripts/"
       - "/mnt/f/python3/"
       - "/mnt/c/Users/HP/AppData/Local/Microsoft/WindowsApps/"
@@ -1618,11 +1589,10 @@ events:
       - "/mnt/f/cursor/cursor/resources/app/bin/"
       - "/mnt/c/Users/HP/AppData/Roaming/Programs/Zero Install/"
       - "/mnt/f/curl-8.15.0_4-win64-mingw/bin/"
-      - "/root/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand/"
+      - "/mnt/c/Users/HP/AppData/Local/GitHubDesktop/bin/"
     found: "/usr/bin/addr2line"
     search_context:
       ENV{PATH}:
-        - "/root/.vscode-server/bin/6f17636121051a53c88d3e605c491d22af2ba755/bin/remote-cli"
         - "/usr/local/sbin"
         - "/usr/local/bin"
         - "/usr/sbin"
@@ -1643,7 +1613,7 @@ events:
         - "/mnt/c/windows/System32/OpenSSH/"
         - "/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common"
         - "/mnt/c/Program Files/Common Files/Autodesk Shared/"
-        - "/mnt/d/\u4f20\u8f93\u6587\u4ef6\u5de5\u5177/AOMEI/AOMEI Backupper/6.9.1"
+        - "/mnt/d/\ufffd\ufffd\ufffd\ufffd\ufffd\u013c\ufffd\ufffd\ufffd\ufffd\ufffd/AOMEI/AOMEI Backupper/6.9.1"
         - "/mnt/c/Pr"
         - "/mnt/c/Program Files/nodejs/"
         - "/mnt/c/ProgramData/chocolatey/bin"
@@ -1654,6 +1624,7 @@ events:
         - "/mnt/c/Program Files/Zero Install"
         - "/mnt/c/Users/HP/AppData/Local/Muse Hub/lib"
         - "/mnt/c/Program Files/CursorModifier"
+        - "/mnt/c/Program Files/MySQL/MySQL Shell 8.0/bin/"
         - "/mnt/f/python3/Scripts/"
         - "/mnt/f/python3/"
         - "/mnt/c/Users/HP/AppData/Local/Microsoft/WindowsApps"
@@ -1661,14 +1632,12 @@ events:
         - "/mnt/c/Users/HP/AppData/Roaming/npm"
         - "/mnt/d/vscode/Microsoft VS Code/bin"
         - "/mnt/c/Program Files (x86)/Nmap"
-        - "/mnt/c/Users/HP/AppData/Local/Muse Hub/lib"
         - "/mnt/f/ffmpeg_v7.1/ffmpeg-7.1-essentials_build/bin"
         - "/mnt/f/BBDown_1.6.3_20240814_win-x64"
         - "/mnt/f/cursor/cursor/resources/app/bin"
         - "/mnt/c/Users/HP/AppData/Roaming/Programs/Zero Install"
-        - "/mnt/c/Users/HP/AppData/Local/Muse Hub/lib"
         - "/mnt/f/curl-8.15.0_4-win64-mingw/bin"
-        - "/root/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand"
+        - "/mnt/c/Users/HP/AppData/Local/GitHubDesktop/bin"
   -
     kind: "find-v1"
     backtrace:
@@ -1690,7 +1659,6 @@ events:
       - "tapi"
     candidate_directories:
       - "/usr/bin/"
-      - "/root/.vscode-server/bin/6f17636121051a53c88d3e605c491d22af2ba755/bin/remote-cli/"
       - "/usr/local/sbin/"
       - "/usr/local/bin/"
       - "/usr/sbin/"
@@ -1710,7 +1678,7 @@ events:
       - "/mnt/c/windows/System32/OpenSSH/"
       - "/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common/"
       - "/mnt/c/Program Files/Common Files/Autodesk Shared/"
-      - "/mnt/d/\u4f20\u8f93\u6587\u4ef6\u5de5\u5177/AOMEI/AOMEI Backupper/6.9.1/"
+      - "/mnt/d/\ufffd\ufffd\ufffd\ufffd\ufffd\u013c\ufffd\ufffd\ufffd\ufffd\ufffd/AOMEI/AOMEI Backupper/6.9.1/"
       - "/mnt/c/Pr/"
       - "/mnt/c/Program Files/nodejs/"
       - "/mnt/c/ProgramData/chocolatey/bin/"
@@ -1721,6 +1689,7 @@ events:
       - "/mnt/c/Program Files/Zero Install/"
       - "/mnt/c/Users/HP/AppData/Local/Muse Hub/lib/"
       - "/mnt/c/Program Files/CursorModifier/"
+      - "/mnt/c/Program Files/MySQL/MySQL Shell 8.0/bin/"
       - "/mnt/f/python3/Scripts/"
       - "/mnt/f/python3/"
       - "/mnt/c/Users/HP/AppData/Local/Microsoft/WindowsApps/"
@@ -1733,10 +1702,9 @@ events:
       - "/mnt/f/cursor/cursor/resources/app/bin/"
       - "/mnt/c/Users/HP/AppData/Roaming/Programs/Zero Install/"
       - "/mnt/f/curl-8.15.0_4-win64-mingw/bin/"
-      - "/root/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand/"
+      - "/mnt/c/Users/HP/AppData/Local/GitHubDesktop/bin/"
     searched_directories:
       - "/usr/bin/tapi"
-      - "/root/.vscode-server/bin/6f17636121051a53c88d3e605c491d22af2ba755/bin/remote-cli/tapi"
       - "/usr/local/sbin/tapi"
       - "/usr/local/bin/tapi"
       - "/usr/sbin/tapi"
@@ -1756,7 +1724,7 @@ events:
       - "/mnt/c/windows/System32/OpenSSH/tapi"
       - "/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common/tapi"
       - "/mnt/c/Program Files/Common Files/Autodesk Shared/tapi"
-      - "/mnt/d/\u4f20\u8f93\u6587\u4ef6\u5de5\u5177/AOMEI/AOMEI Backupper/6.9.1/tapi"
+      - "/mnt/d/\ufffd\ufffd\ufffd\ufffd\ufffd\u013c\ufffd\ufffd\ufffd\ufffd\ufffd/AOMEI/AOMEI Backupper/6.9.1/tapi"
       - "/mnt/c/Pr/tapi"
       - "/mnt/c/Program Files/nodejs/tapi"
       - "/mnt/c/ProgramData/chocolatey/bin/tapi"
@@ -1767,6 +1735,7 @@ events:
       - "/mnt/c/Program Files/Zero Install/tapi"
       - "/mnt/c/Users/HP/AppData/Local/Muse Hub/lib/tapi"
       - "/mnt/c/Program Files/CursorModifier/tapi"
+      - "/mnt/c/Program Files/MySQL/MySQL Shell 8.0/bin/tapi"
       - "/mnt/f/python3/Scripts/tapi"
       - "/mnt/f/python3/tapi"
       - "/mnt/c/Users/HP/AppData/Local/Microsoft/WindowsApps/tapi"
@@ -1779,11 +1748,10 @@ events:
       - "/mnt/f/cursor/cursor/resources/app/bin/tapi"
       - "/mnt/c/Users/HP/AppData/Roaming/Programs/Zero Install/tapi"
       - "/mnt/f/curl-8.15.0_4-win64-mingw/bin/tapi"
-      - "/root/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand/tapi"
+      - "/mnt/c/Users/HP/AppData/Local/GitHubDesktop/bin/tapi"
     found: false
     search_context:
       ENV{PATH}:
-        - "/root/.vscode-server/bin/6f17636121051a53c88d3e605c491d22af2ba755/bin/remote-cli"
         - "/usr/local/sbin"
         - "/usr/local/bin"
         - "/usr/sbin"
@@ -1804,7 +1772,7 @@ events:
         - "/mnt/c/windows/System32/OpenSSH/"
         - "/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common"
         - "/mnt/c/Program Files/Common Files/Autodesk Shared/"
-        - "/mnt/d/\u4f20\u8f93\u6587\u4ef6\u5de5\u5177/AOMEI/AOMEI Backupper/6.9.1"
+        - "/mnt/d/\ufffd\ufffd\ufffd\ufffd\ufffd\u013c\ufffd\ufffd\ufffd\ufffd\ufffd/AOMEI/AOMEI Backupper/6.9.1"
         - "/mnt/c/Pr"
         - "/mnt/c/Program Files/nodejs/"
         - "/mnt/c/ProgramData/chocolatey/bin"
@@ -1815,6 +1783,7 @@ events:
         - "/mnt/c/Program Files/Zero Install"
         - "/mnt/c/Users/HP/AppData/Local/Muse Hub/lib"
         - "/mnt/c/Program Files/CursorModifier"
+        - "/mnt/c/Program Files/MySQL/MySQL Shell 8.0/bin/"
         - "/mnt/f/python3/Scripts/"
         - "/mnt/f/python3/"
         - "/mnt/c/Users/HP/AppData/Local/Microsoft/WindowsApps"
@@ -1822,14 +1791,12 @@ events:
         - "/mnt/c/Users/HP/AppData/Roaming/npm"
         - "/mnt/d/vscode/Microsoft VS Code/bin"
         - "/mnt/c/Program Files (x86)/Nmap"
-        - "/mnt/c/Users/HP/AppData/Local/Muse Hub/lib"
         - "/mnt/f/ffmpeg_v7.1/ffmpeg-7.1-essentials_build/bin"
         - "/mnt/f/BBDown_1.6.3_20240814_win-x64"
         - "/mnt/f/cursor/cursor/resources/app/bin"
         - "/mnt/c/Users/HP/AppData/Roaming/Programs/Zero Install"
-        - "/mnt/c/Users/HP/AppData/Local/Muse Hub/lib"
         - "/mnt/f/curl-8.15.0_4-win64-mingw/bin"
-        - "/root/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand"
+        - "/mnt/c/Users/HP/AppData/Local/GitHubDesktop/bin"
   -
     kind: "find-v1"
     backtrace:
@@ -1854,7 +1821,6 @@ events:
       - "gcc-ar"
     candidate_directories:
       - "/usr/bin/"
-      - "/root/.vscode-server/bin/6f17636121051a53c88d3e605c491d22af2ba755/bin/remote-cli/"
       - "/usr/local/sbin/"
       - "/usr/local/bin/"
       - "/usr/sbin/"
@@ -1874,7 +1840,7 @@ events:
       - "/mnt/c/windows/System32/OpenSSH/"
       - "/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common/"
       - "/mnt/c/Program Files/Common Files/Autodesk Shared/"
-      - "/mnt/d/\u4f20\u8f93\u6587\u4ef6\u5de5\u5177/AOMEI/AOMEI Backupper/6.9.1/"
+      - "/mnt/d/\ufffd\ufffd\ufffd\ufffd\ufffd\u013c\ufffd\ufffd\ufffd\ufffd\ufffd/AOMEI/AOMEI Backupper/6.9.1/"
       - "/mnt/c/Pr/"
       - "/mnt/c/Program Files/nodejs/"
       - "/mnt/c/ProgramData/chocolatey/bin/"
@@ -1885,6 +1851,7 @@ events:
       - "/mnt/c/Program Files/Zero Install/"
       - "/mnt/c/Users/HP/AppData/Local/Muse Hub/lib/"
       - "/mnt/c/Program Files/CursorModifier/"
+      - "/mnt/c/Program Files/MySQL/MySQL Shell 8.0/bin/"
       - "/mnt/f/python3/Scripts/"
       - "/mnt/f/python3/"
       - "/mnt/c/Users/HP/AppData/Local/Microsoft/WindowsApps/"
@@ -1897,10 +1864,9 @@ events:
       - "/mnt/f/cursor/cursor/resources/app/bin/"
       - "/mnt/c/Users/HP/AppData/Roaming/Programs/Zero Install/"
       - "/mnt/f/curl-8.15.0_4-win64-mingw/bin/"
-      - "/root/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand/"
+      - "/mnt/c/Users/HP/AppData/Local/GitHubDesktop/bin/"
     searched_directories:
       - "/usr/bin/gcc-ar-11.4"
-      - "/root/.vscode-server/bin/6f17636121051a53c88d3e605c491d22af2ba755/bin/remote-cli/gcc-ar-11.4"
       - "/usr/local/sbin/gcc-ar-11.4"
       - "/usr/local/bin/gcc-ar-11.4"
       - "/usr/sbin/gcc-ar-11.4"
@@ -1920,7 +1886,7 @@ events:
       - "/mnt/c/windows/System32/OpenSSH/gcc-ar-11.4"
       - "/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common/gcc-ar-11.4"
       - "/mnt/c/Program Files/Common Files/Autodesk Shared/gcc-ar-11.4"
-      - "/mnt/d/\u4f20\u8f93\u6587\u4ef6\u5de5\u5177/AOMEI/AOMEI Backupper/6.9.1/gcc-ar-11.4"
+      - "/mnt/d/\ufffd\ufffd\ufffd\ufffd\ufffd\u013c\ufffd\ufffd\ufffd\ufffd\ufffd/AOMEI/AOMEI Backupper/6.9.1/gcc-ar-11.4"
       - "/mnt/c/Pr/gcc-ar-11.4"
       - "/mnt/c/Program Files/nodejs/gcc-ar-11.4"
       - "/mnt/c/ProgramData/chocolatey/bin/gcc-ar-11.4"
@@ -1931,6 +1897,7 @@ events:
       - "/mnt/c/Program Files/Zero Install/gcc-ar-11.4"
       - "/mnt/c/Users/HP/AppData/Local/Muse Hub/lib/gcc-ar-11.4"
       - "/mnt/c/Program Files/CursorModifier/gcc-ar-11.4"
+      - "/mnt/c/Program Files/MySQL/MySQL Shell 8.0/bin/gcc-ar-11.4"
       - "/mnt/f/python3/Scripts/gcc-ar-11.4"
       - "/mnt/f/python3/gcc-ar-11.4"
       - "/mnt/c/Users/HP/AppData/Local/Microsoft/WindowsApps/gcc-ar-11.4"
@@ -1943,11 +1910,10 @@ events:
       - "/mnt/f/cursor/cursor/resources/app/bin/gcc-ar-11.4"
       - "/mnt/c/Users/HP/AppData/Roaming/Programs/Zero Install/gcc-ar-11.4"
       - "/mnt/f/curl-8.15.0_4-win64-mingw/bin/gcc-ar-11.4"
-      - "/root/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand/gcc-ar-11.4"
+      - "/mnt/c/Users/HP/AppData/Local/GitHubDesktop/bin/gcc-ar-11.4"
     found: "/usr/bin/gcc-ar-11"
     search_context:
       ENV{PATH}:
-        - "/root/.vscode-server/bin/6f17636121051a53c88d3e605c491d22af2ba755/bin/remote-cli"
         - "/usr/local/sbin"
         - "/usr/local/bin"
         - "/usr/sbin"
@@ -1968,7 +1934,7 @@ events:
         - "/mnt/c/windows/System32/OpenSSH/"
         - "/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common"
         - "/mnt/c/Program Files/Common Files/Autodesk Shared/"
-        - "/mnt/d/\u4f20\u8f93\u6587\u4ef6\u5de5\u5177/AOMEI/AOMEI Backupper/6.9.1"
+        - "/mnt/d/\ufffd\ufffd\ufffd\ufffd\ufffd\u013c\ufffd\ufffd\ufffd\ufffd\ufffd/AOMEI/AOMEI Backupper/6.9.1"
         - "/mnt/c/Pr"
         - "/mnt/c/Program Files/nodejs/"
         - "/mnt/c/ProgramData/chocolatey/bin"
@@ -1979,6 +1945,7 @@ events:
         - "/mnt/c/Program Files/Zero Install"
         - "/mnt/c/Users/HP/AppData/Local/Muse Hub/lib"
         - "/mnt/c/Program Files/CursorModifier"
+        - "/mnt/c/Program Files/MySQL/MySQL Shell 8.0/bin/"
         - "/mnt/f/python3/Scripts/"
         - "/mnt/f/python3/"
         - "/mnt/c/Users/HP/AppData/Local/Microsoft/WindowsApps"
@@ -1986,14 +1953,12 @@ events:
         - "/mnt/c/Users/HP/AppData/Roaming/npm"
         - "/mnt/d/vscode/Microsoft VS Code/bin"
         - "/mnt/c/Program Files (x86)/Nmap"
-        - "/mnt/c/Users/HP/AppData/Local/Muse Hub/lib"
         - "/mnt/f/ffmpeg_v7.1/ffmpeg-7.1-essentials_build/bin"
         - "/mnt/f/BBDown_1.6.3_20240814_win-x64"
         - "/mnt/f/cursor/cursor/resources/app/bin"
         - "/mnt/c/Users/HP/AppData/Roaming/Programs/Zero Install"
-        - "/mnt/c/Users/HP/AppData/Local/Muse Hub/lib"
         - "/mnt/f/curl-8.15.0_4-win64-mingw/bin"
-        - "/root/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand"
+        - "/mnt/c/Users/HP/AppData/Local/GitHubDesktop/bin"
   -
     kind: "find-v1"
     backtrace:
@@ -2018,7 +1983,6 @@ events:
       - "gcc-ranlib"
     candidate_directories:
       - "/usr/bin/"
-      - "/root/.vscode-server/bin/6f17636121051a53c88d3e605c491d22af2ba755/bin/remote-cli/"
       - "/usr/local/sbin/"
       - "/usr/local/bin/"
       - "/usr/sbin/"
@@ -2038,7 +2002,7 @@ events:
       - "/mnt/c/windows/System32/OpenSSH/"
       - "/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common/"
       - "/mnt/c/Program Files/Common Files/Autodesk Shared/"
-      - "/mnt/d/\u4f20\u8f93\u6587\u4ef6\u5de5\u5177/AOMEI/AOMEI Backupper/6.9.1/"
+      - "/mnt/d/\ufffd\ufffd\ufffd\ufffd\ufffd\u013c\ufffd\ufffd\ufffd\ufffd\ufffd/AOMEI/AOMEI Backupper/6.9.1/"
       - "/mnt/c/Pr/"
       - "/mnt/c/Program Files/nodejs/"
       - "/mnt/c/ProgramData/chocolatey/bin/"
@@ -2049,6 +2013,7 @@ events:
       - "/mnt/c/Program Files/Zero Install/"
       - "/mnt/c/Users/HP/AppData/Local/Muse Hub/lib/"
       - "/mnt/c/Program Files/CursorModifier/"
+      - "/mnt/c/Program Files/MySQL/MySQL Shell 8.0/bin/"
       - "/mnt/f/python3/Scripts/"
       - "/mnt/f/python3/"
       - "/mnt/c/Users/HP/AppData/Local/Microsoft/WindowsApps/"
@@ -2061,10 +2026,9 @@ events:
       - "/mnt/f/cursor/cursor/resources/app/bin/"
       - "/mnt/c/Users/HP/AppData/Roaming/Programs/Zero Install/"
       - "/mnt/f/curl-8.15.0_4-win64-mingw/bin/"
-      - "/root/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand/"
+      - "/mnt/c/Users/HP/AppData/Local/GitHubDesktop/bin/"
     searched_directories:
       - "/usr/bin/gcc-ranlib-11.4"
-      - "/root/.vscode-server/bin/6f17636121051a53c88d3e605c491d22af2ba755/bin/remote-cli/gcc-ranlib-11.4"
       - "/usr/local/sbin/gcc-ranlib-11.4"
       - "/usr/local/bin/gcc-ranlib-11.4"
       - "/usr/sbin/gcc-ranlib-11.4"
@@ -2084,7 +2048,7 @@ events:
       - "/mnt/c/windows/System32/OpenSSH/gcc-ranlib-11.4"
       - "/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common/gcc-ranlib-11.4"
       - "/mnt/c/Program Files/Common Files/Autodesk Shared/gcc-ranlib-11.4"
-      - "/mnt/d/\u4f20\u8f93\u6587\u4ef6\u5de5\u5177/AOMEI/AOMEI Backupper/6.9.1/gcc-ranlib-11.4"
+      - "/mnt/d/\ufffd\ufffd\ufffd\ufffd\ufffd\u013c\ufffd\ufffd\ufffd\ufffd\ufffd/AOMEI/AOMEI Backupper/6.9.1/gcc-ranlib-11.4"
       - "/mnt/c/Pr/gcc-ranlib-11.4"
       - "/mnt/c/Program Files/nodejs/gcc-ranlib-11.4"
       - "/mnt/c/ProgramData/chocolatey/bin/gcc-ranlib-11.4"
@@ -2095,6 +2059,7 @@ events:
       - "/mnt/c/Program Files/Zero Install/gcc-ranlib-11.4"
       - "/mnt/c/Users/HP/AppData/Local/Muse Hub/lib/gcc-ranlib-11.4"
       - "/mnt/c/Program Files/CursorModifier/gcc-ranlib-11.4"
+      - "/mnt/c/Program Files/MySQL/MySQL Shell 8.0/bin/gcc-ranlib-11.4"
       - "/mnt/f/python3/Scripts/gcc-ranlib-11.4"
       - "/mnt/f/python3/gcc-ranlib-11.4"
       - "/mnt/c/Users/HP/AppData/Local/Microsoft/WindowsApps/gcc-ranlib-11.4"
@@ -2107,11 +2072,10 @@ events:
       - "/mnt/f/cursor/cursor/resources/app/bin/gcc-ranlib-11.4"
       - "/mnt/c/Users/HP/AppData/Roaming/Programs/Zero Install/gcc-ranlib-11.4"
       - "/mnt/f/curl-8.15.0_4-win64-mingw/bin/gcc-ranlib-11.4"
-      - "/root/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand/gcc-ranlib-11.4"
+      - "/mnt/c/Users/HP/AppData/Local/GitHubDesktop/bin/gcc-ranlib-11.4"
     found: "/usr/bin/gcc-ranlib-11"
     search_context:
       ENV{PATH}:
-        - "/root/.vscode-server/bin/6f17636121051a53c88d3e605c491d22af2ba755/bin/remote-cli"
         - "/usr/local/sbin"
         - "/usr/local/bin"
         - "/usr/sbin"
@@ -2132,7 +2096,7 @@ events:
         - "/mnt/c/windows/System32/OpenSSH/"
         - "/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common"
         - "/mnt/c/Program Files/Common Files/Autodesk Shared/"
-        - "/mnt/d/\u4f20\u8f93\u6587\u4ef6\u5de5\u5177/AOMEI/AOMEI Backupper/6.9.1"
+        - "/mnt/d/\ufffd\ufffd\ufffd\ufffd\ufffd\u013c\ufffd\ufffd\ufffd\ufffd\ufffd/AOMEI/AOMEI Backupper/6.9.1"
         - "/mnt/c/Pr"
         - "/mnt/c/Program Files/nodejs/"
         - "/mnt/c/ProgramData/chocolatey/bin"
@@ -2143,6 +2107,7 @@ events:
         - "/mnt/c/Program Files/Zero Install"
         - "/mnt/c/Users/HP/AppData/Local/Muse Hub/lib"
         - "/mnt/c/Program Files/CursorModifier"
+        - "/mnt/c/Program Files/MySQL/MySQL Shell 8.0/bin/"
         - "/mnt/f/python3/Scripts/"
         - "/mnt/f/python3/"
         - "/mnt/c/Users/HP/AppData/Local/Microsoft/WindowsApps"
@@ -2150,14 +2115,12 @@ events:
         - "/mnt/c/Users/HP/AppData/Roaming/npm"
         - "/mnt/d/vscode/Microsoft VS Code/bin"
         - "/mnt/c/Program Files (x86)/Nmap"
-        - "/mnt/c/Users/HP/AppData/Local/Muse Hub/lib"
         - "/mnt/f/ffmpeg_v7.1/ffmpeg-7.1-essentials_build/bin"
         - "/mnt/f/BBDown_1.6.3_20240814_win-x64"
         - "/mnt/f/cursor/cursor/resources/app/bin"
         - "/mnt/c/Users/HP/AppData/Roaming/Programs/Zero Install"
-        - "/mnt/c/Users/HP/AppData/Local/Muse Hub/lib"
         - "/mnt/f/curl-8.15.0_4-win64-mingw/bin"
-        - "/root/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand"
+        - "/mnt/c/Users/HP/AppData/Local/GitHubDesktop/bin"
   -
     kind: "try_compile-v1"
     backtrace:
@@ -2167,8 +2130,8 @@ events:
     checks:
       - "Detecting CXX compiler ABI info"
     directories:
-      source: "/home/monorepo-cmake-sample/build/CMakeFiles/CMakeScratch/TryCompile-DRVCDQ"
-      binary: "/home/monorepo-cmake-sample/build/CMakeFiles/CMakeScratch/TryCompile-DRVCDQ"
+      source: "/mnt/c/Users/HP/Desktop/\u6211\u7684\u4f5c\u54c1/monorepo-cmake-sample/build/CMakeFiles/CMakeScratch/TryCompile-JykrVE"
+      binary: "/mnt/c/Users/HP/Desktop/\u6211\u7684\u4f5c\u54c1/monorepo-cmake-sample/build/CMakeFiles/CMakeScratch/TryCompile-JykrVE"
     cmakeVariables:
       CMAKE_CXX_FLAGS: ""
       CMAKE_CXX_FLAGS_DEBUG: "-g"
@@ -2178,13 +2141,13 @@ events:
       variable: "CMAKE_CXX_ABI_COMPILED"
       cached: true
       stdout: |
-        Change Dir: '/home/monorepo-cmake-sample/build/CMakeFiles/CMakeScratch/TryCompile-DRVCDQ'
+        Change Dir: '/mnt/c/Users/HP/Desktop/我的作品/monorepo-cmake-sample/build/CMakeFiles/CMakeScratch/TryCompile-JykrVE'
         
-        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_1b0bd/fast
-        /usr/bin/gmake  -f CMakeFiles/cmTC_1b0bd.dir/build.make CMakeFiles/cmTC_1b0bd.dir/build
-        gmake[1]: Entering directory '/home/monorepo-cmake-sample/build/CMakeFiles/CMakeScratch/TryCompile-DRVCDQ'
-        Building CXX object CMakeFiles/cmTC_1b0bd.dir/CMakeCXXCompilerABI.cpp.o
-        /usr/bin/c++   -v -o CMakeFiles/cmTC_1b0bd.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake-4.1/Modules/CMakeCXXCompilerABI.cpp
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_27d63/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_27d63.dir/build.make CMakeFiles/cmTC_27d63.dir/build
+        gmake[1]: Entering directory '/mnt/c/Users/HP/Desktop/我的作品/monorepo-cmake-sample/build/CMakeFiles/CMakeScratch/TryCompile-JykrVE'
+        Building CXX object CMakeFiles/cmTC_27d63.dir/CMakeCXXCompilerABI.cpp.o
+        /usr/bin/c++   -v -o CMakeFiles/cmTC_27d63.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake-4.1/Modules/CMakeCXXCompilerABI.cpp
         Using built-in specs.
         COLLECT_GCC=/usr/bin/c++
         OFFLOAD_TARGET_NAMES=nvptx-none:amdgcn-amdhsa
@@ -2194,8 +2157,8 @@ events:
         Thread model: posix
         Supported LTO compression algorithms: zlib zstd
         gcc version 11.4.0 (Ubuntu 11.4.0-1ubuntu1~22.04) 
-        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_1b0bd.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_1b0bd.dir/'
-         /usr/lib/gcc/x86_64-linux-gnu/11/cc1plus -quiet -v -imultiarch x86_64-linux-gnu -D_GNU_SOURCE /usr/share/cmake-4.1/Modules/CMakeCXXCompilerABI.cpp -quiet -dumpdir CMakeFiles/cmTC_1b0bd.dir/ -dumpbase CMakeCXXCompilerABI.cpp.cpp -dumpbase-ext .cpp -mtune=generic -march=x86-64 -version -fasynchronous-unwind-tables -fstack-protector-strong -Wformat -Wformat-security -fstack-clash-protection -fcf-protection -o /tmp/ccXGlxC5.s
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_27d63.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_27d63.dir/'
+         /usr/lib/gcc/x86_64-linux-gnu/11/cc1plus -quiet -v -imultiarch x86_64-linux-gnu -D_GNU_SOURCE /usr/share/cmake-4.1/Modules/CMakeCXXCompilerABI.cpp -quiet -dumpdir CMakeFiles/cmTC_27d63.dir/ -dumpbase CMakeCXXCompilerABI.cpp.cpp -dumpbase-ext .cpp -mtune=generic -march=x86-64 -version -fasynchronous-unwind-tables -fstack-protector-strong -Wformat -Wformat-security -fstack-clash-protection -fcf-protection -o /tmp/ccZhJQF9.s
         GNU C++17 (Ubuntu 11.4.0-1ubuntu1~22.04) version 11.4.0 (x86_64-linux-gnu)
         	compiled by GNU C version 11.4.0, GMP version 6.2.1, MPFR version 4.1.0, MPC version 1.2.1, isl version isl-0.24-GMP
         
@@ -2219,14 +2182,14 @@ events:
         
         GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
         Compiler executable checksum: d591828bb4d392ae8b7b160e5bb0b95f
-        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_1b0bd.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_1b0bd.dir/'
-         as -v --64 -o CMakeFiles/cmTC_1b0bd.dir/CMakeCXXCompilerABI.cpp.o /tmp/ccXGlxC5.s
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_27d63.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_27d63.dir/'
+         as -v --64 -o CMakeFiles/cmTC_27d63.dir/CMakeCXXCompilerABI.cpp.o /tmp/ccZhJQF9.s
         GNU assembler version 2.38 (x86_64-linux-gnu) using BFD version (GNU Binutils for Ubuntu) 2.38
         COMPILER_PATH=/usr/lib/gcc/x86_64-linux-gnu/11/:/usr/lib/gcc/x86_64-linux-gnu/11/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/11/:/usr/lib/gcc/x86_64-linux-gnu/
         LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/11/:/usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/11/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/11/../../../:/lib/:/usr/lib/
-        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_1b0bd.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_1b0bd.dir/CMakeCXXCompilerABI.cpp.'
-        Linking CXX executable cmTC_1b0bd
-        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_1b0bd.dir/link.txt --verbose=1
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_27d63.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_27d63.dir/CMakeCXXCompilerABI.cpp.'
+        Linking CXX executable cmTC_27d63
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_27d63.dir/link.txt --verbose=1
         Using built-in specs.
         COLLECT_GCC=/usr/bin/c++
         COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-linux-gnu/11/lto-wrapper
@@ -2239,14 +2202,14 @@ events:
         gcc version 11.4.0 (Ubuntu 11.4.0-1ubuntu1~22.04) 
         COMPILER_PATH=/usr/lib/gcc/x86_64-linux-gnu/11/:/usr/lib/gcc/x86_64-linux-gnu/11/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/11/:/usr/lib/gcc/x86_64-linux-gnu/
         LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/11/:/usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/11/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/11/../../../:/lib/:/usr/lib/
-        COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_1b0bd' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_1b0bd.'
-         /usr/lib/gcc/x86_64-linux-gnu/11/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/11/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/11/lto-wrapper -plugin-opt=-fresolution=/tmp/ccAOjkHR.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_1b0bd /usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/11/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/11 -L/usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/11/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/11/../../.. -v CMakeFiles/cmTC_1b0bd.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-linux-gnu/11/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/crtn.o
+        COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_27d63' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_27d63.'
+         /usr/lib/gcc/x86_64-linux-gnu/11/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/11/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/11/lto-wrapper -plugin-opt=-fresolution=/tmp/ccI5gRl8.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_27d63 /usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/11/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/11 -L/usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/11/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/11/../../.. -v CMakeFiles/cmTC_27d63.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-linux-gnu/11/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/crtn.o
         collect2 version 11.4.0
-        /usr/bin/ld -plugin /usr/lib/gcc/x86_64-linux-gnu/11/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/11/lto-wrapper -plugin-opt=-fresolution=/tmp/ccAOjkHR.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_1b0bd /usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/11/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/11 -L/usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/11/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/11/../../.. -v CMakeFiles/cmTC_1b0bd.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-linux-gnu/11/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/crtn.o
+        /usr/bin/ld -plugin /usr/lib/gcc/x86_64-linux-gnu/11/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/11/lto-wrapper -plugin-opt=-fresolution=/tmp/ccI5gRl8.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_27d63 /usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/11/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/11 -L/usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/11/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/11/../../.. -v CMakeFiles/cmTC_27d63.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-linux-gnu/11/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/crtn.o
         GNU ld (GNU Binutils for Ubuntu) 2.38
-        COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_1b0bd' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_1b0bd.'
-        /usr/bin/c++  -v -Wl,-v CMakeFiles/cmTC_1b0bd.dir/CMakeCXXCompilerABI.cpp.o -o cmTC_1b0bd
-        gmake[1]: Leaving directory '/home/monorepo-cmake-sample/build/CMakeFiles/CMakeScratch/TryCompile-DRVCDQ'
+        COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_27d63' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_27d63.'
+        /usr/bin/c++  -v -Wl,-v CMakeFiles/cmTC_27d63.dir/CMakeCXXCompilerABI.cpp.o -o cmTC_27d63
+        gmake[1]: Leaving directory '/mnt/c/Users/HP/Desktop/我的作品/monorepo-cmake-sample/build/CMakeFiles/CMakeScratch/TryCompile-JykrVE'
         
       exitCode: 0
   -
@@ -2287,13 +2250,13 @@ events:
       Parsed CXX implicit link information:
         link line regex: [^( *|.*[/\\])(ld[0-9]*(|\\.[a-rt-z][a-z]*|\\.s[a-np-z][a-z]*|\\.so[a-z]+)|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\\]+-)?ld|collect2)[^/\\]*( |$)]
         linker tool regex: [^[ 	]*(->|")?[ 	]*(([^"]*[/\\])?(ld[0-9]*(|\\.[a-rt-z][a-z]*|\\.s[a-np-z][a-z]*|\\.so[a-z]+)))("|,| |$)]
-        ignore line: [Change Dir: '/home/monorepo-cmake-sample/build/CMakeFiles/CMakeScratch/TryCompile-DRVCDQ']
+        ignore line: [Change Dir: '/mnt/c/Users/HP/Desktop/我的作品/monorepo-cmake-sample/build/CMakeFiles/CMakeScratch/TryCompile-JykrVE']
         ignore line: []
-        ignore line: [Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_1b0bd/fast]
-        ignore line: [/usr/bin/gmake  -f CMakeFiles/cmTC_1b0bd.dir/build.make CMakeFiles/cmTC_1b0bd.dir/build]
-        ignore line: [gmake[1]: Entering directory '/home/monorepo-cmake-sample/build/CMakeFiles/CMakeScratch/TryCompile-DRVCDQ']
-        ignore line: [Building CXX object CMakeFiles/cmTC_1b0bd.dir/CMakeCXXCompilerABI.cpp.o]
-        ignore line: [/usr/bin/c++   -v -o CMakeFiles/cmTC_1b0bd.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake-4.1/Modules/CMakeCXXCompilerABI.cpp]
+        ignore line: [Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_27d63/fast]
+        ignore line: [/usr/bin/gmake  -f CMakeFiles/cmTC_27d63.dir/build.make CMakeFiles/cmTC_27d63.dir/build]
+        ignore line: [gmake[1]: Entering directory '/mnt/c/Users/HP/Desktop/我的作品/monorepo-cmake-sample/build/CMakeFiles/CMakeScratch/TryCompile-JykrVE']
+        ignore line: [Building CXX object CMakeFiles/cmTC_27d63.dir/CMakeCXXCompilerABI.cpp.o]
+        ignore line: [/usr/bin/c++   -v -o CMakeFiles/cmTC_27d63.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake-4.1/Modules/CMakeCXXCompilerABI.cpp]
         ignore line: [Using built-in specs.]
         ignore line: [COLLECT_GCC=/usr/bin/c++]
         ignore line: [OFFLOAD_TARGET_NAMES=nvptx-none:amdgcn-amdhsa]
@@ -2303,8 +2266,8 @@ events:
         ignore line: [Thread model: posix]
         ignore line: [Supported LTO compression algorithms: zlib zstd]
         ignore line: [gcc version 11.4.0 (Ubuntu 11.4.0-1ubuntu1~22.04) ]
-        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_1b0bd.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_1b0bd.dir/']
-        ignore line: [ /usr/lib/gcc/x86_64-linux-gnu/11/cc1plus -quiet -v -imultiarch x86_64-linux-gnu -D_GNU_SOURCE /usr/share/cmake-4.1/Modules/CMakeCXXCompilerABI.cpp -quiet -dumpdir CMakeFiles/cmTC_1b0bd.dir/ -dumpbase CMakeCXXCompilerABI.cpp.cpp -dumpbase-ext .cpp -mtune=generic -march=x86-64 -version -fasynchronous-unwind-tables -fstack-protector-strong -Wformat -Wformat-security -fstack-clash-protection -fcf-protection -o /tmp/ccXGlxC5.s]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_27d63.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_27d63.dir/']
+        ignore line: [ /usr/lib/gcc/x86_64-linux-gnu/11/cc1plus -quiet -v -imultiarch x86_64-linux-gnu -D_GNU_SOURCE /usr/share/cmake-4.1/Modules/CMakeCXXCompilerABI.cpp -quiet -dumpdir CMakeFiles/cmTC_27d63.dir/ -dumpbase CMakeCXXCompilerABI.cpp.cpp -dumpbase-ext .cpp -mtune=generic -march=x86-64 -version -fasynchronous-unwind-tables -fstack-protector-strong -Wformat -Wformat-security -fstack-clash-protection -fcf-protection -o /tmp/ccZhJQF9.s]
         ignore line: [GNU C++17 (Ubuntu 11.4.0-1ubuntu1~22.04) version 11.4.0 (x86_64-linux-gnu)]
         ignore line: [	compiled by GNU C version 11.4.0  GMP version 6.2.1  MPFR version 4.1.0  MPC version 1.2.1  isl version isl-0.24-GMP]
         ignore line: []
@@ -2328,14 +2291,14 @@ events:
         ignore line: []
         ignore line: [GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072]
         ignore line: [Compiler executable checksum: d591828bb4d392ae8b7b160e5bb0b95f]
-        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_1b0bd.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_1b0bd.dir/']
-        ignore line: [ as -v --64 -o CMakeFiles/cmTC_1b0bd.dir/CMakeCXXCompilerABI.cpp.o /tmp/ccXGlxC5.s]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_27d63.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_27d63.dir/']
+        ignore line: [ as -v --64 -o CMakeFiles/cmTC_27d63.dir/CMakeCXXCompilerABI.cpp.o /tmp/ccZhJQF9.s]
         ignore line: [GNU assembler version 2.38 (x86_64-linux-gnu) using BFD version (GNU Binutils for Ubuntu) 2.38]
         ignore line: [COMPILER_PATH=/usr/lib/gcc/x86_64-linux-gnu/11/:/usr/lib/gcc/x86_64-linux-gnu/11/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/11/:/usr/lib/gcc/x86_64-linux-gnu/]
         ignore line: [LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/11/:/usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/11/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/11/../../../:/lib/:/usr/lib/]
-        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_1b0bd.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_1b0bd.dir/CMakeCXXCompilerABI.cpp.']
-        ignore line: [Linking CXX executable cmTC_1b0bd]
-        ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_1b0bd.dir/link.txt --verbose=1]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_27d63.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_27d63.dir/CMakeCXXCompilerABI.cpp.']
+        ignore line: [Linking CXX executable cmTC_27d63]
+        ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_27d63.dir/link.txt --verbose=1]
         ignore line: [Using built-in specs.]
         ignore line: [COLLECT_GCC=/usr/bin/c++]
         ignore line: [COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-linux-gnu/11/lto-wrapper]
@@ -2348,13 +2311,13 @@ events:
         ignore line: [gcc version 11.4.0 (Ubuntu 11.4.0-1ubuntu1~22.04) ]
         ignore line: [COMPILER_PATH=/usr/lib/gcc/x86_64-linux-gnu/11/:/usr/lib/gcc/x86_64-linux-gnu/11/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/11/:/usr/lib/gcc/x86_64-linux-gnu/]
         ignore line: [LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/11/:/usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/11/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/11/../../../:/lib/:/usr/lib/]
-        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_1b0bd' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_1b0bd.']
-        link line: [ /usr/lib/gcc/x86_64-linux-gnu/11/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/11/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/11/lto-wrapper -plugin-opt=-fresolution=/tmp/ccAOjkHR.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_1b0bd /usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/11/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/11 -L/usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/11/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/11/../../.. -v CMakeFiles/cmTC_1b0bd.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-linux-gnu/11/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/crtn.o]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_27d63' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_27d63.']
+        link line: [ /usr/lib/gcc/x86_64-linux-gnu/11/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/11/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/11/lto-wrapper -plugin-opt=-fresolution=/tmp/ccI5gRl8.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_27d63 /usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/11/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/11 -L/usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/11/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/11/../../.. -v CMakeFiles/cmTC_27d63.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-linux-gnu/11/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/crtn.o]
           arg [/usr/lib/gcc/x86_64-linux-gnu/11/collect2] ==> ignore
           arg [-plugin] ==> ignore
           arg [/usr/lib/gcc/x86_64-linux-gnu/11/liblto_plugin.so] ==> ignore
           arg [-plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/11/lto-wrapper] ==> ignore
-          arg [-plugin-opt=-fresolution=/tmp/ccAOjkHR.res] ==> ignore
+          arg [-plugin-opt=-fresolution=/tmp/ccI5gRl8.res] ==> ignore
           arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
           arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
           arg [-plugin-opt=-pass-through=-lc] ==> ignore
@@ -2372,7 +2335,7 @@ events:
           arg [-znow] ==> ignore
           arg [-zrelro] ==> ignore
           arg [-o] ==> ignore
-          arg [cmTC_1b0bd] ==> ignore
+          arg [cmTC_27d63] ==> ignore
           arg [/usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/Scrt1.o] ==> obj [/usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/Scrt1.o]
           arg [/usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/crti.o] ==> obj [/usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/crti.o]
           arg [/usr/lib/gcc/x86_64-linux-gnu/11/crtbeginS.o] ==> obj [/usr/lib/gcc/x86_64-linux-gnu/11/crtbeginS.o]
@@ -2385,7 +2348,7 @@ events:
           arg [-L/usr/lib/../lib] ==> dir [/usr/lib/../lib]
           arg [-L/usr/lib/gcc/x86_64-linux-gnu/11/../../..] ==> dir [/usr/lib/gcc/x86_64-linux-gnu/11/../../..]
           arg [-v] ==> ignore
-          arg [CMakeFiles/cmTC_1b0bd.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
+          arg [CMakeFiles/cmTC_27d63.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
           arg [-lstdc++] ==> lib [stdc++]
           arg [-lm] ==> lib [m]
           arg [-lgcc_s] ==> lib [gcc_s]
@@ -2396,7 +2359,7 @@ events:
           arg [/usr/lib/gcc/x86_64-linux-gnu/11/crtendS.o] ==> obj [/usr/lib/gcc/x86_64-linux-gnu/11/crtendS.o]
           arg [/usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/crtn.o] ==> obj [/usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/crtn.o]
         ignore line: [collect2 version 11.4.0]
-        ignore line: [/usr/bin/ld -plugin /usr/lib/gcc/x86_64-linux-gnu/11/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/11/lto-wrapper -plugin-opt=-fresolution=/tmp/ccAOjkHR.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_1b0bd /usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/11/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/11 -L/usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/11/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/11/../../.. -v CMakeFiles/cmTC_1b0bd.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-linux-gnu/11/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/crtn.o]
+        ignore line: [/usr/bin/ld -plugin /usr/lib/gcc/x86_64-linux-gnu/11/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/11/lto-wrapper -plugin-opt=-fresolution=/tmp/ccI5gRl8.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_27d63 /usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/11/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/11 -L/usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/11/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/11/../../.. -v CMakeFiles/cmTC_27d63.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-linux-gnu/11/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/crtn.o]
         linker tool for 'CXX': /usr/bin/ld
         collapse obj [/usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/Scrt1.o] ==> [/usr/lib/x86_64-linux-gnu/Scrt1.o]
         collapse obj [/usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/crti.o] ==> [/usr/lib/x86_64-linux-gnu/crti.o]
@@ -2444,7 +2407,6 @@ events:
     names:
       - "git"
     candidate_directories:
-      - "/root/.vscode-server/bin/6f17636121051a53c88d3e605c491d22af2ba755/bin/remote-cli/"
       - "/usr/local/sbin/"
       - "/usr/local/bin/"
       - "/usr/sbin/"
@@ -2465,7 +2427,7 @@ events:
       - "/mnt/c/windows/System32/OpenSSH/"
       - "/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common/"
       - "/mnt/c/Program Files/Common Files/Autodesk Shared/"
-      - "/mnt/d/\u4f20\u8f93\u6587\u4ef6\u5de5\u5177/AOMEI/AOMEI Backupper/6.9.1/"
+      - "/mnt/d/\ufffd\ufffd\ufffd\ufffd\ufffd\u013c\ufffd\ufffd\ufffd\ufffd\ufffd/AOMEI/AOMEI Backupper/6.9.1/"
       - "/mnt/c/Pr/"
       - "/mnt/c/Program Files/nodejs/"
       - "/mnt/c/ProgramData/chocolatey/bin/"
@@ -2476,6 +2438,7 @@ events:
       - "/mnt/c/Program Files/Zero Install/"
       - "/mnt/c/Users/HP/AppData/Local/Muse Hub/lib/"
       - "/mnt/c/Program Files/CursorModifier/"
+      - "/mnt/c/Program Files/MySQL/MySQL Shell 8.0/bin/"
       - "/mnt/f/python3/Scripts/"
       - "/mnt/f/python3/"
       - "/mnt/c/Users/HP/AppData/Local/Microsoft/WindowsApps/"
@@ -2488,7 +2451,7 @@ events:
       - "/mnt/f/cursor/cursor/resources/app/bin/"
       - "/mnt/c/Users/HP/AppData/Roaming/Programs/Zero Install/"
       - "/mnt/f/curl-8.15.0_4-win64-mingw/bin/"
-      - "/root/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand/"
+      - "/mnt/c/Users/HP/AppData/Local/GitHubDesktop/bin/"
       - "/usr/local/bin/"
       - "/usr/local/sbin/"
       - "/usr/local/"
@@ -2507,14 +2470,12 @@ events:
       - "/opt/sbin/"
       - "/opt/"
     searched_directories:
-      - "/root/.vscode-server/bin/6f17636121051a53c88d3e605c491d22af2ba755/bin/remote-cli/git"
       - "/usr/local/sbin/git"
       - "/usr/local/bin/git"
       - "/usr/sbin/git"
     found: "/usr/bin/git"
     search_context:
       ENV{PATH}:
-        - "/root/.vscode-server/bin/6f17636121051a53c88d3e605c491d22af2ba755/bin/remote-cli"
         - "/usr/local/sbin"
         - "/usr/local/bin"
         - "/usr/sbin"
@@ -2535,7 +2496,7 @@ events:
         - "/mnt/c/windows/System32/OpenSSH/"
         - "/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common"
         - "/mnt/c/Program Files/Common Files/Autodesk Shared/"
-        - "/mnt/d/\u4f20\u8f93\u6587\u4ef6\u5de5\u5177/AOMEI/AOMEI Backupper/6.9.1"
+        - "/mnt/d/\ufffd\ufffd\ufffd\ufffd\ufffd\u013c\ufffd\ufffd\ufffd\ufffd\ufffd/AOMEI/AOMEI Backupper/6.9.1"
         - "/mnt/c/Pr"
         - "/mnt/c/Program Files/nodejs/"
         - "/mnt/c/ProgramData/chocolatey/bin"
@@ -2546,6 +2507,7 @@ events:
         - "/mnt/c/Program Files/Zero Install"
         - "/mnt/c/Users/HP/AppData/Local/Muse Hub/lib"
         - "/mnt/c/Program Files/CursorModifier"
+        - "/mnt/c/Program Files/MySQL/MySQL Shell 8.0/bin/"
         - "/mnt/f/python3/Scripts/"
         - "/mnt/f/python3/"
         - "/mnt/c/Users/HP/AppData/Local/Microsoft/WindowsApps"
@@ -2553,14 +2515,12 @@ events:
         - "/mnt/c/Users/HP/AppData/Roaming/npm"
         - "/mnt/d/vscode/Microsoft VS Code/bin"
         - "/mnt/c/Program Files (x86)/Nmap"
-        - "/mnt/c/Users/HP/AppData/Local/Muse Hub/lib"
         - "/mnt/f/ffmpeg_v7.1/ffmpeg-7.1-essentials_build/bin"
         - "/mnt/f/BBDown_1.6.3_20240814_win-x64"
         - "/mnt/f/cursor/cursor/resources/app/bin"
         - "/mnt/c/Users/HP/AppData/Roaming/Programs/Zero Install"
-        - "/mnt/c/Users/HP/AppData/Local/Muse Hub/lib"
         - "/mnt/f/curl-8.15.0_4-win64-mingw/bin"
-        - "/root/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand"
+        - "/mnt/c/Users/HP/AppData/Local/GitHubDesktop/bin"
       CMAKE_INSTALL_PREFIX: "/usr/local"
       CMAKE_SYSTEM_PREFIX_PATH:
         - "/usr/local"
@@ -2595,7 +2555,6 @@ events:
       - "cuda-memcheck"
       - "compute-sanitizer"
     candidate_directories:
-      - "/root/.vscode-server/bin/6f17636121051a53c88d3e605c491d22af2ba755/bin/remote-cli/"
       - "/usr/local/sbin/"
       - "/usr/local/bin/"
       - "/usr/sbin/"
@@ -2616,7 +2575,7 @@ events:
       - "/mnt/c/windows/System32/OpenSSH/"
       - "/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common/"
       - "/mnt/c/Program Files/Common Files/Autodesk Shared/"
-      - "/mnt/d/\u4f20\u8f93\u6587\u4ef6\u5de5\u5177/AOMEI/AOMEI Backupper/6.9.1/"
+      - "/mnt/d/\ufffd\ufffd\ufffd\ufffd\ufffd\u013c\ufffd\ufffd\ufffd\ufffd\ufffd/AOMEI/AOMEI Backupper/6.9.1/"
       - "/mnt/c/Pr/"
       - "/mnt/c/Program Files/nodejs/"
       - "/mnt/c/ProgramData/chocolatey/bin/"
@@ -2627,6 +2586,7 @@ events:
       - "/mnt/c/Program Files/Zero Install/"
       - "/mnt/c/Users/HP/AppData/Local/Muse Hub/lib/"
       - "/mnt/c/Program Files/CursorModifier/"
+      - "/mnt/c/Program Files/MySQL/MySQL Shell 8.0/bin/"
       - "/mnt/f/python3/Scripts/"
       - "/mnt/f/python3/"
       - "/mnt/c/Users/HP/AppData/Local/Microsoft/WindowsApps/"
@@ -2639,7 +2599,7 @@ events:
       - "/mnt/f/cursor/cursor/resources/app/bin/"
       - "/mnt/c/Users/HP/AppData/Roaming/Programs/Zero Install/"
       - "/mnt/f/curl-8.15.0_4-win64-mingw/bin/"
-      - "/root/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand/"
+      - "/mnt/c/Users/HP/AppData/Local/GitHubDesktop/bin/"
       - "/usr/local/bin/"
       - "/usr/local/sbin/"
       - "/usr/local/"
@@ -2658,7 +2618,6 @@ events:
       - "/opt/sbin/"
       - "/opt/"
     searched_directories:
-      - "/root/.vscode-server/bin/6f17636121051a53c88d3e605c491d22af2ba755/bin/remote-cli/purify"
       - "/usr/local/sbin/purify"
       - "/usr/local/bin/purify"
       - "/usr/sbin/purify"
@@ -2679,7 +2638,7 @@ events:
       - "/mnt/c/windows/System32/OpenSSH/purify"
       - "/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common/purify"
       - "/mnt/c/Program Files/Common Files/Autodesk Shared/purify"
-      - "/mnt/d/\u4f20\u8f93\u6587\u4ef6\u5de5\u5177/AOMEI/AOMEI Backupper/6.9.1/purify"
+      - "/mnt/d/\ufffd\ufffd\ufffd\ufffd\ufffd\u013c\ufffd\ufffd\ufffd\ufffd\ufffd/AOMEI/AOMEI Backupper/6.9.1/purify"
       - "/mnt/c/Pr/purify"
       - "/mnt/c/Program Files/nodejs/purify"
       - "/mnt/c/ProgramData/chocolatey/bin/purify"
@@ -2690,6 +2649,7 @@ events:
       - "/mnt/c/Program Files/Zero Install/purify"
       - "/mnt/c/Users/HP/AppData/Local/Muse Hub/lib/purify"
       - "/mnt/c/Program Files/CursorModifier/purify"
+      - "/mnt/c/Program Files/MySQL/MySQL Shell 8.0/bin/purify"
       - "/mnt/f/python3/Scripts/purify"
       - "/mnt/f/python3/purify"
       - "/mnt/c/Users/HP/AppData/Local/Microsoft/WindowsApps/purify"
@@ -2702,7 +2662,7 @@ events:
       - "/mnt/f/cursor/cursor/resources/app/bin/purify"
       - "/mnt/c/Users/HP/AppData/Roaming/Programs/Zero Install/purify"
       - "/mnt/f/curl-8.15.0_4-win64-mingw/bin/purify"
-      - "/root/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand/purify"
+      - "/mnt/c/Users/HP/AppData/Local/GitHubDesktop/bin/purify"
       - "/usr/local/bin/purify"
       - "/usr/local/sbin/purify"
       - "/usr/local/purify"
@@ -2720,7 +2680,6 @@ events:
       - "/opt/bin/purify"
       - "/opt/sbin/purify"
       - "/opt/purify"
-      - "/root/.vscode-server/bin/6f17636121051a53c88d3e605c491d22af2ba755/bin/remote-cli/valgrind"
       - "/usr/local/sbin/valgrind"
       - "/usr/local/bin/valgrind"
       - "/usr/sbin/valgrind"
@@ -2741,7 +2700,7 @@ events:
       - "/mnt/c/windows/System32/OpenSSH/valgrind"
       - "/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common/valgrind"
       - "/mnt/c/Program Files/Common Files/Autodesk Shared/valgrind"
-      - "/mnt/d/\u4f20\u8f93\u6587\u4ef6\u5de5\u5177/AOMEI/AOMEI Backupper/6.9.1/valgrind"
+      - "/mnt/d/\ufffd\ufffd\ufffd\ufffd\ufffd\u013c\ufffd\ufffd\ufffd\ufffd\ufffd/AOMEI/AOMEI Backupper/6.9.1/valgrind"
       - "/mnt/c/Pr/valgrind"
       - "/mnt/c/Program Files/nodejs/valgrind"
       - "/mnt/c/ProgramData/chocolatey/bin/valgrind"
@@ -2752,6 +2711,7 @@ events:
       - "/mnt/c/Program Files/Zero Install/valgrind"
       - "/mnt/c/Users/HP/AppData/Local/Muse Hub/lib/valgrind"
       - "/mnt/c/Program Files/CursorModifier/valgrind"
+      - "/mnt/c/Program Files/MySQL/MySQL Shell 8.0/bin/valgrind"
       - "/mnt/f/python3/Scripts/valgrind"
       - "/mnt/f/python3/valgrind"
       - "/mnt/c/Users/HP/AppData/Local/Microsoft/WindowsApps/valgrind"
@@ -2764,7 +2724,7 @@ events:
       - "/mnt/f/cursor/cursor/resources/app/bin/valgrind"
       - "/mnt/c/Users/HP/AppData/Roaming/Programs/Zero Install/valgrind"
       - "/mnt/f/curl-8.15.0_4-win64-mingw/bin/valgrind"
-      - "/root/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand/valgrind"
+      - "/mnt/c/Users/HP/AppData/Local/GitHubDesktop/bin/valgrind"
       - "/usr/local/bin/valgrind"
       - "/usr/local/sbin/valgrind"
       - "/usr/local/valgrind"
@@ -2782,7 +2742,6 @@ events:
       - "/opt/bin/valgrind"
       - "/opt/sbin/valgrind"
       - "/opt/valgrind"
-      - "/root/.vscode-server/bin/6f17636121051a53c88d3e605c491d22af2ba755/bin/remote-cli/boundscheck"
       - "/usr/local/sbin/boundscheck"
       - "/usr/local/bin/boundscheck"
       - "/usr/sbin/boundscheck"
@@ -2803,7 +2762,7 @@ events:
       - "/mnt/c/windows/System32/OpenSSH/boundscheck"
       - "/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common/boundscheck"
       - "/mnt/c/Program Files/Common Files/Autodesk Shared/boundscheck"
-      - "/mnt/d/\u4f20\u8f93\u6587\u4ef6\u5de5\u5177/AOMEI/AOMEI Backupper/6.9.1/boundscheck"
+      - "/mnt/d/\ufffd\ufffd\ufffd\ufffd\ufffd\u013c\ufffd\ufffd\ufffd\ufffd\ufffd/AOMEI/AOMEI Backupper/6.9.1/boundscheck"
       - "/mnt/c/Pr/boundscheck"
       - "/mnt/c/Program Files/nodejs/boundscheck"
       - "/mnt/c/ProgramData/chocolatey/bin/boundscheck"
@@ -2814,6 +2773,7 @@ events:
       - "/mnt/c/Program Files/Zero Install/boundscheck"
       - "/mnt/c/Users/HP/AppData/Local/Muse Hub/lib/boundscheck"
       - "/mnt/c/Program Files/CursorModifier/boundscheck"
+      - "/mnt/c/Program Files/MySQL/MySQL Shell 8.0/bin/boundscheck"
       - "/mnt/f/python3/Scripts/boundscheck"
       - "/mnt/f/python3/boundscheck"
       - "/mnt/c/Users/HP/AppData/Local/Microsoft/WindowsApps/boundscheck"
@@ -2826,7 +2786,7 @@ events:
       - "/mnt/f/cursor/cursor/resources/app/bin/boundscheck"
       - "/mnt/c/Users/HP/AppData/Roaming/Programs/Zero Install/boundscheck"
       - "/mnt/f/curl-8.15.0_4-win64-mingw/bin/boundscheck"
-      - "/root/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand/boundscheck"
+      - "/mnt/c/Users/HP/AppData/Local/GitHubDesktop/bin/boundscheck"
       - "/usr/local/bin/boundscheck"
       - "/usr/local/sbin/boundscheck"
       - "/usr/local/boundscheck"
@@ -2844,7 +2804,6 @@ events:
       - "/opt/bin/boundscheck"
       - "/opt/sbin/boundscheck"
       - "/opt/boundscheck"
-      - "/root/.vscode-server/bin/6f17636121051a53c88d3e605c491d22af2ba755/bin/remote-cli/drmemory"
       - "/usr/local/sbin/drmemory"
       - "/usr/local/bin/drmemory"
       - "/usr/sbin/drmemory"
@@ -2865,7 +2824,7 @@ events:
       - "/mnt/c/windows/System32/OpenSSH/drmemory"
       - "/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common/drmemory"
       - "/mnt/c/Program Files/Common Files/Autodesk Shared/drmemory"
-      - "/mnt/d/\u4f20\u8f93\u6587\u4ef6\u5de5\u5177/AOMEI/AOMEI Backupper/6.9.1/drmemory"
+      - "/mnt/d/\ufffd\ufffd\ufffd\ufffd\ufffd\u013c\ufffd\ufffd\ufffd\ufffd\ufffd/AOMEI/AOMEI Backupper/6.9.1/drmemory"
       - "/mnt/c/Pr/drmemory"
       - "/mnt/c/Program Files/nodejs/drmemory"
       - "/mnt/c/ProgramData/chocolatey/bin/drmemory"
@@ -2876,6 +2835,7 @@ events:
       - "/mnt/c/Program Files/Zero Install/drmemory"
       - "/mnt/c/Users/HP/AppData/Local/Muse Hub/lib/drmemory"
       - "/mnt/c/Program Files/CursorModifier/drmemory"
+      - "/mnt/c/Program Files/MySQL/MySQL Shell 8.0/bin/drmemory"
       - "/mnt/f/python3/Scripts/drmemory"
       - "/mnt/f/python3/drmemory"
       - "/mnt/c/Users/HP/AppData/Local/Microsoft/WindowsApps/drmemory"
@@ -2888,7 +2848,7 @@ events:
       - "/mnt/f/cursor/cursor/resources/app/bin/drmemory"
       - "/mnt/c/Users/HP/AppData/Roaming/Programs/Zero Install/drmemory"
       - "/mnt/f/curl-8.15.0_4-win64-mingw/bin/drmemory"
-      - "/root/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand/drmemory"
+      - "/mnt/c/Users/HP/AppData/Local/GitHubDesktop/bin/drmemory"
       - "/usr/local/bin/drmemory"
       - "/usr/local/sbin/drmemory"
       - "/usr/local/drmemory"
@@ -2906,7 +2866,6 @@ events:
       - "/opt/bin/drmemory"
       - "/opt/sbin/drmemory"
       - "/opt/drmemory"
-      - "/root/.vscode-server/bin/6f17636121051a53c88d3e605c491d22af2ba755/bin/remote-cli/cuda-memcheck"
       - "/usr/local/sbin/cuda-memcheck"
       - "/usr/local/bin/cuda-memcheck"
       - "/usr/sbin/cuda-memcheck"
@@ -2927,7 +2886,7 @@ events:
       - "/mnt/c/windows/System32/OpenSSH/cuda-memcheck"
       - "/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common/cuda-memcheck"
       - "/mnt/c/Program Files/Common Files/Autodesk Shared/cuda-memcheck"
-      - "/mnt/d/\u4f20\u8f93\u6587\u4ef6\u5de5\u5177/AOMEI/AOMEI Backupper/6.9.1/cuda-memcheck"
+      - "/mnt/d/\ufffd\ufffd\ufffd\ufffd\ufffd\u013c\ufffd\ufffd\ufffd\ufffd\ufffd/AOMEI/AOMEI Backupper/6.9.1/cuda-memcheck"
       - "/mnt/c/Pr/cuda-memcheck"
       - "/mnt/c/Program Files/nodejs/cuda-memcheck"
       - "/mnt/c/ProgramData/chocolatey/bin/cuda-memcheck"
@@ -2938,6 +2897,7 @@ events:
       - "/mnt/c/Program Files/Zero Install/cuda-memcheck"
       - "/mnt/c/Users/HP/AppData/Local/Muse Hub/lib/cuda-memcheck"
       - "/mnt/c/Program Files/CursorModifier/cuda-memcheck"
+      - "/mnt/c/Program Files/MySQL/MySQL Shell 8.0/bin/cuda-memcheck"
       - "/mnt/f/python3/Scripts/cuda-memcheck"
       - "/mnt/f/python3/cuda-memcheck"
       - "/mnt/c/Users/HP/AppData/Local/Microsoft/WindowsApps/cuda-memcheck"
@@ -2950,7 +2910,7 @@ events:
       - "/mnt/f/cursor/cursor/resources/app/bin/cuda-memcheck"
       - "/mnt/c/Users/HP/AppData/Roaming/Programs/Zero Install/cuda-memcheck"
       - "/mnt/f/curl-8.15.0_4-win64-mingw/bin/cuda-memcheck"
-      - "/root/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand/cuda-memcheck"
+      - "/mnt/c/Users/HP/AppData/Local/GitHubDesktop/bin/cuda-memcheck"
       - "/usr/local/bin/cuda-memcheck"
       - "/usr/local/sbin/cuda-memcheck"
       - "/usr/local/cuda-memcheck"
@@ -2968,7 +2928,6 @@ events:
       - "/opt/bin/cuda-memcheck"
       - "/opt/sbin/cuda-memcheck"
       - "/opt/cuda-memcheck"
-      - "/root/.vscode-server/bin/6f17636121051a53c88d3e605c491d22af2ba755/bin/remote-cli/compute-sanitizer"
       - "/usr/local/sbin/compute-sanitizer"
       - "/usr/local/bin/compute-sanitizer"
       - "/usr/sbin/compute-sanitizer"
@@ -2989,7 +2948,7 @@ events:
       - "/mnt/c/windows/System32/OpenSSH/compute-sanitizer"
       - "/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common/compute-sanitizer"
       - "/mnt/c/Program Files/Common Files/Autodesk Shared/compute-sanitizer"
-      - "/mnt/d/\u4f20\u8f93\u6587\u4ef6\u5de5\u5177/AOMEI/AOMEI Backupper/6.9.1/compute-sanitizer"
+      - "/mnt/d/\ufffd\ufffd\ufffd\ufffd\ufffd\u013c\ufffd\ufffd\ufffd\ufffd\ufffd/AOMEI/AOMEI Backupper/6.9.1/compute-sanitizer"
       - "/mnt/c/Pr/compute-sanitizer"
       - "/mnt/c/Program Files/nodejs/compute-sanitizer"
       - "/mnt/c/ProgramData/chocolatey/bin/compute-sanitizer"
@@ -3000,6 +2959,7 @@ events:
       - "/mnt/c/Program Files/Zero Install/compute-sanitizer"
       - "/mnt/c/Users/HP/AppData/Local/Muse Hub/lib/compute-sanitizer"
       - "/mnt/c/Program Files/CursorModifier/compute-sanitizer"
+      - "/mnt/c/Program Files/MySQL/MySQL Shell 8.0/bin/compute-sanitizer"
       - "/mnt/f/python3/Scripts/compute-sanitizer"
       - "/mnt/f/python3/compute-sanitizer"
       - "/mnt/c/Users/HP/AppData/Local/Microsoft/WindowsApps/compute-sanitizer"
@@ -3012,7 +2972,7 @@ events:
       - "/mnt/f/cursor/cursor/resources/app/bin/compute-sanitizer"
       - "/mnt/c/Users/HP/AppData/Roaming/Programs/Zero Install/compute-sanitizer"
       - "/mnt/f/curl-8.15.0_4-win64-mingw/bin/compute-sanitizer"
-      - "/root/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand/compute-sanitizer"
+      - "/mnt/c/Users/HP/AppData/Local/GitHubDesktop/bin/compute-sanitizer"
       - "/usr/local/bin/compute-sanitizer"
       - "/usr/local/sbin/compute-sanitizer"
       - "/usr/local/compute-sanitizer"
@@ -3033,7 +2993,6 @@ events:
     found: false
     search_context:
       ENV{PATH}:
-        - "/root/.vscode-server/bin/6f17636121051a53c88d3e605c491d22af2ba755/bin/remote-cli"
         - "/usr/local/sbin"
         - "/usr/local/bin"
         - "/usr/sbin"
@@ -3054,7 +3013,7 @@ events:
         - "/mnt/c/windows/System32/OpenSSH/"
         - "/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common"
         - "/mnt/c/Program Files/Common Files/Autodesk Shared/"
-        - "/mnt/d/\u4f20\u8f93\u6587\u4ef6\u5de5\u5177/AOMEI/AOMEI Backupper/6.9.1"
+        - "/mnt/d/\ufffd\ufffd\ufffd\ufffd\ufffd\u013c\ufffd\ufffd\ufffd\ufffd\ufffd/AOMEI/AOMEI Backupper/6.9.1"
         - "/mnt/c/Pr"
         - "/mnt/c/Program Files/nodejs/"
         - "/mnt/c/ProgramData/chocolatey/bin"
@@ -3065,6 +3024,7 @@ events:
         - "/mnt/c/Program Files/Zero Install"
         - "/mnt/c/Users/HP/AppData/Local/Muse Hub/lib"
         - "/mnt/c/Program Files/CursorModifier"
+        - "/mnt/c/Program Files/MySQL/MySQL Shell 8.0/bin/"
         - "/mnt/f/python3/Scripts/"
         - "/mnt/f/python3/"
         - "/mnt/c/Users/HP/AppData/Local/Microsoft/WindowsApps"
@@ -3072,14 +3032,12 @@ events:
         - "/mnt/c/Users/HP/AppData/Roaming/npm"
         - "/mnt/d/vscode/Microsoft VS Code/bin"
         - "/mnt/c/Program Files (x86)/Nmap"
-        - "/mnt/c/Users/HP/AppData/Local/Muse Hub/lib"
         - "/mnt/f/ffmpeg_v7.1/ffmpeg-7.1-essentials_build/bin"
         - "/mnt/f/BBDown_1.6.3_20240814_win-x64"
         - "/mnt/f/cursor/cursor/resources/app/bin"
         - "/mnt/c/Users/HP/AppData/Roaming/Programs/Zero Install"
-        - "/mnt/c/Users/HP/AppData/Local/Muse Hub/lib"
         - "/mnt/f/curl-8.15.0_4-win64-mingw/bin"
-        - "/root/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand"
+        - "/mnt/c/Users/HP/AppData/Local/GitHubDesktop/bin"
       CMAKE_INSTALL_PREFIX: "/usr/local"
       CMAKE_SYSTEM_PREFIX_PATH:
         - "/usr/local"
@@ -3109,7 +3067,6 @@ events:
     names:
       - "gcov"
     candidate_directories:
-      - "/root/.vscode-server/bin/6f17636121051a53c88d3e605c491d22af2ba755/bin/remote-cli/"
       - "/usr/local/sbin/"
       - "/usr/local/bin/"
       - "/usr/sbin/"
@@ -3130,7 +3087,7 @@ events:
       - "/mnt/c/windows/System32/OpenSSH/"
       - "/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common/"
       - "/mnt/c/Program Files/Common Files/Autodesk Shared/"
-      - "/mnt/d/\u4f20\u8f93\u6587\u4ef6\u5de5\u5177/AOMEI/AOMEI Backupper/6.9.1/"
+      - "/mnt/d/\ufffd\ufffd\ufffd\ufffd\ufffd\u013c\ufffd\ufffd\ufffd\ufffd\ufffd/AOMEI/AOMEI Backupper/6.9.1/"
       - "/mnt/c/Pr/"
       - "/mnt/c/Program Files/nodejs/"
       - "/mnt/c/ProgramData/chocolatey/bin/"
@@ -3141,6 +3098,7 @@ events:
       - "/mnt/c/Program Files/Zero Install/"
       - "/mnt/c/Users/HP/AppData/Local/Muse Hub/lib/"
       - "/mnt/c/Program Files/CursorModifier/"
+      - "/mnt/c/Program Files/MySQL/MySQL Shell 8.0/bin/"
       - "/mnt/f/python3/Scripts/"
       - "/mnt/f/python3/"
       - "/mnt/c/Users/HP/AppData/Local/Microsoft/WindowsApps/"
@@ -3153,7 +3111,7 @@ events:
       - "/mnt/f/cursor/cursor/resources/app/bin/"
       - "/mnt/c/Users/HP/AppData/Roaming/Programs/Zero Install/"
       - "/mnt/f/curl-8.15.0_4-win64-mingw/bin/"
-      - "/root/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand/"
+      - "/mnt/c/Users/HP/AppData/Local/GitHubDesktop/bin/"
       - "/usr/local/bin/"
       - "/usr/local/sbin/"
       - "/usr/local/"
@@ -3172,14 +3130,12 @@ events:
       - "/opt/sbin/"
       - "/opt/"
     searched_directories:
-      - "/root/.vscode-server/bin/6f17636121051a53c88d3e605c491d22af2ba755/bin/remote-cli/gcov"
       - "/usr/local/sbin/gcov"
       - "/usr/local/bin/gcov"
       - "/usr/sbin/gcov"
     found: "/usr/bin/gcov"
     search_context:
       ENV{PATH}:
-        - "/root/.vscode-server/bin/6f17636121051a53c88d3e605c491d22af2ba755/bin/remote-cli"
         - "/usr/local/sbin"
         - "/usr/local/bin"
         - "/usr/sbin"
@@ -3200,7 +3156,7 @@ events:
         - "/mnt/c/windows/System32/OpenSSH/"
         - "/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common"
         - "/mnt/c/Program Files/Common Files/Autodesk Shared/"
-        - "/mnt/d/\u4f20\u8f93\u6587\u4ef6\u5de5\u5177/AOMEI/AOMEI Backupper/6.9.1"
+        - "/mnt/d/\ufffd\ufffd\ufffd\ufffd\ufffd\u013c\ufffd\ufffd\ufffd\ufffd\ufffd/AOMEI/AOMEI Backupper/6.9.1"
         - "/mnt/c/Pr"
         - "/mnt/c/Program Files/nodejs/"
         - "/mnt/c/ProgramData/chocolatey/bin"
@@ -3211,6 +3167,7 @@ events:
         - "/mnt/c/Program Files/Zero Install"
         - "/mnt/c/Users/HP/AppData/Local/Muse Hub/lib"
         - "/mnt/c/Program Files/CursorModifier"
+        - "/mnt/c/Program Files/MySQL/MySQL Shell 8.0/bin/"
         - "/mnt/f/python3/Scripts/"
         - "/mnt/f/python3/"
         - "/mnt/c/Users/HP/AppData/Local/Microsoft/WindowsApps"
@@ -3218,164 +3175,12 @@ events:
         - "/mnt/c/Users/HP/AppData/Roaming/npm"
         - "/mnt/d/vscode/Microsoft VS Code/bin"
         - "/mnt/c/Program Files (x86)/Nmap"
-        - "/mnt/c/Users/HP/AppData/Local/Muse Hub/lib"
         - "/mnt/f/ffmpeg_v7.1/ffmpeg-7.1-essentials_build/bin"
         - "/mnt/f/BBDown_1.6.3_20240814_win-x64"
         - "/mnt/f/cursor/cursor/resources/app/bin"
         - "/mnt/c/Users/HP/AppData/Roaming/Programs/Zero Install"
-        - "/mnt/c/Users/HP/AppData/Local/Muse Hub/lib"
         - "/mnt/f/curl-8.15.0_4-win64-mingw/bin"
-        - "/root/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand"
-      CMAKE_INSTALL_PREFIX: "/usr/local"
-      CMAKE_SYSTEM_PREFIX_PATH:
-        - "/usr/local"
-        - "/usr"
-        - "/"
-        - "/usr"
-        - "/usr/local"
-        - "/usr/X11R6"
-        - "/usr/pkg"
-        - "/opt"
-...
-
----
-events:
-  -
-    kind: "find-v1"
-    backtrace:
-      - "cmake/SetupPackage.cmake:42 (find_program)"
-      - "projects/netlib/CMakeLists.txt:9 (setup_package)"
-    mode: "program"
-    variable: "GIT_EXECUTABLE"
-    description: "Path to a program."
-    settings:
-      SearchFramework: "NEVER"
-      SearchAppBundle: "NEVER"
-      CMAKE_FIND_USE_CMAKE_PATH: true
-      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
-      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
-      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
-      CMAKE_FIND_USE_INSTALL_PREFIX: true
-    names:
-      - "git"
-    candidate_directories:
-      - "/root/.vscode-server/bin/6f17636121051a53c88d3e605c491d22af2ba755/bin/remote-cli/"
-      - "/usr/local/sbin/"
-      - "/usr/local/bin/"
-      - "/usr/sbin/"
-      - "/usr/bin/"
-      - "/sbin/"
-      - "/bin/"
-      - "/usr/games/"
-      - "/usr/local/games/"
-      - "/usr/lib/wsl/lib/"
-      - "/mnt/c/Python312/Scripts/"
-      - "/mnt/c/Python312/"
-      - "/mnt/f/vmware/bin/"
-      - "/mnt/c/Program Files (x86)/Common Files/Intel/Shared Libraries/redist/intel64/compiler/"
-      - "/mnt/c/windows/system32/"
-      - "/mnt/c/windows/"
-      - "/mnt/c/windows/System32/Wbem/"
-      - "/mnt/c/windows/System32/WindowsPowerShell/v1.0/"
-      - "/mnt/c/windows/System32/OpenSSH/"
-      - "/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common/"
-      - "/mnt/c/Program Files/Common Files/Autodesk Shared/"
-      - "/mnt/d/\u4f20\u8f93\u6587\u4ef6\u5de5\u5177/AOMEI/AOMEI Backupper/6.9.1/"
-      - "/mnt/c/Pr/"
-      - "/mnt/c/Program Files/nodejs/"
-      - "/mnt/c/ProgramData/chocolatey/bin/"
-      - "/mnt/c/Program Files/Git/cmd/"
-      - "/mnt/c/Program Files (x86)/Microsoft Visual Studio/2019/BuildTools/Common7/IDE/CommonExtensions/Microsoft/TeamFoundation/Team Explorer/Git/cmd/"
-      - "/mnt/c/Program Files/NVIDIA Corporation/NVIDIA app/NvDLISR/"
-      - "/mnt/c/Program Files/dotnet/"
-      - "/mnt/c/Program Files/Zero Install/"
-      - "/mnt/c/Users/HP/AppData/Local/Muse Hub/lib/"
-      - "/mnt/c/Program Files/CursorModifier/"
-      - "/mnt/f/python3/Scripts/"
-      - "/mnt/f/python3/"
-      - "/mnt/c/Users/HP/AppData/Local/Microsoft/WindowsApps/"
-      - "/mnt/c/Users/HP/AppData/Local/atom/bin/"
-      - "/mnt/c/Users/HP/AppData/Roaming/npm/"
-      - "/mnt/d/vscode/Microsoft VS Code/bin/"
-      - "/mnt/c/Program Files (x86)/Nmap/"
-      - "/mnt/f/ffmpeg_v7.1/ffmpeg-7.1-essentials_build/bin/"
-      - "/mnt/f/BBDown_1.6.3_20240814_win-x64/"
-      - "/mnt/f/cursor/cursor/resources/app/bin/"
-      - "/mnt/c/Users/HP/AppData/Roaming/Programs/Zero Install/"
-      - "/mnt/f/curl-8.15.0_4-win64-mingw/bin/"
-      - "/root/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand/"
-      - "/usr/local/bin/"
-      - "/usr/local/sbin/"
-      - "/usr/local/"
-      - "/usr/bin/"
-      - "/usr/sbin/"
-      - "/usr/"
-      - "/bin/"
-      - "/sbin/"
-      - "/usr/X11R6/bin/"
-      - "/usr/X11R6/sbin/"
-      - "/usr/X11R6/"
-      - "/usr/pkg/bin/"
-      - "/usr/pkg/sbin/"
-      - "/usr/pkg/"
-      - "/opt/bin/"
-      - "/opt/sbin/"
-      - "/opt/"
-    searched_directories:
-      - "/root/.vscode-server/bin/6f17636121051a53c88d3e605c491d22af2ba755/bin/remote-cli/git"
-      - "/usr/local/sbin/git"
-      - "/usr/local/bin/git"
-      - "/usr/sbin/git"
-    found: "/usr/bin/git"
-    search_context:
-      ENV{PATH}:
-        - "/root/.vscode-server/bin/6f17636121051a53c88d3e605c491d22af2ba755/bin/remote-cli"
-        - "/usr/local/sbin"
-        - "/usr/local/bin"
-        - "/usr/sbin"
-        - "/usr/bin"
-        - "/sbin"
-        - "/bin"
-        - "/usr/games"
-        - "/usr/local/games"
-        - "/usr/lib/wsl/lib"
-        - "/mnt/c/Python312/Scripts/"
-        - "/mnt/c/Python312/"
-        - "/mnt/f/vmware/bin/"
-        - "/mnt/c/Program Files (x86)/Common Files/Intel/Shared Libraries/redist/intel64/compiler"
-        - "/mnt/c/windows/system32"
-        - "/mnt/c/windows"
-        - "/mnt/c/windows/System32/Wbem"
-        - "/mnt/c/windows/System32/WindowsPowerShell/v1.0/"
-        - "/mnt/c/windows/System32/OpenSSH/"
-        - "/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common"
-        - "/mnt/c/Program Files/Common Files/Autodesk Shared/"
-        - "/mnt/d/\u4f20\u8f93\u6587\u4ef6\u5de5\u5177/AOMEI/AOMEI Backupper/6.9.1"
-        - "/mnt/c/Pr"
-        - "/mnt/c/Program Files/nodejs/"
-        - "/mnt/c/ProgramData/chocolatey/bin"
-        - "/mnt/c/Program Files/Git/cmd"
-        - "/mnt/c/Program Files (x86)/Microsoft Visual Studio/2019/BuildTools/Common7/IDE/CommonExtensions/Microsoft/TeamFoundation/Team Explorer/Git/cmd"
-        - "/mnt/c/Program Files/NVIDIA Corporation/NVIDIA app/NvDLISR"
-        - "/mnt/c/Program Files/dotnet/"
-        - "/mnt/c/Program Files/Zero Install"
-        - "/mnt/c/Users/HP/AppData/Local/Muse Hub/lib"
-        - "/mnt/c/Program Files/CursorModifier"
-        - "/mnt/f/python3/Scripts/"
-        - "/mnt/f/python3/"
-        - "/mnt/c/Users/HP/AppData/Local/Microsoft/WindowsApps"
-        - "/mnt/c/Users/HP/AppData/Local/atom/bin"
-        - "/mnt/c/Users/HP/AppData/Roaming/npm"
-        - "/mnt/d/vscode/Microsoft VS Code/bin"
-        - "/mnt/c/Program Files (x86)/Nmap"
-        - "/mnt/c/Users/HP/AppData/Local/Muse Hub/lib"
-        - "/mnt/f/ffmpeg_v7.1/ffmpeg-7.1-essentials_build/bin"
-        - "/mnt/f/BBDown_1.6.3_20240814_win-x64"
-        - "/mnt/f/cursor/cursor/resources/app/bin"
-        - "/mnt/c/Users/HP/AppData/Roaming/Programs/Zero Install"
-        - "/mnt/c/Users/HP/AppData/Local/Muse Hub/lib"
-        - "/mnt/f/curl-8.15.0_4-win64-mingw/bin"
-        - "/root/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand"
+        - "/mnt/c/Users/HP/AppData/Local/GitHubDesktop/bin"
       CMAKE_INSTALL_PREFIX: "/usr/local"
       CMAKE_SYSTEM_PREFIX_PATH:
         - "/usr/local"

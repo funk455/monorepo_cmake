@@ -13,5 +13,8 @@ enable_testing()
 include(AddWorkspaces)
 add_workspace_projects(
   ROOT "${CMAKE_SOURCE_DIR}/projects"
-  MODE LEAF
+  DIRS
+    "projects/netlib"
+    "projects/projectlib"
+    "projects/utils"
 )
