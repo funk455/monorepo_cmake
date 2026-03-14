@@ -1,29 +1,32 @@
-# usage：
+# 用法：
 #   include(AddWorkspaces)
 #   add_workspace_projects(
 #     ROOT "${CMAKE_SOURCE_DIR}/projects"
-#     MODE LEAF                  # FIRST | ALL | LEAF（default FIRST）
-#     ONLY   netlib utils        # Optional: Build only these (end-level directory names)
-#     EXCLUDE legacy             # Optional: Exclude these (end-level directory names)
-#     EXCLUDE_DIR_NAMES ".git;build;cmake;.cache;out;dist;node_modules"  # optional
-#     IGNORE_REGEX ".*experimental.*"  # Optional: Full path regular expression
-#     MAX_DEPTH 0                # Optional: 0 - No limit; >0 - Limit the number of directory levels starting from the ROOT directory
+#     MODE LEAF                  # FIRST | ALL | LEAF（默认 FIRST）
+#     DIRS  pathA pathB          # 可选：显式目录（相对 CMAKE_SOURCE_DIR 或绝对路径）
+#     ONLY   netlib utils        # 可选：仅包含这些末级目录名
+#     EXCLUDE legacy             # 可选：排除这些末级目录名
+#     EXCLUDE_DIR_NAMES ".git;build;cmake;.cache;out;dist;node_modules"
+#     IGNORE_REGEX ".*experimental.*"  # 可选：全路径正则排除
+#     MAX_DEPTH 0                # 可选：0=不限；>0=从 ROOT 限制深度
 #   )
 
 function(add_workspace_projects)
+  # 解析参数，用于工作区发现与过滤。
   set(options)
   set(oneValueArgs ROOT MODE IGNORE_REGEX MAX_DEPTH)
   set(multiValueArgs ONLY EXCLUDE EXCLUDE_DIR_NAMES DIRS)
   cmake_parse_arguments(AWP "${options}" "${oneValueArgs}" "${multiValueArgs}" ${ARGN})
 
   if(NOT AWP_ROOT)
+    # 默认工作区根目录。
     set(AWP_ROOT "${CMAKE_SOURCE_DIR}/projects")
   endif()
   if(NOT EXISTS "${AWP_ROOT}")
     message(FATAL_ERROR "[add_workspace_projects] ROOT not found: ${AWP_ROOT}")
   endif()
 
-  if(NOT AWP_MODE)               # FIRST=remain shallowest；ALL LEAF=deepest
+  if(NOT AWP_MODE)               # FIRST=最浅层，ALL=全部，LEAF=最深层
     set(AWP_MODE "FIRST")
   endif()
   if(NOT DEFINED AWP_MAX_DEPTH)
@@ -35,6 +38,7 @@ function(add_workspace_projects)
 
   set(_candidates)
   if(AWP_DIRS)
+    # 显式列表模式：不扫描、不 glob。
     foreach(d IN LISTS AWP_DIRS)
       if(IS_ABSOLUTE "${d}")
         set(_cand "${d}")
@@ -48,6 +52,7 @@ function(add_workspace_projects)
       endif()
     endforeach()
   else()
+    # 扫描工作区根目录下的 CMakeLists.txt。
     file(GLOB_RECURSE _cmakes "${AWP_ROOT}/CMakeLists.txt")
     if(NOT _cmakes)
       message(WARNING "[add_workspace_projects] No CMakeLists.txt found under: ${AWP_ROOT}")
@@ -58,7 +63,7 @@ function(add_workspace_projects)
       get_filename_component(d "${f}" DIRECTORY)
       if(AWP_IGNORE_REGEX)
         string(REGEX MATCH "${AWP_IGNORE_REGEX}" _m "${d}")
-        if(_m) 
+        if(_m)
           continue()
         endif()
       endif()
@@ -96,6 +101,7 @@ function(add_workspace_projects)
   list(REMOVE_DUPLICATES _candidates)
   list(SORT _candidates)
 
+  # 优先选择包含 project() 的目录。
   set(_prefer)
   foreach(d IN LISTS _candidates)
     file(READ "${d}/CMakeLists.txt" _cfg LIMIT 4096)
@@ -109,40 +115,42 @@ function(add_workspace_projects)
   endif()
 
   if(AWP_MODE STREQUAL "LEAF")
+    # 仅保留最深层（叶子）目录。
     set(_out)
     foreach(p IN LISTS _candidates)
       set(is_ancestor FALSE)
       foreach(q IN LISTS _candidates)
-        if(p STREQUAL q) 
-          continue() 
+        if(p STREQUAL q)
+          continue()
         endif()
         string(FIND "${q}" "${p}/" pos)
-        if(pos EQUAL 0) 
+        if(pos EQUAL 0)
           set(is_ancestor TRUE)
           break()
         endif()
       endforeach()
-      if(NOT is_ancestor) 
-        list(APPEND _out "${p}") 
+      if(NOT is_ancestor)
+        list(APPEND _out "${p}")
       endif()
     endforeach()
     set(_candidates "${_out}")
   elseif(AWP_MODE STREQUAL "FIRST")
+    # 仅保留最浅层（顶层）目录。
     set(_out)
     foreach(p IN LISTS _candidates)
       set(has_ancestor FALSE)
       foreach(q IN LISTS _candidates)
-        if(p STREQUAL q) 
-          continue() 
+        if(p STREQUAL q)
+          continue()
         endif()
         string(FIND "${p}" "${q}/" pos)
-        if(pos EQUAL 0) 
+        if(pos EQUAL 0)
           set(has_ancestor TRUE)
           break()
         endif()
       endforeach()
-      if(NOT has_ancestor) 
-        list(APPEND _out "${p}") 
+      if(NOT has_ancestor)
+        list(APPEND _out "${p}")
       endif()
     endforeach()
     set(_candidates "${_out}")
@@ -154,18 +162,18 @@ function(add_workspace_projects)
     set(ok TRUE)
     if(AWP_ONLY)
       list(FIND AWP_ONLY "${name}" _idx_only)
-      if(_idx_only EQUAL -1) 
-        set(ok FALSE) 
+      if(_idx_only EQUAL -1)
+        set(ok FALSE)
       endif()
     endif()
     if(AWP_EXCLUDE)
       list(FIND AWP_EXCLUDE "${name}" _idx_ex)
-      if(NOT _idx_ex EQUAL -1) 
-        set(ok FALSE) 
+      if(NOT _idx_ex EQUAL -1)
+        set(ok FALSE)
       endif()
     endif()
-    if(ok) 
-      list(APPEND _final "${p}") 
+    if(ok)
+      list(APPEND _final "${p}")
     endif()
   endforeach()
 
@@ -178,10 +186,11 @@ function(add_workspace_projects)
   endif()
 
   get_property(_already GLOBAL PROPERTY AWP_ADDED_DIRS)
-  if(NOT _already) 
-    set(_already "") 
+  if(NOT _already)
+    set(_already "")
   endif()
 
+  # 仅添加一次，并记录到全局属性。
   foreach(p IN LISTS _final)
     file(RELATIVE_PATH rel "${CMAKE_SOURCE_DIR}" "${p}")
     list(FIND _already "${rel}" _idx)

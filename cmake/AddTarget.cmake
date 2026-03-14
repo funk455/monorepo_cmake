@@ -1,13 +1,23 @@
-# must：
-#   DIR_TARGET_NAME, DIR_TARGET_TYPE (EXECUTABLE|LIBRARY)
-# option：
-#   DIR_LIBRARY_KIND, DIR_PUBLIC_DEPS, DIR_PRIVATE_DEPS, DIR_INTERFACE_DEPS
-#   DIR_ALIAS_PREFIX(default project), DIR_INCLUDE_CURRENT(default ON)
-#   DIR_SOURCES, DIR_HEADERS, DIR_ENABLE_FILE_SET(default ON, cmake>=3.23)
-#   DIR_POSITION_INDEPENDENT(lib default ON), DIR_CXX_STD(default cxx_std_20)
-#   DIR_REGISTER_TEST(default OFF), DIR_TEST_NAME
-#   DIR_ENABLE_INSTALL(default OFF), DIR_EXPORT_NAME(default PROJECT_EXPORT_NAME or <proj>Targets)
+# AddTarget.cmake
+# 统一创建可执行文件或库目标，并提供一致的默认行为。
+# 要求显式列出源码文件，避免 glob 触发重新配置与不必要的重编译。
+#
+# 必填：
+#   - DIR_TARGET_NAME
+#   - DIR_TARGET_TYPE (EXECUTABLE|LIBRARY)
+#
+# 可选：
+#   - DIR_LIBRARY_KIND, DIR_PUBLIC_DEPS, DIR_PRIVATE_DEPS, DIR_INTERFACE_DEPS
+#   - DIR_ALIAS_PREFIX (默认 "project"), DIR_INCLUDE_CURRENT (默认 ON)
+#   - DIR_SOURCES (显式列表), DIR_HEADERS (可选)
+#   - DIR_ENABLE_FILE_SET (默认 ON，CMake >= 3.23)
+#   - DIR_POSITION_INDEPENDENT (库默认 ON), DIR_CXX_STD (默认 cxx_std_20)
+#   - DIR_REGISTER_TEST (默认 OFF), DIR_TEST_NAME
+#   - DIR_ENABLE_INSTALL (默认 OFF), DIR_EXPORT_NAME
 include(GNUInstallDirs)
+
+# 本模块要求调用方先设置 DIR_* 变量，然后 include 本文件，
+# 以统一方式创建并配置目标。
 
 if(NOT DEFINED DIR_TARGET_NAME)
   message(FATAL_ERROR "[AddTarget] DIR_TARGET_NAME is required")
@@ -17,23 +27,24 @@ if(NOT DEFINED DIR_TARGET_TYPE)
   message(FATAL_ERROR "[AddTarget] DIR_TARGET_TYPE is required (EXECUTABLE or LIBRARY)")
 endif()
 
-if(NOT DEFINED DIR_ALIAS_PREFIX)      
-  set(DIR_ALIAS_PREFIX "project")        
+if(NOT DEFINED DIR_ALIAS_PREFIX)
+  set(DIR_ALIAS_PREFIX "project")
 endif()
-if(NOT DEFINED DIR_INCLUDE_CURRENT)  
-  set(DIR_INCLUDE_CURRENT ON)            
+if(NOT DEFINED DIR_INCLUDE_CURRENT)
+  set(DIR_INCLUDE_CURRENT ON)
 endif()
-if(NOT DEFINED DIR_ENABLE_FILE_SET)   
-  set(DIR_ENABLE_FILE_SET ON)            
+if(NOT DEFINED DIR_ENABLE_FILE_SET)
+  set(DIR_ENABLE_FILE_SET ON)
 endif()
-if(NOT DEFINED DIR_CXX_STD)           
-  set(DIR_CXX_STD cxx_std_20)            
+if(NOT DEFINED DIR_CXX_STD)
+  set(DIR_CXX_STD cxx_std_20)
 endif()
-if(NOT DEFINED DIR_ENABLE_INSTALL)    
-  set(DIR_ENABLE_INSTALL OFF)            
+if(NOT DEFINED DIR_ENABLE_INSTALL)
+  set(DIR_ENABLE_INSTALL OFF)
 endif()
 
 if(NOT DEFINED DIR_REGISTER_TEST)
+  # 当在 tests/ 子树中调用时，默认启用测试注册。
   if(CMAKE_CURRENT_SOURCE_DIR MATCHES "/tests(/|$)")
     set(DIR_REGISTER_TEST ON)
   else()
@@ -46,6 +57,7 @@ if(NOT DEFINED DIR_SOURCES)
 endif()
 
 if(NOT DEFINED DIR_HEADERS)
+  # 头文件是可选项；未指定时保持为空列表。
   set(DIR_HEADERS "")
 endif()
 
@@ -62,12 +74,14 @@ else()
 endif()
 
 if(DIR_TARGET_TYPE STREQUAL "LIBRARY")
+  # 提供一个 ALIAS 目标，便于命名空间形式链接。
   add_library(${DIR_ALIAS_PREFIX}::${DIR_TARGET_NAME} ALIAS ${DIR_TARGET_NAME})
 endif()
 
 target_compile_features(${DIR_TARGET_NAME} PUBLIC ${DIR_CXX_STD})
 
 if(DIR_INCLUDE_CURRENT)
+  # 根据目标类型设置合适的包含路径。
   if(DIR_TARGET_TYPE STREQUAL "LIBRARY")
     target_include_directories(${DIR_TARGET_NAME}
       PUBLIC
@@ -86,10 +100,12 @@ if(DIR_TARGET_TYPE STREQUAL "LIBRARY")
   if(NOT DEFINED DIR_POSITION_INDEPENDENT)
     set(DIR_POSITION_INDEPENDENT ON)
   endif()
+  # 为库启用 PIC（在需要时）。
   set_target_properties(${DIR_TARGET_NAME} PROPERTIES POSITION_INDEPENDENT_CODE ${DIR_POSITION_INDEPENDENT})
 endif()
 
 if(DIR_ENABLE_FILE_SET AND CMAKE_VERSION VERSION_GREATER_EQUAL "3.23" AND DIR_HEADERS)
+  # 在支持的情况下使用 FILE_SET 以便干净地导出头文件。
   target_sources(${DIR_TARGET_NAME}
     PUBLIC
       FILE_SET HEADERS
@@ -99,6 +115,7 @@ if(DIR_ENABLE_FILE_SET AND CMAKE_VERSION VERSION_GREATER_EQUAL "3.23" AND DIR_HE
 endif()
 
 if(DEFINED DIR_PUBLIC_DEPS OR DEFINED DIR_PRIVATE_DEPS OR DEFINED DIR_INTERFACE_DEPS)
+  # 按可见性显式链接依赖。
   target_link_libraries(${DIR_TARGET_NAME}
     PUBLIC    ${DIR_PUBLIC_DEPS}
     PRIVATE   ${DIR_PRIVATE_DEPS}
@@ -110,10 +127,12 @@ if(DIR_REGISTER_TEST AND (DIR_TARGET_TYPE STREQUAL "EXECUTABLE"))
   if(NOT DEFINED DIR_TEST_NAME)
     set(DIR_TEST_NAME ${DIR_TARGET_NAME})
   endif()
+  # 将可执行文件注册到 CTest。
   add_test(NAME ${DIR_TEST_NAME} COMMAND ${DIR_TARGET_NAME})
 endif()
 
 if(DIR_ENABLE_INSTALL)
+  # 安装规则与导出集合。
   if(NOT DEFINED DIR_EXPORT_NAME)
     if(DEFINED PROJECT_EXPORT_NAME)
       set(DIR_EXPORT_NAME "${PROJECT_EXPORT_NAME}")
@@ -150,6 +169,7 @@ if(DIR_ENABLE_INSTALL)
   endif()
 endif()
 
+# 清理临时变量，避免状态泄漏到调用方。
 unset(DIR_TARGET_NAME)
 unset(DIR_TARGET_TYPE)
 unset(DIR_LIBRARY_KIND)
