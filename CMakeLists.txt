@@ -3,7 +3,9 @@ project(Workspace LANGUAGES CXX)
 
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake")
 include(UnifiedOutputDirs)
-
+include(AddUninstall)
+include(BuildType)
+add_uninstall_target()
 # Enable tests at the root so CTest can discover tests in subprojects
 include(CTest)
 enable_testing()

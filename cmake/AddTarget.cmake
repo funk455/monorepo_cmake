@@ -1,3 +1,12 @@
+# must：
+#   DIR_TARGET_NAME, DIR_TARGET_TYPE (EXECUTABLE|LIBRARY)
+# option：
+#   DIR_LIBRARY_KIND, DIR_PUBLIC_DEPS, DIR_PRIVATE_DEPS, DIR_INTERFACE_DEPS
+#   DIR_ALIAS_PREFIX(default project), DIR_INCLUDE_CURRENT(default ON)
+#   DIR_SOURCES, DIR_HEADERS, DIR_ENABLE_FILE_SET(default ON, cmake>=3.23)
+#   DIR_POSITION_INDEPENDENT(lib default ON), DIR_CXX_STD(default cxx_std_20)
+#   DIR_REGISTER_TEST(default OFF), DIR_TEST_NAME
+#   DIR_ENABLE_INSTALL(default OFF), DIR_EXPORT_NAME(default PROJECT_EXPORT_NAME or <proj>Targets)
 include(GNUInstallDirs)
 
 if(NOT DEFINED DIR_TARGET_NAME)
@@ -8,11 +17,21 @@ if(NOT DEFINED DIR_TARGET_TYPE)
   message(FATAL_ERROR "[AddTarget] DIR_TARGET_TYPE is required (EXECUTABLE or LIBRARY)")
 endif()
 
-if(NOT DEFINED DIR_ALIAS_PREFIX)      set(DIR_ALIAS_PREFIX "project")        endif()
-if(NOT DEFINED DIR_INCLUDE_CURRENT)   set(DIR_INCLUDE_CURRENT ON)            endif()
-if(NOT DEFINED DIR_ENABLE_FILE_SET)   set(DIR_ENABLE_FILE_SET ON)            endif()
-if(NOT DEFINED DIR_CXX_STD)           set(DIR_CXX_STD cxx_std_20)            endif()
-if(NOT DEFINED DIR_ENABLE_INSTALL)    set(DIR_ENABLE_INSTALL OFF)            endif()
+if(NOT DEFINED DIR_ALIAS_PREFIX)      
+  set(DIR_ALIAS_PREFIX "project")        
+endif()
+if(NOT DEFINED DIR_INCLUDE_CURRENT)  
+  set(DIR_INCLUDE_CURRENT ON)            
+endif()
+if(NOT DEFINED DIR_ENABLE_FILE_SET)   
+  set(DIR_ENABLE_FILE_SET ON)            
+endif()
+if(NOT DEFINED DIR_CXX_STD)           
+  set(DIR_CXX_STD cxx_std_20)            
+endif()
+if(NOT DEFINED DIR_ENABLE_INSTALL)    
+  set(DIR_ENABLE_INSTALL OFF)            
+endif()
 
 if(NOT DEFINED DIR_REGISTER_TEST)
   if(CMAKE_CURRENT_SOURCE_DIR MATCHES "/tests(/|$)")

@@ -1,0 +1,1 @@
+/usr/bin/c++ -O3 -DNDEBUG CMakeFiles/proj_smoke.dir/smoke.cpp.o -o ../../../../bin/proj_smoke  -Wl,-rpath,/home/monorepo-cmake-sample/build/lib ../../../../lib/libprojectlib.a ../../../../lib/libnetwork.a ../../../../lib/libutils.a
