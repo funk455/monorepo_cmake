@@ -1,8 +1,12 @@
+# 由 AddUninstall.cmake 生成的卸载脚本。
+# 读取 install_manifest.txt 并删除其中列出的文件。
+
 if(NOT EXISTS "/mnt/c/Users/HP/Desktop/我的作品/monorepo-cmake-sample/build/install_manifest.txt")
   message(FATAL_ERROR "Cannot find install manifest: /mnt/c/Users/HP/Desktop/我的作品/monorepo-cmake-sample/build/install_manifest.txt
 Hint: run 'cmake --install <build>' once before uninstall.")
 endif()
 
+# 读取并规范化安装清单为列表。
 file(READ "/mnt/c/Users/HP/Desktop/我的作品/monorepo-cmake-sample/build/install_manifest.txt" _manifest)
 
 string(REPLACE "\r\n" "\n" _manifest "${_manifest}")
@@ -15,6 +19,7 @@ foreach(_f IN LISTS _files)
   if(_f STREQUAL "")
     continue()
   endif()
+  # 若文件或符号链接存在则删除。
   if(EXISTS "${_f}" OR IS_SYMLINK "${_f}")
     message(STATUS "Uninstalling: ${_f}")
     file(REMOVE "${_f}")
@@ -27,6 +32,7 @@ foreach(_f IN LISTS _files)
   endif()
 endforeach()
 
+  # 汇总输出执行结果。
 if(_fail)
   message(WARNING "Uninstall completed with errors (some files could not be removed).")
 else()

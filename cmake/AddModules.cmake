@@ -5,7 +5,7 @@
 # - 如果 tests/ 里有 CMakeLists.txt，直接 add_subdirectory(tests)。
 # - 如果 tests/ 只是容器目录，则扫描其一级子目录，发现含 CMakeLists.txt 的就加入。
 function(add_modules)
-  foreach(mod IN LISTS ARGN)
+  foreach(mod IN LISTS ARGN) 
     if(mod STREQUAL "tests")
       # 处理 tests/ 作为直接模块或容器目录的两种情况。
       set(tests_root "${CMAKE_CURRENT_SOURCE_DIR}/tests")

@@ -132,6 +132,7 @@ def write_project_cmakelists(path, project_name, version, namespace, modules, in
         f"project({project_name} VERSION {version} LANGUAGES CXX)",
         'list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake")',
         "include(AddModules)",
+        f'set(PROJECT_NAMESPACE "{namespace}")',
         "",
         f"add_modules({' '.join(modules)})",
         "",
@@ -145,22 +146,13 @@ def write_project_cmakelists(path, project_name, version, namespace, modules, in
             "endif()",
             "",
         ]
-    lines += [
-        "include(SetupPackage)",
-        f'set(PROJECT_NAMESPACE "{namespace}")',
-        "setup_package(",
-        '  PACKAGE_NAME      "${PROJECT_NAME}"',
-        '  PACKAGE_NAMESPACE "${PROJECT_NAMESPACE}"',
-        "  APPEND_GIT_HASH   ON",
-        ")",
-        "",
-    ]
     write_text(path, "\n".join(lines) + "\n")
 
 
 def write_target_cmakelists(path, target):
     lines = [
-        f'set(DIR_TARGET_NAME {target["name"]})',
+        f'set(PKG_TARGET_NAME "{target["name"]}")',
+        "set(DIR_TARGET_NAME ${PKG_TARGET_NAME})",
         f'set(DIR_TARGET_TYPE {target["type"]})',
     ]
     if target.get("alias_prefix"):
@@ -171,11 +163,23 @@ def write_target_cmakelists(path, target):
         lines.append(f'set(DIR_PRIVATE_DEPS {";".join(target["private_deps"])})')
     if target.get("enable_install"):
         lines.append("set(DIR_ENABLE_INSTALL ON)")
+    if target["type"] == "LIBRARY":
+        lines.append('set(PROJECT_EXPORT_NAME "${PKG_TARGET_NAME}Targets")')
     if target.get("sources"):
         lines.append(f'set(DIR_SOURCES {";".join(target["sources"])})')
     if target.get("headers"):
         lines.append(f'set(DIR_HEADERS {";".join(target["headers"])})')
     lines.append("include(${CMAKE_SOURCE_DIR}/cmake/AddTarget.cmake)")
+    if target["type"] == "LIBRARY":
+        lines += [
+            "include(${CMAKE_SOURCE_DIR}/cmake/SetupPackage.cmake)",
+            "setup_package(",
+            '  PACKAGE_NAME      "${PKG_TARGET_NAME}"',
+            '  PACKAGE_NAMESPACE "${PROJECT_NAMESPACE}"',
+            '  EXPORT_NAME       "${PROJECT_EXPORT_NAME}"',
+            "  APPEND_GIT_HASH   ON",
+            ")",
+        ]
     lines.append("")
     write_text(path, "\n".join(lines))
 
