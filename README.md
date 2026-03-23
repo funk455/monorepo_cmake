@@ -15,6 +15,13 @@ cmake -S . -B build
 cmake --build build
 ```
 
+## 多平台构建目录
+使用构建助手生成不同平台/生成器的独立构建目录：
+```bash
+python cmake/build.py --platform windows --generator "Visual Studio 17 2022" --config Release --build
+python cmake/build.py --platform linux --generator Ninja --build-type Release --build
+```
+
 运行测试（若启用）：
 ```bash
 ctest --test-dir build
