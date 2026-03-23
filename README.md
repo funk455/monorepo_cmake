@@ -43,6 +43,26 @@ cmake -P cmake/DeployPackage.cmake
 - `DEPLOY_COPY_PROJECTS`（默认 ON）
 - `DEPLOY_COPY_DOCS`（默认 ON）
 
+## 构建/测试报告
+生成构建报告（`build/reports/build-report.json`）：
+```bash
+cmake --build build
+cmake --build build --target report-build
+```
+构建报告包含时间戳、`tests_included`、编译器信息、系统信息与 `elapsed_seconds` 等字段。
+
+生成测试报告（`build/reports/tests.log`，若 CMake >= 3.21 还会生成 `tests.junit.xml`）：
+```bash
+cmake --build build
+cmake --build build --target report-test
+```
+
+一次生成全部报告：
+```bash
+cmake --build build
+cmake --build build --target report-all
+```
+
 ## 目标创建与导出
 库目标使用 `AddTarget.cmake` 创建，导出与安装由 `SetupPackage.cmake` 完成。  
 目前导出配置在 **库目标所在目录** 管理，命名空间在 **上级项目目录** 统一设置：

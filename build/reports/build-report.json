@@ -1,0 +1,18 @@
+{
+  "project": "Workspace",
+  "timestamp": "2026-03-23 20:06:43",
+  "timestamp_epoch": 1774267603,
+  "source_dir": "/mnt/c/Users/HP/Desktop/我的作品/monorepo-cmake-sample",
+  "build_dir": "/mnt/c/Users/HP/Desktop/我的作品/monorepo-cmake-sample/build",
+  "generator": "Unix\ Makefiles",
+  "build_type_or_configs": "Release",
+  "tests_included": false,
+  "elapsed_seconds": "unknown",
+  "compiler_cxx": "/usr/bin/c++",
+  "compiler_cxx_id": "GNU",
+  "compiler_cxx_version": "11.4.0",
+  "system_name": "Linux",
+  "system_version": "5.10.16.3-microsoft-standard-WSL2+",
+  "system_processor": "x86_64",
+  "git_hash": "5f5919f"
+}

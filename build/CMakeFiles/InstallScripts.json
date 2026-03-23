@@ -1,0 +1,15 @@
+{
+	"InstallScripts" : 
+	[
+		"/mnt/c/Users/HP/Desktop/\u6211\u7684\u4f5c\u54c1/monorepo-cmake-sample/build/cmake_install.cmake",
+		"/mnt/c/Users/HP/Desktop/\u6211\u7684\u4f5c\u54c1/monorepo-cmake-sample/build/projects/netlib/cmake_install.cmake",
+		"/mnt/c/Users/HP/Desktop/\u6211\u7684\u4f5c\u54c1/monorepo-cmake-sample/build/projects/netlib/network/cmake_install.cmake",
+		"/mnt/c/Users/HP/Desktop/\u6211\u7684\u4f5c\u54c1/monorepo-cmake-sample/build/projects/projectlib/cmake_install.cmake",
+		"/mnt/c/Users/HP/Desktop/\u6211\u7684\u4f5c\u54c1/monorepo-cmake-sample/build/projects/projectlib/projectlib/cmake_install.cmake",
+		"/mnt/c/Users/HP/Desktop/\u6211\u7684\u4f5c\u54c1/monorepo-cmake-sample/build/projects/projectlib/app/cmake_install.cmake",
+		"/mnt/c/Users/HP/Desktop/\u6211\u7684\u4f5c\u54c1/monorepo-cmake-sample/build/projects/projectlib/tests/smoke/cmake_install.cmake",
+		"/mnt/c/Users/HP/Desktop/\u6211\u7684\u4f5c\u54c1/monorepo-cmake-sample/build/projects/utils/cmake_install.cmake",
+		"/mnt/c/Users/HP/Desktop/\u6211\u7684\u4f5c\u54c1/monorepo-cmake-sample/build/projects/utils/utils/cmake_install.cmake"
+	],
+	"Parallel" : false
+}

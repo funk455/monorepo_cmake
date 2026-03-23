@@ -5,6 +5,7 @@ list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake")
 include(UnifiedOutputDirs)
 include(AddUninstall)
 include(BuildType)
+include(Reports)
 add_uninstall_target()
 # Enable tests at the root so CTest can discover tests in subprojects
 include(CTest)
@@ -13,8 +14,8 @@ enable_testing()
 include(AddWorkspaces)
 add_workspace_projects(
   ROOT "${CMAKE_SOURCE_DIR}/projects"
-  DIRS
-    "projects/netlib"
-    "projects/projectlib"
-    "projects/utils"
+  ONLY
+    netlib
+    projectlib
+    utils
 )
