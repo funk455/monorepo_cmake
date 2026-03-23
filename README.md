@@ -1,75 +1,95 @@
-🛠️ CMake Build System Management 🚀
+# CMake 工作区示例（monorepo-cmake-sample）
 
-Welcome to the CMake Build System Management repository! This collection of powerful CMake tools is designed to make managing multi-project workspaces fun, easy, and surprisingly satisfying. I take the chaos of dependencies and builds and transform it into a streamlined, manageable workflow, one line of code at a time.
+这是一个基于 CMake 的多项目工作区示例，统一了构建输出、构建类型、目标创建、安装导出与测试注册，并提供命令行引导生成新项目骨架。
 
-⚡ Why this Project?
+## 目录结构
+- `cmake/`：自定义 CMake 模块与引导式模板生成器（`cli.py`）。
+- `projects/`：工作区内子项目（示例包含 `netlib`、`projectlib`、`utils`）。
+- `CMakeLists.txt`：工作区入口，统一加载模块并聚合子项目。
+- `config.md`：`cmake/` 中可配置变量说明。
+- `SUMMARY.md` / `DIAGRAMS.md`：项目总结与图示说明。
 
-If you've ever found yourself tangled in the mess of CMake configurations and multiple projects, then this repo is your new best friend. Here, I’ve packed everything into easy-to-use CMake modules, letting you focus on the coding, while I handle the build complexity. Just like magic.
-
-🌟 Getting Started
-1. Clone the Repo
-
-You can either clone this project directly or include it in your existing CMake project. To get started, just run:
-
-git clone https://github.com/yourusername/your-repository.git
-
-2. Include the CMake Modules
-
-Add the following lines to your CMakeLists.txt file:
-
-list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/path/to/cmake")
-include(BuildType)
-include(AddWorkspaces)
-include(AddTarget)
-include(SetupPackage)
-include(Uninstall)
-
-3. Configure and Build the Project
-
-cmake -S . -B build -DCMAKE_INSTALL_PREFIX="/path/to/install"
+## 快速开始
+```bash
+cmake -S . -B build
 cmake --build build
-cmake --install build
+```
 
-4. Uninstall (Because Cleanliness is Important)
+## 多平台构建目录
+使用构建助手生成不同平台/生成器的独立构建目录：
+```bash
+python cmake/build.py --platform windows --generator "Visual Studio 17 2022" --config Release --build
+python cmake/build.py --platform linux --generator Ninja --build-type Release --build
+```
 
-cmake --build build --target uninstall
+运行测试（若启用）：
+```bash
+ctest --test-dir build
+```
 
-🧩 How To Use
-in the root cmakefile
-add_workspace_projects(
-  ROOT "${CMAKE_SOURCE_DIR}/projects"     # Your projects directory
-  MODE LEAF                              # Choose how deep to scan (FIRST | ALL | LEAF)
-  ONLY   netlib utils                    # Only build these specific sub-projects
-  EXCLUDE legacy                         # Exclude these sub-projects
-  MAX_DEPTH 2                            # Limit the depth of recursion
+## 生成新项目（引导式）
+交互式创建：
+```bash
+python cmake/cli.py
+```
+
+使用预设直接生成：
+```bash
+python cmake/cli.py --preset preset.json
+```
+
+> 首次引导会保存 `preset.json`，方便复用配置。
+
+## 打包（可选）
+根据当前结构打包构建产物、源码与文档：
+```bash
+cmake -P cmake/DeployPackage.cmake
+```
+
+可通过缓存变量控制是否复制源码/文档：
+- `DEPLOY_COPY_PROJECTS`（默认 ON）
+- `DEPLOY_COPY_DOCS`（默认 ON）
+
+## 构建/测试报告
+生成构建报告（`build/reports/build-report.json`）：
+```bash
+cmake --build build
+cmake --build build --target report-build
+```
+构建报告包含时间戳、`tests_included`、编译器信息、系统信息与 `elapsed_seconds` 等字段。
+
+生成测试报告（`build/reports/tests.log`，若 CMake >= 3.21 还会生成 `tests.junit.xml`）：
+```bash
+cmake --build build
+cmake --build build --target report-test
+```
+
+一次生成全部报告：
+```bash
+cmake --build build
+cmake --build build --target report-all
+```
+
+## 目标创建与导出
+库目标使用 `AddTarget.cmake` 创建，导出与安装由 `SetupPackage.cmake` 完成。  
+目前导出配置在 **库目标所在目录** 管理，命名空间在 **上级项目目录** 统一设置：
+```cmake
+# projects/<proj>/CMakeLists.txt
+set(PROJECT_NAMESPACE "your_ns")
+
+# projects/<proj>/<lib>/CMakeLists.txt
+set(PKG_TARGET_NAME "your_lib")
+set(DIR_TARGET_NAME ${PKG_TARGET_NAME})
+include(${CMAKE_SOURCE_DIR}/cmake/AddTarget.cmake)
+include(${CMAKE_SOURCE_DIR}/cmake/SetupPackage.cmake)
+setup_package(
+  PACKAGE_NAME      "${PKG_TARGET_NAME}"
+  PACKAGE_NAMESPACE "${PROJECT_NAMESPACE}"
+  EXPORT_NAME       "${PKG_TARGET_NAME}Targets"
+  APPEND_GIT_HASH   ON
 )
-in the sub use add_modules and AddTarget with cmakefile
-2. Flexibility with Build Types
+```
 
-cmake -S . -B build -DPROJECT_BUILD_TYPE=Debug  # Switch to Debug
-cmake --build build --config Release            # Build the Release version
-
-3. Install and Uninstall Like a Pro
-
-cmake --install build
-
-cmake --build build --target uninstall
-
-🔄 Example Workflow
-
-Here’s how your typical workflow might look:
-
-Clone the project: Download the repo or include it in your existing project.
-
-Configure the build: Choose the build type and set up your project.
-
-Build: Let CMake automatically handle the sub-projects and build everything in the right order.
-
-Install: Push your project to the right location.
-
-Uninstall: Remove everything cleanly when you’re done (or need to start fresh).
-
-💡 License
-
-This project is licensed under the MIT License
-.
+## 说明
+- 为减少不必要的重新配置，目标源文件必须显式列出（不使用 glob）。
+- 工作区入口使用 `add_workspace_projects(DIRS ...)` 聚合子项目。

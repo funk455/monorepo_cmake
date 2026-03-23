@@ -1,5 +1,6 @@
 # cmake/BuildType.cmake
-# Debug/Release/RelWithDebInfo/MinSizeRel
+# 控制单配置与多配置生成器的构建类型选择。
+# 允许类型：Debug、Release、RelWithDebInfo、MinSizeRel。
 # - 单配置生成器：设置/校验 CMAKE_BUILD_TYPE
 # - 多配置生成器：限定可用配置并给出一个默认配置提示（使用 --config 选择）
 
@@ -9,13 +10,16 @@
 
 set(_BT_ALLOWED "Debug;Release;RelWithDebInfo;MinSizeRel")
 
+# 在缓存 UI 中展示允许的构建类型。
 set_property(CACHE CMAKE_BUILD_TYPE PROPERTY STRINGS "${_BT_ALLOWED}")
 
 if(NOT DEFINED PROJECT_DEFAULT_BUILD_TYPE)
+  # 用户未指定时的默认构建类型。
   set(PROJECT_DEFAULT_BUILD_TYPE "Release")
 endif()
 
 if(CMAKE_CONFIGURATION_TYPES)
+  # 多配置生成器（如 Visual Studio）。
   set(CMAKE_CONFIGURATION_TYPES "${_BT_ALLOWED}" CACHE STRING "Configs" FORCE)
 
   if(DEFINED PROJECT_BUILD_TYPE AND NOT PROJECT_BUILD_TYPE STREQUAL "")
@@ -31,10 +35,12 @@ if(CMAKE_CONFIGURATION_TYPES)
     message(FATAL_ERROR "[BuildType] Unsupported build type '${_BT_DEFAULT}'. Allowed: ${_BT_ALLOWED}")
   endif()
 
+  # 设置 cmake --build --config 的默认配置。
   set(CMAKE_DEFAULT_CONFIG "${_BT_DEFAULT}" CACHE STRING "Default config (use with --config)" FORCE)
   message(STATUS "[BuildType] Multi-config: {${CMAKE_CONFIGURATION_TYPES}}; default: ${CMAKE_DEFAULT_CONFIG} (use: cmake --build <b> --config ${CMAKE_DEFAULT_CONFIG})")
 
 else()
+  # 单配置生成器（如 Ninja、Makefiles）。
   if(DEFINED PROJECT_BUILD_TYPE AND NOT PROJECT_BUILD_TYPE STREQUAL "")
     set(CMAKE_BUILD_TYPE "${PROJECT_BUILD_TYPE}" CACHE STRING "Build type" FORCE)
   elseif(NOT CMAKE_BUILD_TYPE)
