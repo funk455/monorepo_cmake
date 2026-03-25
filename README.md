@@ -15,6 +15,11 @@ cmake -S . -B build
 cmake --build build
 ```
 
+运行测试（若启用）：
+```bash
+ctest --test-dir build
+```
+
 ## 多平台构建目录
 使用构建助手生成不同平台/生成器的独立构建目录：
 ```bash
@@ -22,10 +27,16 @@ python cmake/build.py --platform windows --generator "Visual Studio 17 2022" --c
 python cmake/build.py --platform linux --generator Ninja --build-type Release --build
 ```
 
-运行测试（若启用）：
+## 自动实时构建（监视模式）
+启动监听，文件变更后自动重新配置并构建：
 ```bash
-ctest --test-dir build
+python cmake/watch_build.py --build build --build-type Release
 ```
+
+可调参数：
+- `--interval`：扫描间隔（秒）
+- `--exts`：监听后缀（逗号分隔）
+- `--generator` / `--config`：多配置生成器支持
 
 ## 生成新项目（引导式）
 交互式创建：

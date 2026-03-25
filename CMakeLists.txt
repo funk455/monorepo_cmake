@@ -9,7 +9,6 @@ include(Reports)
 add_uninstall_target()
 # Enable tests at the root so CTest can discover tests in subprojects
 include(CTest)
-enable_testing()
 
 include(AddWorkspaces)
 add_workspace_projects(
