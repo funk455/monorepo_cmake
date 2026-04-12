@@ -216,9 +216,6 @@ def ensure_root_cmakelists(root, workspace_dir):
 
 def update_root_workspace_list(root_cmakelists, workspace_dir):
     content = root_cmakelists.read_text(encoding="utf-8").splitlines()
-    new_entry = f'    "{workspace_dir}"'
-    if any(line.strip() == f'"{workspace_dir}"' for line in content):
-        return
 
     start_idx = None
     for i, line in enumerate(content):
@@ -228,21 +225,48 @@ def update_root_workspace_list(root_cmakelists, workspace_dir):
     if start_idx is None:
         raise RuntimeError("无法在根 CMakeLists.txt 中找到 add_workspace_projects 调用。")
 
-    dirs_idx = None
+    # 在 add_workspace_projects(...) 范围内查找 DIRS 或 ONLY 块
+    block_idx = None
+    block_mode = None  # 'DIRS' or 'ONLY'
     for i in range(start_idx, len(content)):
-        if content[i].strip().startswith("DIRS"):
-            dirs_idx = i
+        stripped = content[i].strip()
+        if stripped.startswith("DIRS"):
+            block_idx = i
+            block_mode = "DIRS"
             break
-    if dirs_idx is None:
-        raise RuntimeError("无法在根 CMakeLists.txt 中找到 DIRS 块，请手动添加工作区目录。")
+        if stripped.startswith("ONLY"):
+            block_idx = i
+            block_mode = "ONLY"
+            break
+        if stripped == ")" and i > start_idx:
+            break  # add_workspace_projects 已结束，没找到
 
-    for i in range(dirs_idx + 1, len(content)):
-        if content[i].strip().startswith(")"):
-            content.insert(i, new_entry)
-            root_cmakelists.write_text("\n".join(content) + "\n", encoding="utf-8")
+    if block_mode == "DIRS":
+        new_entry = f'    "{workspace_dir}"'
+        if any(line.strip() == f'"{workspace_dir}"' for line in content):
             return
+        for i in range(block_idx + 1, len(content)):
+            if content[i].strip().startswith(")"):
+                content.insert(i, new_entry)
+                root_cmakelists.write_text("\n".join(content) + "\n", encoding="utf-8")
+                return
+        raise RuntimeError("DIRS 块未正确闭合，请检查根 CMakeLists.txt。")
 
-    raise RuntimeError("DIRS 块未正确闭合，请检查根 CMakeLists.txt。")
+    elif block_mode == "ONLY":
+        # ONLY 模式只需要项目目录名（workspace_dir 末尾段，如 projects/foo -> foo）
+        proj_name = workspace_dir.rstrip("/").split("/")[-1]
+        new_entry = f"    {proj_name}"
+        if any(line.strip() == proj_name for line in content):
+            return
+        for i in range(block_idx + 1, len(content)):
+            if content[i].strip().startswith(")"):
+                content.insert(i, new_entry)
+                root_cmakelists.write_text("\n".join(content) + "\n", encoding="utf-8")
+                return
+        raise RuntimeError("ONLY 块未正确闭合，请检查根 CMakeLists.txt。")
+
+    else:
+        raise RuntimeError("无法在根 CMakeLists.txt 中找到 DIRS 或 ONLY 块，请手动添加工作区目录。")
 
 
 def interactive_config(root):
