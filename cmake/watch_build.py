@@ -104,6 +104,19 @@ def any_config_change(changes):
     return False
 
 
+MULTI_CONFIG_GENERATORS = {
+    "ninja multi-config",
+    "visual studio 17 2022",
+    "visual studio 16 2019",
+    "visual studio 15 2017",
+    "xcode",
+}
+
+
+def is_multi_config(generator):
+    return generator.lower() in MULTI_CONFIG_GENERATORS if generator else False
+
+
 def main():
     parser = argparse.ArgumentParser(description="文件变更自动构建（监视模式）")
     parser.add_argument("--cmake", default="cmake", help="CMake 可执行文件路径或名称")
@@ -128,20 +141,24 @@ def main():
     if not cmake_exe:
         raise SystemExit("未找到 cmake，可用 --cmake 指定完整路径，或将 cmake 加入 PATH。")
 
+    multi = is_multi_config(args.generator)
     build_dir.mkdir(parents=True, exist_ok=True)
 
     # 初次配置
     config_cmd = [cmake_exe, "-S", str(root), "-B", str(build_dir)]
     if args.generator:
         config_cmd += ["-G", args.generator]
-    if args.build_type:
+    if not multi and args.build_type:
         config_cmd += [f"-DCMAKE_BUILD_TYPE={args.build_type}"]
     run(config_cmd)
 
     # 初次构建
     build_cmd = [cmake_exe, "--build", str(build_dir)]
-    if args.config:
+    if multi and args.config:
         build_cmd += ["--config", args.config]
+    elif not multi and args.config:
+        # --config 对单配置生成器无效，忽略
+        pass
     run(build_cmd)
 
     prev = snapshot_files(str(root), str(build_dir), exts)

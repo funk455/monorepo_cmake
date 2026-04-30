@@ -17,4 +17,5 @@ add_workspace_projects(
     netlib
     projectlib
     utils
+    project1
 )

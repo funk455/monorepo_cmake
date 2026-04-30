@@ -10,9 +10,6 @@
 
 set(_BT_ALLOWED "Debug;Release;RelWithDebInfo;MinSizeRel")
 
-# 在缓存 UI 中展示允许的构建类型。
-set_property(CACHE CMAKE_BUILD_TYPE PROPERTY STRINGS "${_BT_ALLOWED}")
-
 if(NOT DEFINED PROJECT_DEFAULT_BUILD_TYPE)
   # 用户未指定时的默认构建类型。
   set(PROJECT_DEFAULT_BUILD_TYPE "Release")
@@ -54,5 +51,7 @@ else()
     message(FATAL_ERROR "[BuildType] Unsupported CMAKE_BUILD_TYPE='${CMAKE_BUILD_TYPE}'. Allowed: ${_BT_ALLOWED}")
   endif()
 
+  # 在缓存 UI 中展示允许的构建类型（仅单配置生成器有 CMAKE_BUILD_TYPE 缓存变量）。
+  set_property(CACHE CMAKE_BUILD_TYPE PROPERTY STRINGS "${_BT_ALLOWED}")
   message(STATUS "[BuildType] Single-config: CMAKE_BUILD_TYPE='${CMAKE_BUILD_TYPE}'")
 endif()

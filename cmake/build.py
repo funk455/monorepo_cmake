@@ -19,14 +19,30 @@ def detect_platform():
     return "linux"
 
 
+MULTI_CONFIG_GENERATORS = {
+    "ninja multi-config",
+    "visual studio 17 2022",
+    "visual studio 16 2019",
+    "visual studio 15 2017",
+    "xcode",
+}
+
+
+def is_multi_config(generator: str) -> bool:
+    return generator.lower() in MULTI_CONFIG_GENERATORS if generator else False
+
+
 def make_build_dir(root, build_root, plat, generator, build_type, config):
     parts = [plat]
     if generator:
         parts.append(generator.replace(" ", "_"))
-    if build_type:
-        parts.append(build_type)
-    if config:
-        parts.append(config)
+    # Multi-config generators: config distinguishes builds, not build_type
+    if is_multi_config(generator):
+        if config:
+            parts.append(config)
+    else:
+        if build_type:
+            parts.append(build_type)
     suffix = "-".join(parts)
     return root / build_root / suffix
 
@@ -50,18 +66,21 @@ def main():
     )
     build_dir.mkdir(parents=True, exist_ok=True)
 
+    multi = is_multi_config(args.generator)
+
     cmake_cmd = ["cmake", "-S", str(root), "-B", str(build_dir)]
     if args.generator:
         cmake_cmd += ["-G", args.generator]
-    if args.build_type:
+    if not multi and args.build_type:
         cmake_cmd += [f"-DCMAKE_BUILD_TYPE={args.build_type}"]
 
     run(cmake_cmd)
 
     if args.build:
         build_cmd = ["cmake", "--build", str(build_dir)]
-        if args.config:
-            build_cmd += ["--config", args.config]
+        cfg = args.config if multi else None
+        if cfg:
+            build_cmd += ["--config", cfg]
         run(build_cmd)
 
     print(f"Build directory: {build_dir}")

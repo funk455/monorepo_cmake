@@ -25,6 +25,10 @@ add_custom_target(report-build
 )
 
 set(_ctest_cmd ${CMAKE_CTEST_COMMAND} --output-on-failure --output-log "${REPORTS_DIR}/tests.log")
+if(CMAKE_CONFIGURATION_TYPES)
+  # 多配置生成器：用生成器表达式在构建时传入当前配置
+  list(APPEND _ctest_cmd -C $<CONFIG>)
+endif()
 if(CMAKE_VERSION VERSION_GREATER_EQUAL "3.21")
   list(APPEND _ctest_cmd --output-junit "${REPORTS_DIR}/tests.junit.xml")
 endif()

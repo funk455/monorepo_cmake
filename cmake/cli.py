@@ -34,9 +34,9 @@ def prompt_yes_no(text, default=True):
 def prompt_target_type(text, default):
     while True:
         value = prompt(text, default=default).upper()
-        if value in ("EXECUTABLE", "LIBRARY"):
+        if value in ("EXECUTABLE", "LIBRARY", "INTERFACE"):
             return value
-        print("请输入 EXECUTABLE 或 LIBRARY。")
+        print("请输入 EXECUTABLE、LIBRARY 或 INTERFACE。")
 
 
 def parse_list(value):
@@ -106,23 +106,45 @@ def gen_exe_files(dir_path, sources, use_lib, lib_target, lib_header):
     return sources or [source_name]
 
 
-def gen_test_files(dir_path, sources, lib_target, lib_header, use_lib=True):
+def gen_test_files(dir_path, sources, lib_target, lib_header, use_lib=True, use_gtest=False):
     source_name = sources[0] if sources else "smoke.cpp"
     source_path = dir_path / source_name
     if source_path.exists():
         return sources or [source_name]
 
-    if use_lib:
-        content = (
-            f'#include "{lib_header}"\n'
-            "#include <cassert>\n\n"
-            "int main() {\n"
-            f"  assert({lib_target}_add(2, 2) == 4);\n"
-            "  return 0;\n"
-            "}\n"
-        )
+    suite = "".join(w.capitalize() for w in lib_target.replace("-", "_").split("_")) if use_lib else "Smoke"
+
+    if use_gtest:
+        if use_lib:
+            content = (
+                f'#include "{lib_header}"\n'
+                '#include <gtest/gtest.h>\n\n'
+                f'TEST({suite}Test, AddWorks) {{\n'
+                f'  EXPECT_EQ({lib_target}_add(2, 2), 4);\n'
+                '}\n\n'
+                f'TEST({suite}Test, AddNegative) {{\n'
+                f'  EXPECT_EQ({lib_target}_add(-1, 1), 0);\n'
+                '}\n'
+            )
+        else:
+            content = (
+                '#include <gtest/gtest.h>\n\n'
+                'TEST(SmokeTest, BasicAssert) {\n'
+                '  EXPECT_EQ(2 + 2, 4);\n'
+                '}\n'
+            )
     else:
-        content = "#include <cassert>\n\nint main() {\n  assert(2 + 2 == 4);\n  return 0;\n}\n"
+        if use_lib:
+            content = (
+                f'#include "{lib_header}"\n'
+                "#include <cassert>\n\n"
+                "int main() {\n"
+                f"  assert({lib_target}_add(2, 2) == 4);\n"
+                "  return 0;\n"
+                "}\n"
+            )
+        else:
+            content = "#include <cassert>\n\nint main() {\n  assert(2 + 2 == 4);\n  return 0;\n}\n"
     write_text(source_path, content)
     return sources or [source_name]
 
@@ -150,10 +172,11 @@ def write_project_cmakelists(path, project_name, version, namespace, modules, in
 
 
 def write_target_cmakelists(path, target):
+    ttype = target["type"]  # EXECUTABLE | LIBRARY | INTERFACE
     lines = [
         f'set(PKG_TARGET_NAME "{target["name"]}")',
         "set(DIR_TARGET_NAME ${PKG_TARGET_NAME})",
-        f'set(DIR_TARGET_TYPE {target["type"]})',
+        f'set(DIR_TARGET_TYPE {ttype})',
     ]
     if target.get("alias_prefix"):
         lines.append(f'set(DIR_ALIAS_PREFIX {target["alias_prefix"]})')
@@ -161,16 +184,20 @@ def write_target_cmakelists(path, target):
         lines.append(f'set(DIR_PUBLIC_DEPS {";".join(target["public_deps"])})')
     if target.get("private_deps"):
         lines.append(f'set(DIR_PRIVATE_DEPS {";".join(target["private_deps"])})')
+    if target.get("interface_deps"):
+        lines.append(f'set(DIR_INTERFACE_DEPS {";".join(target["interface_deps"])})')
     if target.get("enable_install"):
         lines.append("set(DIR_ENABLE_INSTALL ON)")
-    if target["type"] == "LIBRARY":
+    if ttype in ("LIBRARY", "INTERFACE"):
         lines.append('set(PROJECT_EXPORT_NAME "${PKG_TARGET_NAME}Targets")')
+    if target.get("use_gtest"):
+        lines.append("set(DIR_USE_GTEST ON)")
     if target.get("sources"):
         lines.append(f'set(DIR_SOURCES {";".join(target["sources"])})')
     if target.get("headers"):
         lines.append(f'set(DIR_HEADERS {";".join(target["headers"])})')
     lines.append("include(${CMAKE_SOURCE_DIR}/cmake/AddTarget.cmake)")
-    if target["type"] == "LIBRARY":
+    if ttype in ("LIBRARY", "INTERFACE"):
         lines += [
             "include(${CMAKE_SOURCE_DIR}/cmake/SetupPackage.cmake)",
             "setup_package(",
@@ -372,7 +399,7 @@ def generate_from_config(root, cfg, force=False):
     )
 
     # 生成子模块与目标
-    lib_targets = [t for t in cfg["targets"] if t["type"] == "LIBRARY"]
+    lib_targets = [t for t in cfg["targets"] if t["type"] in ("LIBRARY", "INTERFACE")]
     lib_target_name = lib_targets[0]["name"] if lib_targets else "lib"
     lib_header_name = None
     if lib_targets:
@@ -386,7 +413,18 @@ def generate_from_config(root, cfg, force=False):
         if "kind" not in target:
             target["kind"] = "lib" if target["type"] == "LIBRARY" else "app"
 
-        if target["type"] == "LIBRARY":
+        if target["type"] == "INTERFACE":
+            # Header-only: generate only a header file, no sources
+            headers = target.get("headers") or [f'{target["name"]}.h']
+            header_path = target_dir / headers[0]
+            if not header_path.exists():
+                write_text(
+                    header_path,
+                    f"#pragma once\n\n// {target['name']} — header-only library\n",
+                )
+            target["sources"] = []
+            target["headers"] = headers
+        elif target["type"] == "LIBRARY":
             sources, headers = gen_library_files(
                 target_dir,
                 target["name"],
@@ -402,6 +440,7 @@ def generate_from_config(root, cfg, force=False):
                 lib_target_name,
                 lib_header_name or f"{lib_target_name}.h",
                 use_lib=len(lib_targets) > 0,
+                use_gtest=target.get("use_gtest", False),
             )
             target["sources"] = sources
         else:
