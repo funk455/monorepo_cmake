@@ -2,42 +2,6 @@
 
 A CMake-based monorepo build system with a web dashboard. Provides unified target creation, dependency management, cross-compilation, testing, packaging, and a browser UI for the full build workflow.
 
-## Directory Structure
-
-```
-CMakeLists.txt              workspace entry point
-cmake/
-  AddTarget.cmake           unified target creation (exe / lib / interface)
-  AddWorkspaces.cmake       auto-discover and aggregate subprojects
-  AddModules.cmake          per-project module aggregation
-  SetupPackage.cmake        install / export / find_package support
-  SetupGTest.cmake          Google Test integration via FetchContent
-  BuildType.cmake           default build type enforcement
-  UnifiedOutputDirs.cmake   centralized output directories
-  Reports.cmake             build & test report generation
-  AddUninstall.cmake        `make uninstall` target
-  DeployPackage.cmake       packaging script
-  toolchains/               cross-compilation toolchain files
-    linux-aarch64-gcc.cmake
-    linux-armv7-gcc.cmake
-    mingw-w64.cmake
-    emscripten.cmake
-    android-ndk.cmake
-    macos-arm64-clang.cmake
-  cli.py                    interactive project scaffolding
-  build.py                  multi-platform build helper
-  watch_build.py            file-watch auto-rebuild
-projects/
-  netlib/                   example: header-only + library with install/export
-  projectlib/               example: library + app + GTest tests
-  utils/                    example: utility library
-ui/
-  static/index.html         web dashboard (single-file SPA)
-  handler.py                HTTP routing & SSE streaming
-  jobs.py                   subprocess job runner
-  parsers.py                CMake graph, test results, toolchain parsers
-ui.py                       dashboard server entry point
-```
 
 ## Quick Start
 
