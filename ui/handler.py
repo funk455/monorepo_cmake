@@ -13,6 +13,7 @@ from .jobs import start_job, get_job
 from .parsers import (
     list_projects, list_build_dirs, list_reports,
     parse_target_graph, parse_test_results,
+    list_toolchains, read_toolchain, save_toolchain, delete_toolchain,
 )
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -118,6 +119,16 @@ class Handler(BaseHTTPRequestHandler):
             result = parse_test_results(build_path)
             self.send_json(result if result is not None else {})
 
+        elif route == "/api/toolchains":
+            self.send_json(list_toolchains())
+
+        elif route == "/api/toolchain":
+            name = qs.get("name", [None])[0]
+            if not name:
+                self.send_json({"error": "missing name"}, 400)
+                return
+            self.send_json(read_toolchain(name))
+
         elif route == "/api/stream":
             job_id = qs.get("job", [None])[0]
             if job_id:
@@ -151,6 +162,21 @@ class Handler(BaseHTTPRequestHandler):
 
         elif route == "/api/delete":
             self._handle_delete(data)
+
+        elif route == "/api/toolchain":
+            name = data.get("name", "").strip()
+            content = data.get("content", "")
+            if not name:
+                self.send_json({"error": "missing name"}, 400)
+                return
+            self.send_json(save_toolchain(name, content))
+
+        elif route == "/api/toolchain/delete":
+            name = data.get("name", "").strip()
+            if not name:
+                self.send_json({"error": "missing name"}, 400)
+                return
+            self.send_json(delete_toolchain(name))
 
         else:
             self.send_json({"error": "not found"}, 404)

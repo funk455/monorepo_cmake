@@ -3,181 +3,135 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>CMake Workspace UI</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
 <style>
   :root{
-    --c-bg:       #020912;
-    --c-surface:  #060d1a;
-    --c-panel:    #080e1c;
-    --c-border:   #0d1f35;
-    --c-border2:  #132840;
-    --c-cyan:     #00c8e8;
-    --c-cyan-dim: #006880;
-    --c-green:    #00e87a;
-    --c-blue:     #3b82f6;
-    --c-text:     #c8dff0;
-    --c-text-dim: #3a6080;
-    --c-text-mid: #5a8aaa;
+    --c-bg:       #1a1a1a;
+    --c-surface:  #222;
+    --c-panel:    #262626;
+    --c-border:   #333;
+    --c-border2:  #3a3a3a;
+    --c-accent:   #4a9eff;
+    --c-green:    #5cb85c;
+    --c-blue:     #4a9eff;
+    --c-text:     #d4d4d4;
+    --c-text-dim: #666;
+    --c-text-mid: #999;
   }
   *{box-sizing:border-box}
   body{
-    font-family:'JetBrains Mono',monospace;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,sans-serif;
     background:var(--c-bg);
     color:var(--c-text);
-    position:relative;
   }
-  /* Grid background */
-  body::before{
-    content:'';
-    position:fixed;inset:0;
-    background-image:
-      linear-gradient(rgba(0,200,232,0.025) 1px,transparent 1px),
-      linear-gradient(90deg,rgba(0,200,232,0.025) 1px,transparent 1px);
-    background-size:48px 48px;
-    pointer-events:none;
-    z-index:0;
-  }
-  body>*{position:relative;z-index:1}
 
-  /* Scrollbar */
-  ::-webkit-scrollbar{width:4px;height:4px}
+  ::-webkit-scrollbar{width:6px;height:6px}
   ::-webkit-scrollbar-track{background:var(--c-bg)}
-  ::-webkit-scrollbar-thumb{background:var(--c-cyan-dim);border-radius:2px}
+  ::-webkit-scrollbar-thumb{background:#444;border-radius:3px}
+  ::-webkit-scrollbar-thumb:hover{background:#555}
 
-  /* Inputs */
   input,select,textarea{
     background:var(--c-surface);
     color:var(--c-text);
     border:1px solid var(--c-border2);
-    border-radius:0.25rem;
+    border-radius:4px;
     font-family:inherit;
   }
   input:focus,select:focus,textarea:focus{
     outline:none;
-    border-color:var(--c-cyan);
-    box-shadow:0 0 0 1px var(--c-cyan),0 0 12px rgba(0,200,232,0.15);
+    border-color:var(--c-accent);
   }
 
-  /* Nav */
   .nav-item{
-    display:flex;align-items:center;gap:0.6rem;
+    display:flex;align-items:center;gap:0.5rem;
     width:100%;text-align:left;
     padding:0.4rem 0.75rem;
-    border-radius:0.25rem;
-    font-size:0.78rem;letter-spacing:0.03em;
+    border-radius:4px;
+    font-size:0.8rem;
     color:var(--c-text-dim);
     transition:all 0.15s;cursor:pointer;
-    border:none;border-left:2px solid transparent;
-    background:none;
+    border:none;background:none;
   }
   .nav-item:hover{
-    background:rgba(0,200,232,0.05);
+    background:#2a2a2a;
     color:var(--c-text-mid);
-    border-left-color:var(--c-border2);
   }
   .nav-item.active{
-    background:rgba(0,200,232,0.07);
-    color:var(--c-cyan);
-    border-left-color:var(--c-cyan);
-    box-shadow:inset 0 0 20px rgba(0,200,232,0.04);
+    background:#2d2d2d;
+    color:var(--c-text);
+    font-weight:500;
   }
 
-  /* Buttons */
   .btn{
-    padding:0.35rem 1rem;
-    border-radius:0.25rem;
-    font-size:0.78rem;font-weight:500;letter-spacing:0.04em;
+    padding:0.35rem 0.85rem;
+    border-radius:4px;
+    font-size:0.8rem;font-weight:500;
     cursor:pointer;border:1px solid;
     transition:all 0.15s;
     font-family:inherit;
   }
-  .btn:disabled{opacity:0.35;cursor:not-allowed}
+  .btn:disabled{opacity:0.4;cursor:not-allowed}
   .btn-blue{
-    background:rgba(37,99,235,0.2);color:#60a5fa;
-    border-color:#1e3a7a;
+    background:#2563eb;color:#fff;
+    border-color:#2563eb;
   }
   .btn-blue:hover:not(:disabled){
-    background:rgba(37,99,235,0.35);border-color:#3b82f6;
-    box-shadow:0 0 12px rgba(59,130,246,0.3);
+    background:#1d4ed8;border-color:#1d4ed8;
   }
   .btn-slate{
-    background:rgba(30,50,70,0.5);color:var(--c-text-mid);
+    background:var(--c-surface);color:var(--c-text-mid);
     border-color:var(--c-border2);
   }
   .btn-slate:hover:not(:disabled){
-    background:rgba(30,50,70,0.8);color:var(--c-text);
-    border-color:#2a5070;
+    background:#2a2a2a;color:var(--c-text);
+    border-color:#444;
   }
   .btn-red{
-    background:rgba(127,29,29,0.3);color:#fca5a5;
-    border-color:#5a1010;
+    background:#7f1d1d;color:#fca5a5;
+    border-color:#991b1b;
   }
   .btn-red:hover:not(:disabled){
-    background:rgba(153,27,27,0.5);border-color:#991b1b;
-    box-shadow:0 0 10px rgba(220,38,38,0.25);
+    background:#991b1b;border-color:#b91c1c;
   }
   .btn-green{
-    background:rgba(0,232,122,0.1);color:#00e87a;
-    border-color:#00703a;
+    background:#166534;color:#86efac;
+    border-color:#15803d;
   }
   .btn-green:hover:not(:disabled){
-    background:rgba(0,232,122,0.2);border-color:#00e87a;
-    box-shadow:0 0 12px rgba(0,232,122,0.25);
+    background:#15803d;border-color:#16a34a;
   }
 
-  /* Cards */
   .card{
     background:var(--c-panel);
     border:1px solid var(--c-border);
-    border-radius:0.375rem;
+    border-radius:6px;
     padding:1rem;
-    transition:border-color 0.2s,box-shadow 0.2s;
-  }
-  .card:hover{
-    border-color:var(--c-border2);
-    box-shadow:0 0 20px rgba(0,0,0,0.4),0 0 0 1px rgba(0,200,232,0.04);
   }
 
-  /* Log / terminal */
   .log{
-    font-family:'JetBrains Mono',monospace;
-    font-size:11.5px;line-height:1.7;
+    font-family:'Cascadia Code','Fira Code','Consolas',monospace;
+    font-size:12px;line-height:1.7;
   }
 
-  /* Section title with // prefix and separator line */
   .section-title{
-    display:flex;align-items:center;gap:0.5rem;
-    font-size:0.62rem;font-weight:700;
-    text-transform:uppercase;letter-spacing:0.14em;
-    color:var(--c-cyan);
+    font-size:0.7rem;font-weight:600;
+    text-transform:uppercase;letter-spacing:0.08em;
+    color:var(--c-text-mid);
     margin-bottom:0.75rem;
+    padding-bottom:0.4rem;
+    border-bottom:1px solid var(--c-border);
   }
-  .section-title::before{content:'//';color:var(--c-border2);font-size:0.75rem}
-  .section-title::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,var(--c-border2),transparent)}
 
-  /* Tags */
   .tag{
     display:inline-block;
-    padding:0.08rem 0.5rem;
-    border-radius:2px;
-    font-size:0.65rem;font-weight:600;letter-spacing:0.06em;
-    border:1px solid transparent;
+    padding:0.1rem 0.45rem;
+    border-radius:3px;
+    font-size:0.65rem;font-weight:500;
   }
-  .tag-green{background:rgba(0,232,122,0.1);color:#00e87a;border-color:rgba(0,232,122,0.2)}
-  .tag-gray{background:rgba(30,50,70,0.6);color:var(--c-text-mid);border-color:var(--c-border2)}
+  .tag-green{background:#16351c;color:#6ee7b7}
+  .tag-gray{background:#2a2a2a;color:var(--c-text-mid)}
 
-  /* Pulse dot */
-  @keyframes pulse-dot{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(0.8)}}
-  .pulse{animation:pulse-dot 2s ease-in-out infinite}
-
-  /* Glow text */
-  .glow-cyan{text-shadow:0 0 8px rgba(0,200,232,0.6)}
-  .glow-green{text-shadow:0 0 8px rgba(0,232,122,0.6)}
-
-  /* Remap Tailwind gray palette to our dark-cyan theme */
   .text-gray-100,.text-gray-200{color:var(--c-text)!important}
   .text-gray-300,.text-gray-400{color:var(--c-text-mid)!important}
   .text-gray-500,.text-gray-600{color:var(--c-text-dim)!important}
@@ -187,11 +141,10 @@
   .bg-gray-950{background:var(--c-bg)!important}
   .border-gray-700,.border-gray-800{border-color:var(--c-border)!important}
   .hover\:border-gray-700:hover{border-color:var(--c-border2)!important}
-  .hover\:bg-gray-800:hover{background:rgba(0,200,232,0.05)!important}
-  .bg-green-500{background:#00e87a!important}
+  .hover\:bg-gray-800:hover{background:#2a2a2a!important}
+  .bg-green-500{background:#5cb85c!important}
   .bg-gray-600{background:var(--c-border2)!important}
 
-  /* Layout */
   aside{
     width:13rem;
     background:var(--c-surface);
@@ -200,45 +153,40 @@
     display:flex;flex-direction:column;
   }
   .sidebar-header{
-    padding:1rem;
+    padding:0.85rem 1rem;
     border-bottom:1px solid var(--c-border);
   }
   .sidebar-header .ws-label{
-    font-size:0.6rem;letter-spacing:0.14em;text-transform:uppercase;
-    color:var(--c-text-dim);margin-bottom:0.25rem;
+    font-size:0.6rem;letter-spacing:0.06em;text-transform:uppercase;
+    color:var(--c-text-dim);margin-bottom:0.15rem;
   }
   .sidebar-header .ws-name{
-    font-size:0.8rem;font-weight:600;
-    color:var(--c-cyan);
-    text-shadow:0 0 10px rgba(0,200,232,0.4);
-    white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+    font-size:0.85rem;font-weight:600;
+    color:var(--c-text);
   }
   .sidebar-footer{
     padding:0.6rem 0.75rem;
     border-top:1px solid var(--c-border);
-    font-size:0.62rem;color:var(--c-text-dim);
-    letter-spacing:0.04em;
+    font-size:0.65rem;color:var(--c-text-dim);
   }
   .page-header{
     border-bottom:1px solid var(--c-border);
   }
   .page-h1{
-    font-size:0.95rem;font-weight:600;letter-spacing:0.03em;
+    font-size:0.95rem;font-weight:600;
     color:var(--c-text);
   }
   .border-panel{border-color:var(--c-border) !important}
   .sidebar-divider{border-color:var(--c-border) !important}
 
-  /* Log terminal areas */
   .log-area{
-    background:var(--c-bg);
+    background:#1e1e1e;
     border:1px solid var(--c-border);
-    border-radius:0.375rem;
-    color:#4ade80;
+    border-radius:6px;
+    color:#b5cea8;
   }
-  .log-area-yellow{color:#fde68a}
+  .log-area-yellow{color:#dcdcaa}
 
-  /* Reports panel */
   .reports-sidebar{
     width:15rem;
     border-right:1px solid var(--c-border);
@@ -255,27 +203,30 @@
 <!-- Sidebar -->
 <aside>
   <div class="sidebar-header">
-    <div class="ws-label">// Workspace</div>
+    <div class="ws-label">Workspace</div>
     <div class="ws-name">monorepo-cmake</div>
   </div>
   <nav class="flex-1 p-2 space-y-0.5 overflow-y-auto" style="padding:0.5rem">
     <button class="nav-item active" data-page="dashboard" onclick="navigate('dashboard')">
-      <span style="font-size:0.85em">⊞</span> Dashboard
+      <span style="font-size:0.85em">&#9632;</span> Dashboard
     </button>
     <button class="nav-item" data-page="build" onclick="navigate('build')">
-      <span style="font-size:0.85em">⚙</span> Build
+      <span style="font-size:0.85em">&#9881;</span> Build
     </button>
     <button class="nav-item" data-page="targets" onclick="navigate('targets')">
-      <span style="font-size:0.85em">◈</span> Targets
+      <span style="font-size:0.85em">&#9670;</span> Targets
     </button>
     <button class="nav-item" data-page="new-project" onclick="navigate('new-project')">
-      <span style="font-size:0.85em">＋</span> New Project
+      <span style="font-size:0.85em">+</span> New Project
+    </button>
+    <button class="nav-item" data-page="cross-compile" onclick="navigate('cross-compile')">
+      <span style="font-size:0.85em">&#8644;</span> Cross Compile
     </button>
     <button class="nav-item" data-page="watch" onclick="navigate('watch')">
-      <span style="font-size:0.85em">◉</span> Watch Mode
+      <span style="font-size:0.85em">&#9673;</span> Watch Mode
     </button>
     <button class="nav-item" data-page="reports" onclick="navigate('reports')">
-      <span style="font-size:0.85em">▤</span> Reports
+      <span style="font-size:0.85em">&#9776;</span> Reports
     </button>
   </nav>
   <div class="sidebar-footer">CMake UI &middot; Python</div>
@@ -284,11 +235,11 @@
 <!-- Main -->
 <main style="flex:1;overflow:hidden;display:flex;flex-direction:column;min-width:0">
 
-<!-- ── Dashboard ── -->
+<!-- Dashboard -->
 <div id="page-dashboard" class="page flex-1 overflow-auto p-6 space-y-6">
   <div class="flex items-center justify-between">
     <h1 class="page-h1">Dashboard</h1>
-    <button class="btn btn-slate text-xs" onclick="loadDashboard()">↻ Refresh</button>
+    <button class="btn btn-slate text-xs" onclick="loadDashboard()">Refresh</button>
   </div>
   <div>
     <div class="section-title">Projects</div>
@@ -300,7 +251,7 @@
   </div>
 </div>
 
-<!-- ── Build ── -->
+<!-- Build -->
 <div id="page-build" class="page hidden flex-1 overflow-hidden flex flex-col">
   <div class="p-6 pb-4 page-header">
     <h1 class="page-h1 mb-4">Build</h1>
@@ -332,14 +283,20 @@
       <label class="block">
         <div class="text-xs mb-1" style="color:var(--c-text-mid)">Config (multi-gen)</div>
         <select id="b-config" class="w-full px-2.5 py-1.5 text-sm">
-          <option value="">—</option>
+          <option value="">--</option>
           <option>Release</option>
           <option>Debug</option>
         </select>
       </label>
     </div>
-    <div class="flex items-end gap-3 mb-3">
-      <label class="block flex-1">
+    <div class="grid grid-cols-2 gap-3 mb-3">
+      <label class="block">
+        <div class="text-xs mb-1" style="color:var(--c-text-mid)">Toolchain File</div>
+        <select id="b-toolchain" class="w-full px-2.5 py-1.5 text-sm">
+          <option value="">(native -- no toolchain)</option>
+        </select>
+      </label>
+      <label class="block">
         <div class="text-xs mb-1" style="color:var(--c-text-mid)">Extra CMake Flags</div>
         <input id="b-extra" type="text" placeholder="-DFOO=bar" class="w-full px-2.5 py-1.5 text-sm">
       </label>
@@ -360,31 +317,31 @@
   </div>
 </div>
 
-<!-- ── Targets ── -->
+<!-- Targets -->
 <div id="page-targets" class="page hidden flex-1 overflow-hidden flex flex-col">
   <div class="p-6 pb-3 page-header">
     <div class="flex items-center justify-between mb-3">
       <h1 class="page-h1">Target Dependencies</h1>
-      <button class="btn btn-slate text-xs" onclick="loadTargets()">↻ Scan</button>
+      <button class="btn btn-slate text-xs" onclick="loadTargets()">Scan</button>
     </div>
     <div id="targets-filter" class="flex gap-1.5">
       <button class="tag tag-gray cursor-pointer hover:brightness-125 px-3 py-1" data-tf="all"   onclick="setTargetFilter('all')">All</button>
       <button class="tag tag-gray cursor-pointer hover:brightness-125 px-3 py-1" data-tf="exec"  onclick="setTargetFilter('exec')">Executables</button>
       <button class="tag tag-gray cursor-pointer hover:brightness-125 px-3 py-1" data-tf="test"  onclick="setTargetFilter('test')">Tests</button>
       <button class="tag tag-gray cursor-pointer hover:brightness-125 px-3 py-1" data-tf="lib"   onclick="setTargetFilter('lib')">Libraries</button>
-      <button class="tag tag-gray cursor-pointer hover:brightness-125 px-3 py-1" data-tf="iface" onclick="setTargetFilter('iface')" style="border-color:rgba(168,85,247,0.3)">Interface</button>
+      <button class="tag tag-gray cursor-pointer hover:brightness-125 px-3 py-1" data-tf="iface" onclick="setTargetFilter('iface')">Interface</button>
     </div>
   </div>
   <div class="flex-1 overflow-auto p-6 space-y-6">
     <div id="targets-graph" class="card overflow-auto text-center text-sm py-8" style="color:var(--c-text-dim)">
-      点击 Scan 加载依赖图
+      Click Scan to load dependency graph
     </div>
     <div id="targets-metrics" class="hidden"></div>
     <div id="targets-table" class="space-y-3"></div>
   </div>
 </div>
 
-<!-- ── New Project ── -->
+<!-- New Project -->
 <div id="page-new-project" class="page hidden flex-1 overflow-auto p-6">
   <h1 class="page-h1 mb-5">New Project</h1>
   <div class="grid grid-cols-1 xl:grid-cols-2 gap-6">
@@ -409,7 +366,6 @@
 
       <div class="card space-y-3">
         <div class="section-title">Modules</div>
-        <!-- Library -->
         <div>
           <label class="flex items-center gap-2 cursor-pointer mb-2">
             <input id="np-lib" type="checkbox" checked class="w-4 h-4 accent-blue-500" onchange="toggleSection('lib'); updatePreview()">
@@ -433,7 +389,6 @@
             </label>
           </div>
         </div>
-        <!-- App -->
         <div>
           <label class="flex items-center gap-2 cursor-pointer mb-2">
             <input id="np-app" type="checkbox" checked class="w-4 h-4 accent-blue-500" onchange="toggleSection('app'); updatePreview()">
@@ -450,7 +405,6 @@
             </label>
           </div>
         </div>
-        <!-- Tests -->
         <div>
           <label class="flex items-center gap-2 cursor-pointer mb-2">
             <input id="np-test" type="checkbox" checked class="w-4 h-4 accent-blue-500" onchange="toggleSection('test'); updatePreview()">
@@ -468,8 +422,8 @@
               </label>
             </div>
             <label class="flex items-center gap-2 cursor-pointer">
-              <input id="np-test-gtest" type="checkbox" class="w-4 h-4" style="accent-color:var(--c-cyan)" onchange="updatePreview()">
-              <span class="text-xs" style="color:var(--c-text-mid)">Use <span style="color:var(--c-cyan)">Google Test</span> <span style="color:var(--c-text-dim)">(FetchContent / find_package)</span></span>
+              <input id="np-test-gtest" type="checkbox" class="w-4 h-4" onchange="updatePreview()">
+              <span class="text-xs" style="color:var(--c-text-mid)">Use Google Test (FetchContent / find_package)</span>
             </label>
           </div>
         </div>
@@ -477,7 +431,7 @@
 
       <div class="flex items-center gap-3 flex-wrap">
         <button class="btn btn-blue" onclick="submitNewProject()">Generate Project</button>
-        <button class="btn btn-slate text-xs" onclick="loadPreset()">↑ Load preset</button>
+        <button class="btn btn-slate text-xs" onclick="loadPreset()">Load preset</button>
         <label class="flex items-center gap-2 text-sm cursor-pointer" style="color:var(--c-text-mid)">
           <input id="np-force" type="checkbox" class="w-4 h-4 accent-yellow-500">
           Force overwrite
@@ -492,12 +446,89 @@
 
     <div>
       <div class="section-title">Generated Structure Preview</div>
-      <div id="np-preview" class="log card text-xs min-h-48 whitespace-pre overflow-auto" style="color:var(--c-cyan);opacity:0.85"></div>
+      <div id="np-preview" class="log card text-xs min-h-48 whitespace-pre overflow-auto" style="color:var(--c-text-mid)"></div>
     </div>
   </div>
 </div>
 
-<!-- ── Watch ── -->
+<!-- Cross Compile -->
+<div id="page-cross-compile" class="page hidden flex-1 overflow-hidden flex flex-col">
+  <div class="p-6 pb-4 page-header">
+    <div class="flex items-center justify-between mb-4">
+      <h1 class="page-h1">Cross Compile</h1>
+      <button class="btn btn-slate text-xs" onclick="loadToolchains()">Refresh</button>
+    </div>
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-3 mb-3">
+      <label class="block">
+        <div class="text-xs mb-1" style="color:var(--c-text-mid)">Toolchain</div>
+        <select id="xc-toolchain" class="w-full px-2.5 py-1.5 text-sm" onchange="onToolchainSelect()">
+          <option value="">(select a toolchain)</option>
+        </select>
+      </label>
+      <label class="block">
+        <div class="text-xs mb-1" style="color:var(--c-text-mid)">Build Dir</div>
+        <input id="xc-dir" type="text" placeholder="build-cross" class="w-full px-2.5 py-1.5 text-sm">
+      </label>
+      <label class="block">
+        <div class="text-xs mb-1" style="color:var(--c-text-mid)">Build Type</div>
+        <select id="xc-type" class="w-full px-2.5 py-1.5 text-sm">
+          <option>Release</option>
+          <option>Debug</option>
+          <option>RelWithDebInfo</option>
+          <option>MinSizeRel</option>
+        </select>
+      </label>
+    </div>
+    <div class="flex flex-wrap gap-2 items-center mb-3">
+      <button class="btn btn-blue" onclick="xcBuild('configure')">Configure</button>
+      <button class="btn btn-blue" onclick="xcBuild('build')">Build</button>
+      <button class="btn btn-blue" onclick="xcBuild('test')">Test</button>
+      <button class="btn btn-slate ml-auto text-xs" onclick="document.getElementById('xc-log').textContent=''">Clear log</button>
+    </div>
+    <div id="xc-status" class="text-sm hidden"></div>
+  </div>
+
+  <div class="flex-1 overflow-hidden flex" style="min-height:0">
+    <div class="flex-1 flex flex-col overflow-hidden p-6 pt-4">
+      <div class="section-title">Build Output</div>
+      <div id="xc-log" class="log log-area flex-1 p-3 overflow-auto whitespace-pre-wrap"></div>
+    </div>
+
+    <div class="w-96 border-l flex flex-col overflow-hidden p-6 pt-4" style="border-color:var(--c-border)">
+      <div class="flex items-center justify-between mb-2">
+        <div class="section-title mb-0" style="border:none;padding:0">Toolchain Editor</div>
+        <div class="flex gap-1.5">
+          <button class="btn btn-slate text-xs" onclick="newToolchain()">New</button>
+          <button class="btn btn-blue text-xs" onclick="saveCurrentToolchain()">Save</button>
+          <button class="btn btn-red text-xs" onclick="deleteCurrentToolchain()">Delete</button>
+        </div>
+      </div>
+      <div class="flex gap-2 mb-2">
+        <label class="block flex-1">
+          <div class="text-xs mb-1" style="color:var(--c-text-mid)">Filename</div>
+          <input id="xc-edit-name" type="text" placeholder="my-toolchain" class="w-full px-2 py-1 text-xs">
+        </label>
+        <label class="block">
+          <div class="text-xs mb-1" style="color:var(--c-text-mid)">Template</div>
+          <select id="xc-template" class="px-2 py-1 text-xs" onchange="applyTemplate()">
+            <option value="">--</option>
+            <option value="linux-aarch64">Linux ARM64</option>
+            <option value="linux-armv7">Linux ARMv7</option>
+            <option value="mingw">MinGW (Windows)</option>
+            <option value="emscripten">Emscripten (WASM)</option>
+            <option value="android">Android NDK</option>
+            <option value="macos-arm64">macOS ARM64</option>
+            <option value="blank">Blank</option>
+          </select>
+        </label>
+      </div>
+      <textarea id="xc-edit-content" class="flex-1 w-full p-3 text-xs overflow-auto resize-none" style="font-family:'Cascadia Code','Consolas',monospace;background:#1e1e1e;border:1px solid var(--c-border);border-radius:6px;color:#d4d4d4;line-height:1.6" placeholder="# CMake toolchain file content..."></textarea>
+      <div id="xc-edit-status" class="text-xs mt-2 hidden"></div>
+    </div>
+  </div>
+</div>
+
+<!-- Watch -->
 <div id="page-watch" class="page hidden flex-1 overflow-hidden flex flex-col">
   <div class="p-6 pb-4 page-header">
     <h1 class="page-h1 mb-4">Watch Mode</h1>
@@ -527,7 +558,7 @@
       <label class="block">
         <div class="text-xs mb-1" style="color:var(--c-text-mid)">Config (multi-gen)</div>
         <select id="w-config" class="w-full px-2.5 py-1.5 text-sm" disabled>
-          <option value="">—</option>
+          <option value="">--</option>
           <option>Release</option>
           <option>Debug</option>
           <option>RelWithDebInfo</option>
@@ -540,8 +571,8 @@
       </label>
     </div>
     <div class="flex gap-2 items-center">
-      <button id="w-start-btn" class="btn btn-green" onclick="startWatch()">▶ Start Watching</button>
-      <button id="w-stop-btn" class="btn btn-red hidden" onclick="stopWatch()">■ Stop</button>
+      <button id="w-start-btn" class="btn btn-green" onclick="startWatch()">Start Watching</button>
+      <button id="w-stop-btn" class="btn btn-red hidden" onclick="stopWatch()">Stop</button>
       <span id="w-status" class="text-sm ml-2" style="color:var(--c-text-mid)"></span>
       <button class="btn btn-slate ml-auto text-xs" onclick="document.getElementById('watch-log').textContent=''">Clear</button>
     </div>
@@ -551,29 +582,29 @@
   </div>
 </div>
 
-<!-- ── Reports ── -->
+<!-- Reports -->
 <div id="page-reports" class="page hidden flex-1 overflow-hidden flex">
   <div class="reports-sidebar">
     <div class="reports-sidebar-header space-y-2">
       <div class="flex items-center justify-between">
-        <span class="section-title mb-0">Reports</span>
-        <button class="text-xs hover:brightness-150" style="color:var(--c-text-dim)" onclick="loadReports()">↻</button>
+        <span class="section-title mb-0" style="border:none;padding:0">Reports</span>
+        <button class="text-xs hover:brightness-150" style="color:var(--c-text-dim)" onclick="loadReports()">Refresh</button>
       </div>
       <select id="reports-filter" class="w-full px-2 py-1.5 text-xs" onchange="filterReports()">
-        <option value="">所有构建目录</option>
+        <option value="">All build dirs</option>
       </select>
     </div>
     <div id="reports-list" class="flex-1 overflow-auto p-2 space-y-1"></div>
   </div>
   <div class="flex-1 overflow-auto p-6">
-    <div id="report-viewer" class="text-sm" style="color:var(--c-text-dim)">选择左侧报告查看。</div>
+    <div id="report-viewer" class="text-sm" style="color:var(--c-text-dim)">Select a report from the sidebar.</div>
   </div>
 </div>
 
 </main>
 
 <script>
-// ─── Router ───────────────────────────────────────────────────────────────────
+// Router
 function navigate(page) {
   document.querySelectorAll('.page').forEach(p => p.classList.add('hidden'));
   document.querySelectorAll('.nav-item').forEach(b => b.classList.remove('active'));
@@ -585,9 +616,11 @@ function navigate(page) {
   if (page === 'reports') loadReports();
   if (page === 'targets') loadTargets();
   if (page === 'new-project') updatePreview();
+  if (page === 'cross-compile') loadToolchains();
+  if (page === 'build') loadToolchains();
 }
 
-// ─── API ──────────────────────────────────────────────────────────────────────
+// API
 async function api(method, path, body) {
   const opts = { method, headers: {} };
   if (body !== undefined) {
@@ -598,7 +631,7 @@ async function api(method, path, body) {
   return r.json();
 }
 
-// ─── SSE streaming ────────────────────────────────────────────────────────────
+// SSE streaming
 let _activeSource = null;
 
 function streamJob(jobId, logEl, onDone) {
@@ -612,7 +645,7 @@ function streamJob(jobId, logEl, onDone) {
   es.addEventListener('done', e => {
     const code = JSON.parse(e.data);
     const ok = code === '0';
-    logEl.textContent += '\n[Exit ' + code + ']' + (ok ? ' ✓' : ' ✗') + '\n';
+    logEl.textContent += '\n[Exit ' + code + ']' + (ok ? ' OK' : ' FAILED') + '\n';
     logEl.scrollTop = logEl.scrollHeight;
     es.close(); _activeSource = null;
     if (onDone) onDone(ok);
@@ -620,7 +653,7 @@ function streamJob(jobId, logEl, onDone) {
   es.onerror = () => { es.close(); _activeSource = null; if (onDone) onDone(false); };
 }
 
-// ─── Dashboard ────────────────────────────────────────────────────────────────
+// Dashboard
 async function loadDashboard() {
   const [projects, buildDirs] = await Promise.all([
     api('GET', '/api/projects'), api('GET', '/api/build-dirs')
@@ -634,22 +667,22 @@ async function loadDashboard() {
         <div class="flex items-start justify-between mb-2">
           <div>
             <div class="font-semibold text-sm" style="color:var(--c-text)">${esc(p.name)}</div>
-            <div class="text-xs font-mono mt-0.5" style="color:var(--c-text-dim)">${esc(p.path)}</div>
+            <div class="text-xs mt-0.5" style="color:var(--c-text-dim);font-family:'Cascadia Code','Consolas',monospace">${esc(p.path)}</div>
           </div>
           <div class="flex items-center gap-2">
             <span class="tag tag-gray">${p.modules.length} mod</span>
-            <button class="text-xs" style="color:#f87171" title="删除整个项目"
-              onclick="deleteProject('${esc(p.path)}','${esc(p.name)}')">✕</button>
+            <button class="text-xs" style="color:#f87171" title="Delete project"
+              onclick="deleteProject('${esc(p.path)}','${esc(p.name)}')">x</button>
           </div>
         </div>
         <div class="space-y-0.5">
           ${p.modules.map(m => `
-            <div class="text-xs font-mono flex items-center gap-1.5 group" style="color:var(--c-cyan);opacity:0.8">
-              <span style="color:var(--c-border2)">├─</span>
+            <div class="text-xs flex items-center gap-1.5 group" style="color:var(--c-text-mid);font-family:'Cascadia Code','Consolas',monospace">
+              <span style="color:var(--c-border2)">+-</span>
               <span class="flex-1">${esc(m)}</span>
               <button class="opacity-0 group-hover:opacity-100 transition-opacity px-1" style="color:#f87171"
-                title="删除模块"
-                onclick="deleteModule('${esc(p.path)}','${esc(m)}')">✕</button>
+                title="Delete module"
+                onclick="deleteModule('${esc(p.path)}','${esc(m)}')">x</button>
             </div>`).join('')}
         </div>
       </div>
@@ -660,26 +693,23 @@ async function loadDashboard() {
   if (!buildDirs.length) {
     bEl.innerHTML = '<p class="text-sm" style="color:var(--c-text-dim)">No build directories found yet.</p>';
   } else {
-    // Fetch test results for all build dirs in parallel
     const testResults = await Promise.all(
       buildDirs.map(d => api('GET', '/api/test-results?build=' + encodeURIComponent(d.name)))
     );
     bEl.innerHTML = buildDirs.map((d, i) => {
       const tr = testResults[i];
       const hasResults = tr && tr.total > 0;
-      const dot = d.configured
-        ? 'style="width:8px;height:8px;border-radius:50%;flex-shrink:0;background:var(--c-green);box-shadow:0 0 6px var(--c-green)"'
-        : 'style="width:8px;height:8px;border-radius:50%;flex-shrink:0;background:var(--c-text-dim)"';
+      const dotColor = d.configured ? '#5cb85c' : '#666';
       return `
       <div class="card space-y-2">
         <div class="flex items-center gap-3">
-          <span ${dot}></span>
-          <span class="font-mono text-sm" style="color:var(--c-text)">${esc(d.name)}</span>
+          <span style="width:8px;height:8px;border-radius:50%;flex-shrink:0;background:${dotColor}"></span>
+          <span class="text-sm" style="color:var(--c-text);font-family:'Cascadia Code','Consolas',monospace">${esc(d.name)}</span>
           <span class="tag ${d.configured ? 'tag-green' : 'tag-gray'} ml-1">${d.configured ? 'configured' : 'unconfigured'}</span>
           <div class="ml-auto flex gap-2">
-            <button class="text-xs" style="color:var(--c-cyan);opacity:0.8" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=0.8" onclick="quickAction('${esc(d.name)}','build')">Build →</button>
-            <button class="text-xs" style="color:var(--c-text-mid)" onmouseover="this.style.color='var(--c-text)'" onmouseout="this.style.color='var(--c-text-mid)'" onclick="quickAction('${esc(d.name)}','test')">Test →</button>
-            <button class="text-xs" style="color:#f87171" onclick="deleteBuildDir('${esc(d.name)}')">删除</button>
+            <button class="text-xs" style="color:var(--c-accent)" onclick="quickAction('${esc(d.name)}','build')">Build</button>
+            <button class="text-xs" style="color:var(--c-text-mid)" onclick="quickAction('${esc(d.name)}','test')">Test</button>
+            <button class="text-xs" style="color:#f87171" onclick="deleteBuildDir('${esc(d.name)}')">Delete</button>
           </div>
         </div>
         ${hasResults ? renderTestPanel(tr) : ''}
@@ -693,13 +723,13 @@ function renderTestPanel(tr) {
   const allPassed = tr.failed === 0;
   const barColor = allPassed ? 'bg-green-500' : 'bg-red-500';
   const summary = `${tr.passed}/${tr.total} passed` +
-    (tr.failed ? ` · <span class="text-red-400">${tr.failed} failed</span>` : '') +
-    (tr.skipped ? ` · <span class="text-yellow-400">${tr.skipped} skipped</span>` : '');
+    (tr.failed ? ` / <span class="text-red-400">${tr.failed} failed</span>` : '') +
+    (tr.skipped ? ` / <span class="text-yellow-400">${tr.skipped} skipped</span>` : '');
   const rows = tr.tests.map(t => {
-    const icon = t.status === 'passed' ? '<span class="text-green-400">✓</span>'
-               : t.status === 'skipped' ? '<span class="text-yellow-400">⊝</span>'
-               : '<span class="text-red-400">✗</span>';
-    const msg = t.message ? `<div class="text-red-300 text-xs pl-4 mt-0.5 font-mono whitespace-pre-wrap">${esc(t.message)}</div>` : '';
+    const icon = t.status === 'passed' ? '<span class="text-green-400">OK</span>'
+               : t.status === 'skipped' ? '<span class="text-yellow-400">SKIP</span>'
+               : '<span class="text-red-400">FAIL</span>';
+    const msg = t.message ? `<div class="text-red-300 text-xs pl-4 mt-0.5 whitespace-pre-wrap" style="font-family:'Cascadia Code','Consolas',monospace">${esc(t.message)}</div>` : '';
     return `<div>
       <div class="flex items-center gap-2 text-xs py-0.5">
         ${icon}
@@ -727,23 +757,23 @@ function quickAction(dir, action) {
 }
 
 async function deleteProject(projPath, projName) {
-  if (!confirm(`确认删除项目 "${projName}"？\n路径：${projPath}\n包含所有模块，此操作不可恢复。`)) return;
+  if (!confirm(`Delete project "${projName}"?\nPath: ${projPath}\nIncludes all modules. This cannot be undone.`)) return;
   const res = await api('POST', '/api/delete', { kind: 'project', path: projPath });
-  if (res.error) { alert('删除失败：' + res.error); return; }
+  if (res.error) { alert('Delete failed: ' + res.error); return; }
   loadDashboard();
 }
 
 async function deleteModule(projPath, modName) {
-  if (!confirm(`确认删除模块 "${modName}"？\n路径：${projPath}/${modName}\n此操作不可恢复。`)) return;
+  if (!confirm(`Delete module "${modName}"?\nPath: ${projPath}/${modName}\nThis cannot be undone.`)) return;
   const res = await api('POST', '/api/delete', { kind: 'module', path: projPath + '/' + modName });
-  if (res.error) { alert('删除失败：' + res.error); return; }
+  if (res.error) { alert('Delete failed: ' + res.error); return; }
   loadDashboard();
 }
 
 async function deleteBuildDir(name) {
-  if (!confirm(`确认删除构建目录 "${name}"？\n此操作不可恢复。`)) return;
+  if (!confirm(`Delete build directory "${name}"?\nThis cannot be undone.`)) return;
   const res = await api('POST', '/api/delete', { kind: 'build', path: name });
-  if (res.error) { alert('删除失败：' + res.error); return; }
+  if (res.error) { alert('Delete failed: ' + res.error); return; }
   loadDashboard();
 }
 
@@ -754,16 +784,17 @@ function onGenChange() {
   const btypeEl = document.getElementById('b-type');
   const isMulti = MULTI_CONFIG_GENS.includes(gen);
   btypeEl.disabled = isMulti;
-  btypeEl.title = isMulti ? '多配置生成器在 configure 时不设置 BUILD_TYPE，请在 Config 栏选择' : '';
+  btypeEl.title = isMulti ? 'Multi-config generators set build type via --config, not CMAKE_BUILD_TYPE' : '';
 }
 
-// ─── Build ────────────────────────────────────────────────────────────────────
+// Build
 async function runBuildAction(action) {
   const dir = document.getElementById('b-dir').value.trim() || 'build';
   const gen = document.getElementById('b-gen').value;
   const btype = document.getElementById('b-type').value;
   const config = document.getElementById('b-config').value;
   const extra = document.getElementById('b-extra').value.trim();
+  const toolchain = document.getElementById('b-toolchain').value;
   const logEl = document.getElementById('build-log');
   const statusEl = document.getElementById('build-status');
 
@@ -773,6 +804,7 @@ async function runBuildAction(action) {
     cmd = ['cmake', '-S', '.', '-B', dir];
     if (gen) cmd.push('-G', gen);
     if (btype && !multiConfig) cmd.push('-DCMAKE_BUILD_TYPE=' + btype);
+    if (toolchain) cmd.push('-DCMAKE_TOOLCHAIN_FILE=' + toolchain);
     if (extra) extra.split(/\s+/).forEach(f => f && cmd.push(f));
   } else if (action === 'build') {
     cmd = ['cmake', '--build', dir];
@@ -805,11 +837,11 @@ async function runBuildAction(action) {
   }
   streamJob(res.job_id, logEl, ok => {
     statusEl.className = 'mt-2 text-sm ' + (ok ? 'text-green-400' : 'text-red-400');
-    statusEl.textContent = action + (ok ? ' succeeded ✓' : ' failed ✗');
+    statusEl.textContent = action + (ok ? ' succeeded' : ' failed');
   });
 }
 
-// ─── New Project ──────────────────────────────────────────────────────────────
+// New Project
 function toggleSection(id) {
   const checked = document.getElementById('np-' + id).checked;
   document.getElementById('np-' + id + '-fields').style.display = checked ? '' : 'none';
@@ -818,15 +850,13 @@ function toggleSection(id) {
 async function loadPreset() {
   const preset = await api('GET', '/api/preset');
   if (!preset || !preset.project_name) {
-    alert('未找到 preset.json，请先生成项目并勾选 Save preset。');
+    alert('No preset.json found. Generate a project with "Save preset" checked first.');
     return;
   }
-  // 基本信息
   document.getElementById('np-name').value = preset.project_name || '';
   document.getElementById('np-ver').value = preset.project_version || '0.1.0';
   document.getElementById('np-ns').value = preset.project_namespace || '';
 
-  // 各 target
   const lib = (preset.targets || []).find(t => t.kind === 'lib');
   const app = (preset.targets || []).find(t => t.kind === 'app');
   const test = (preset.targets || []).find(t => t.kind === 'test');
@@ -861,12 +891,12 @@ function updatePreview() {
   const name = document.getElementById('np-name').value.trim();
   const el = document.getElementById('np-preview');
   if (!name) { el.textContent = '(enter a project name to preview)'; return; }
-  const lines = ['projects/' + name + '/  ← workspace_dir', '  CMakeLists.txt'];
+  const lines = ['projects/' + name + '/  <- workspace_dir', '  CMakeLists.txt'];
   if (document.getElementById('np-lib').checked) {
     const d = document.getElementById('np-lib-dir').value.trim() || name;
     const t = document.getElementById('np-lib-target').value.trim() || name;
     const isIface = document.getElementById('np-lib-type').value === 'INTERFACE';
-    lines.push('  ' + d + '/  ' + (isIface ? '← header-only (INTERFACE)' : '← library'));
+    lines.push('  ' + d + '/  ' + (isIface ? '<- header-only (INTERFACE)' : '<- library'));
     lines.push('    CMakeLists.txt');
     if (!isIface) lines.push('    ' + t + '.cpp');
     lines.push('    ' + t + '.h');
@@ -881,7 +911,7 @@ function updatePreview() {
     const d = document.getElementById('np-test-dir').value.trim() || 'tests/smoke';
     const testSrc = d.split('/').filter(Boolean).pop() || 'smoke';
     const gtest = document.getElementById('np-test-gtest').checked;
-    lines.push('  ' + d + '/  ← ' + (gtest ? 'GTest (gtest_discover_tests)' : 'CTest (add_test)'));
+    lines.push('  ' + d + '/  <- ' + (gtest ? 'GTest (gtest_discover_tests)' : 'CTest (add_test)'));
     lines.push('    CMakeLists.txt');
     lines.push('    ' + testSrc + '.cpp');
   }
@@ -905,7 +935,7 @@ async function submitNewProject() {
   if (inclLib) {
     const ld = document.getElementById('np-lib-dir').value.trim() || name;
     const lt = document.getElementById('np-lib-target').value.trim() || name;
-    const ltype = document.getElementById('np-lib-type').value; // LIBRARY | INTERFACE
+    const ltype = document.getElementById('np-lib-type').value;
     const isIface = ltype === 'INTERFACE';
     targets.push({ dir: ld, name: lt, type: ltype, kind: 'lib',
       alias_prefix: ns, enable_install: true,
@@ -922,7 +952,6 @@ async function submitNewProject() {
       enable_install: true, sources: ['main.cpp'] });
     modules.push(ad);
   }
-  // CMake reserved target names when CTest is enabled
   const CMAKE_RESERVED = ['test', 'install', 'package', 'package_source', 'edit_cache',
     'rebuild_cache', 'clean', 'all', 'ALL_BUILD', 'ZERO_CHECK'];
   if (inclTest) {
@@ -930,7 +959,7 @@ async function submitNewProject() {
     const tt = document.getElementById('np-test-target').value.trim() || name + '_smoke';
     if (CMAKE_RESERVED.includes(tt)) {
       statusEl.className = 'text-sm text-red-400';
-      statusEl.textContent = `目标名 "${tt}" 是 CMake 保留名称，启用 CTest 后不可使用。请改用如 "${name}_smoke" 等名称。`;
+      statusEl.textContent = `Target name "${tt}" is reserved by CMake when CTest is enabled. Use a different name like "${name}_smoke".`;
       statusEl.classList.remove('hidden'); return;
     }
     const libT = targets.find(t => t.kind === 'lib');
@@ -957,17 +986,265 @@ async function submitNewProject() {
   const res = await api('POST', '/api/new-project', cfg);
   if (res.ok) {
     statusEl.className = 'text-sm text-green-400';
-    statusEl.textContent = '✓ Created projects/' + name + '  —  run Configure + Build to compile.';
+    statusEl.textContent = 'Created projects/' + name + ' -- run Configure + Build to compile.';
   } else {
     statusEl.className = 'text-sm text-red-400';
     statusEl.textContent = 'Error: ' + res.error;
   }
 }
 
-// ─── Watch ────────────────────────────────────────────────────────────────────
+// Cross Compile
+let _toolchainList = [];
+
+async function loadToolchains() {
+  _toolchainList = await api('GET', '/api/toolchains');
+  const sel = document.getElementById('xc-toolchain');
+  const bsel = document.getElementById('b-toolchain');
+  const prev = sel.value;
+  const bprev = bsel.value;
+
+  const opts = '<option value="">(select a toolchain)</option>' +
+    _toolchainList.map(t =>
+      `<option value="${esc(t.path)}" data-name="${esc(t.name)}">${esc(t.name)} (${esc(t.system || '?')} / ${esc(t.processor || '?')})</option>`
+    ).join('');
+  sel.innerHTML = opts;
+  if (prev) sel.value = prev;
+
+  const bopts = '<option value="">(native -- no toolchain)</option>' +
+    _toolchainList.map(t =>
+      `<option value="${esc(t.path)}">${esc(t.name)} (${esc(t.system || '?')}/${esc(t.processor || '?')})</option>`
+    ).join('');
+  bsel.innerHTML = bopts;
+  if (bprev) bsel.value = bprev;
+}
+
+async function onToolchainSelect() {
+  const sel = document.getElementById('xc-toolchain');
+  const opt = sel.selectedOptions[0];
+  if (!opt || !opt.dataset.name) return;
+  const name = opt.dataset.name;
+  const t = _toolchainList.find(x => x.name === name);
+  if (t) {
+    document.getElementById('xc-dir').value = 'build-' + t.name;
+  }
+  const res = await api('GET', '/api/toolchain?name=' + encodeURIComponent(name));
+  if (res.content !== undefined) {
+    document.getElementById('xc-edit-name').value = name;
+    document.getElementById('xc-edit-content').value = res.content;
+  }
+}
+
+async function xcBuild(action) {
+  const tcPath = document.getElementById('xc-toolchain').value;
+  const dir = document.getElementById('xc-dir').value.trim() || 'build-cross';
+  const btype = document.getElementById('xc-type').value;
+  const logEl = document.getElementById('xc-log');
+  const statusEl = document.getElementById('xc-status');
+
+  let cmd;
+  if (action === 'configure') {
+    if (!tcPath) {
+      statusEl.className = 'text-sm text-red-400';
+      statusEl.textContent = 'Select a toolchain file first.';
+      statusEl.classList.remove('hidden');
+      return;
+    }
+    cmd = ['cmake', '-S', '.', '-B', dir,
+           '-DCMAKE_TOOLCHAIN_FILE=' + tcPath,
+           '-DCMAKE_BUILD_TYPE=' + btype];
+  } else if (action === 'build') {
+    cmd = ['cmake', '--build', dir];
+  } else if (action === 'test') {
+    cmd = ['ctest', '--test-dir', dir, '--output-on-failure'];
+  }
+
+  logEl.textContent += '\n$ ' + cmd.join(' ') + '\n';
+  logEl.scrollTop = logEl.scrollHeight;
+  statusEl.className = 'text-sm text-yellow-400';
+  statusEl.textContent = 'Running ' + action + '...';
+  statusEl.classList.remove('hidden');
+
+  const res = await api('POST', '/api/run', { cmd });
+  if (res.error) {
+    statusEl.className = 'text-sm text-red-400';
+    statusEl.textContent = 'Error: ' + res.error;
+    return;
+  }
+  streamJob(res.job_id, logEl, ok => {
+    statusEl.className = 'text-sm ' + (ok ? 'text-green-400' : 'text-red-400');
+    statusEl.textContent = action + (ok ? ' succeeded' : ' failed');
+  });
+}
+
+const TOOLCHAIN_TEMPLATES = {
+  'linux-aarch64': `# Linux AArch64 (ARM64) cross-compilation with GCC
+# Prerequisites: sudo apt install gcc-aarch64-linux-gnu g++-aarch64-linux-gnu
+
+set(CMAKE_SYSTEM_NAME Linux)
+set(CMAKE_SYSTEM_PROCESSOR aarch64)
+
+set(CMAKE_C_COMPILER   aarch64-linux-gnu-gcc)
+set(CMAKE_CXX_COMPILER aarch64-linux-gnu-g++)
+
+set(CMAKE_FIND_ROOT_PATH /usr/aarch64-linux-gnu)
+set(CMAKE_FIND_ROOT_PATH_MODE_PROGRAM NEVER)
+set(CMAKE_FIND_ROOT_PATH_MODE_LIBRARY ONLY)
+set(CMAKE_FIND_ROOT_PATH_MODE_INCLUDE ONLY)
+set(CMAKE_FIND_ROOT_PATH_MODE_PACKAGE ONLY)
+`,
+  'linux-armv7': `# Linux ARMv7 (32-bit ARM) cross-compilation with GCC
+# Prerequisites: sudo apt install gcc-arm-linux-gnueabihf g++-arm-linux-gnueabihf
+
+set(CMAKE_SYSTEM_NAME Linux)
+set(CMAKE_SYSTEM_PROCESSOR armv7l)
+
+set(CMAKE_C_COMPILER   arm-linux-gnueabihf-gcc)
+set(CMAKE_CXX_COMPILER arm-linux-gnueabihf-g++)
+
+set(CMAKE_FIND_ROOT_PATH /usr/arm-linux-gnueabihf)
+set(CMAKE_FIND_ROOT_PATH_MODE_PROGRAM NEVER)
+set(CMAKE_FIND_ROOT_PATH_MODE_LIBRARY ONLY)
+set(CMAKE_FIND_ROOT_PATH_MODE_INCLUDE ONLY)
+set(CMAKE_FIND_ROOT_PATH_MODE_PACKAGE ONLY)
+`,
+  'mingw': `# Windows x86_64 cross-compilation via MinGW-w64
+# Prerequisites: sudo apt install mingw-w64
+
+set(CMAKE_SYSTEM_NAME Windows)
+set(CMAKE_SYSTEM_PROCESSOR x86_64)
+
+set(CMAKE_C_COMPILER   x86_64-w64-mingw32-gcc)
+set(CMAKE_CXX_COMPILER x86_64-w64-mingw32-g++)
+set(CMAKE_RC_COMPILER  x86_64-w64-mingw32-windres)
+
+set(CMAKE_FIND_ROOT_PATH /usr/x86_64-w64-mingw32)
+set(CMAKE_FIND_ROOT_PATH_MODE_PROGRAM NEVER)
+set(CMAKE_FIND_ROOT_PATH_MODE_LIBRARY ONLY)
+set(CMAKE_FIND_ROOT_PATH_MODE_INCLUDE ONLY)
+set(CMAKE_FIND_ROOT_PATH_MODE_PACKAGE ONLY)
+`,
+  'emscripten': `# WebAssembly cross-compilation via Emscripten
+# Prerequisites: Install emsdk, then source emsdk_env.sh
+
+if(DEFINED ENV{EMSDK})
+  set(_emsdk "$ENV{EMSDK}")
+elseif(DEFINED EMSDK_ROOT)
+  set(_emsdk "\${EMSDK_ROOT}")
+else()
+  message(FATAL_ERROR "Set EMSDK env var or pass -DEMSDK_ROOT=...")
+endif()
+
+set(_em_tc "\${_emsdk}/upstream/emscripten/cmake/Modules/Platform/Emscripten.cmake")
+if(EXISTS "\${_em_tc}")
+  include("\${_em_tc}")
+else()
+  set(CMAKE_SYSTEM_NAME Emscripten)
+  set(CMAKE_SYSTEM_PROCESSOR wasm32)
+  set(CMAKE_C_COMPILER   "\${_emsdk}/upstream/emscripten/emcc")
+  set(CMAKE_CXX_COMPILER "\${_emsdk}/upstream/emscripten/em++")
+endif()
+`,
+  'android': `# Android cross-compilation via NDK
+# Pass -DANDROID_NDK=/path/to/ndk or set ANDROID_NDK_HOME
+
+if(DEFINED ANDROID_NDK)
+  set(_ndk "\${ANDROID_NDK}")
+elseif(DEFINED ENV{ANDROID_NDK_HOME})
+  set(_ndk "$ENV{ANDROID_NDK_HOME}")
+else()
+  message(FATAL_ERROR "Set ANDROID_NDK or ANDROID_NDK_HOME")
+endif()
+
+set(ANDROID_ABI "arm64-v8a" CACHE STRING "")
+set(ANDROID_PLATFORM "android-24" CACHE STRING "")
+
+include("\${_ndk}/build/cmake/android.toolchain.cmake")
+`,
+  'macos-arm64': `# macOS ARM64 (Apple Silicon) cross-compilation
+
+set(CMAKE_SYSTEM_NAME Darwin)
+set(CMAKE_SYSTEM_PROCESSOR arm64)
+
+set(CMAKE_OSX_ARCHITECTURES arm64)
+
+set(CMAKE_C_COMPILER   clang)
+set(CMAKE_CXX_COMPILER clang++)
+`,
+  'blank': `# Custom toolchain file
+# set(CMAKE_SYSTEM_NAME <target-os>)
+# set(CMAKE_SYSTEM_PROCESSOR <target-arch>)
+# set(CMAKE_C_COMPILER   <c-compiler>)
+# set(CMAKE_CXX_COMPILER <cxx-compiler>)
+`
+};
+
+function applyTemplate() {
+  const sel = document.getElementById('xc-template');
+  const tpl = TOOLCHAIN_TEMPLATES[sel.value];
+  if (tpl) {
+    document.getElementById('xc-edit-content').value = tpl;
+    if (!document.getElementById('xc-edit-name').value) {
+      document.getElementById('xc-edit-name').value = sel.value;
+    }
+  }
+  sel.value = '';
+}
+
+function newToolchain() {
+  document.getElementById('xc-edit-name').value = '';
+  document.getElementById('xc-edit-content').value = '';
+  const statusEl = document.getElementById('xc-edit-status');
+  statusEl.classList.add('hidden');
+}
+
+async function saveCurrentToolchain() {
+  const name = document.getElementById('xc-edit-name').value.trim();
+  const content = document.getElementById('xc-edit-content').value;
+  const statusEl = document.getElementById('xc-edit-status');
+
+  if (!name) {
+    statusEl.className = 'text-xs text-red-400';
+    statusEl.textContent = 'Enter a filename.';
+    statusEl.classList.remove('hidden');
+    return;
+  }
+  const res = await api('POST', '/api/toolchain', { name, content });
+  if (res.ok) {
+    statusEl.className = 'text-xs text-green-400';
+    statusEl.textContent = 'Saved: ' + (res.path || name + '.cmake');
+    statusEl.classList.remove('hidden');
+    loadToolchains();
+  } else {
+    statusEl.className = 'text-xs text-red-400';
+    statusEl.textContent = 'Error: ' + (res.error || 'unknown');
+    statusEl.classList.remove('hidden');
+  }
+}
+
+async function deleteCurrentToolchain() {
+  const name = document.getElementById('xc-edit-name').value.trim();
+  const statusEl = document.getElementById('xc-edit-status');
+  if (!name) return;
+  if (!confirm('Delete toolchain "' + name + '.cmake"?')) return;
+  const res = await api('POST', '/api/toolchain/delete', { name });
+  if (res.ok) {
+    document.getElementById('xc-edit-name').value = '';
+    document.getElementById('xc-edit-content').value = '';
+    statusEl.className = 'text-xs text-green-400';
+    statusEl.textContent = 'Deleted.';
+    statusEl.classList.remove('hidden');
+    loadToolchains();
+  } else {
+    statusEl.className = 'text-xs text-red-400';
+    statusEl.textContent = 'Error: ' + (res.error || 'unknown');
+    statusEl.classList.remove('hidden');
+  }
+}
+
+// Watch
 function onWatchGenChange() {
   const gen = document.getElementById('w-gen').value;
-  const isMulti = MULTI_CONFIG_GENERATORS.includes(gen);
+  const isMulti = MULTI_CONFIG_GENS.includes(gen);
   document.getElementById('w-type').disabled = isMulti;
   document.getElementById('w-config').disabled = !isMulti;
 }
@@ -978,7 +1255,7 @@ async function startWatch() {
   const btype = document.getElementById('w-type').value;
   const config = document.getElementById('w-config').value;
   const interval = document.getElementById('w-interval').value;
-  const isMulti = MULTI_CONFIG_GENERATORS.includes(gen);
+  const isMulti = MULTI_CONFIG_GENS.includes(gen);
   const logEl = document.getElementById('watch-log');
 
   const cmd = ['python', 'cmake/watch_build.py', '--build', dir, '--interval', String(interval)];
@@ -997,7 +1274,7 @@ async function startWatch() {
   }
   document.getElementById('w-start-btn').classList.add('hidden');
   document.getElementById('w-stop-btn').classList.remove('hidden');
-  document.getElementById('w-status').textContent = 'Watching…';
+  document.getElementById('w-status').textContent = 'Watching...';
 
   streamJob(res.job_id, logEl, () => {
     document.getElementById('w-start-btn').classList.remove('hidden');
@@ -1013,30 +1290,29 @@ function stopWatch() {
   document.getElementById('w-status').textContent = 'Stream closed (background process may persist).';
 }
 
-// ─── Targets ──────────────────────────────────────────────────────────────────
+// Targets
 let _targetData = null;
 let _targetFilter = 'all';
 
-mermaid.initialize({ startOnLoad: false, theme: 'base',
+mermaid.initialize({ startOnLoad: false, theme: 'dark',
   themeVariables: {
     darkMode: true,
-    background: '#020912',
-    primaryColor: '#060d1a',
-    primaryBorderColor: '#0d1f35',
-    primaryTextColor: '#c8dff0',
-    lineColor: '#1a4060',
-    edgeLabelBackground: '#020912',
-    clusterBkg: '#060d1a',
-    clusterBorder: '#0d1f35',
-    titleColor: '#c8dff0',
-    fontFamily: 'JetBrains Mono, monospace',
+    background: '#1a1a1a',
+    primaryColor: '#2a2a2a',
+    primaryBorderColor: '#444',
+    primaryTextColor: '#d4d4d4',
+    lineColor: '#555',
+    edgeLabelBackground: '#1a1a1a',
+    clusterBkg: '#222',
+    clusterBorder: '#444',
+    titleColor: '#d4d4d4',
     fontSize: '12px',
   }
 });
 
 async function loadTargets() {
   document.getElementById('targets-graph').innerHTML =
-    '<div class="text-sm py-8" style="color:var(--c-text-dim);text-align:center">// scanning…</div>';
+    '<div class="text-sm py-8" style="color:var(--c-text-dim);text-align:center">Scanning...</div>';
   document.getElementById('targets-table').innerHTML = '';
   const data = await api('GET', '/api/target-graph');
   if (data.error) {
@@ -1072,7 +1348,6 @@ function renderMetricsTable(data, filter) {
   else if (filter === 'lib')   nodes = nodes.filter(n => n.type === 'library');
   else if (filter === 'iface') nodes = nodes.filter(n => n.type === 'interface');
 
-  // Sort by instability desc, then by name
   const sorted = [...nodes].sort((a, b) => {
     const ia = a.metrics.instability ?? -1;
     const ib = b.metrics.instability ?? -1;
@@ -1080,14 +1355,14 @@ function renderMetricsTable(data, filter) {
   });
 
   const iBar = (v) => {
-    if (v === null) return '<span class="text-gray-600">—</span>';
+    if (v === null) return '<span class="text-gray-600">--</span>';
     const pct = Math.round(v * 100);
     const color = v < 0.3 ? 'bg-green-600' : v < 0.7 ? 'bg-yellow-500' : 'bg-red-600';
     return `<div class="flex items-center gap-2">
       <div class="w-16 h-1.5 bg-gray-800 rounded-full overflow-hidden">
         <div class="${color} h-full rounded-full" style="width:${pct}%"></div>
       </div>
-      <span class="text-xs font-mono ${v < 0.3 ? 'text-green-400' : v < 0.7 ? 'text-yellow-400' : 'text-red-400'}">${v.toFixed(2)}</span>
+      <span class="text-xs ${v < 0.3 ? 'text-green-400' : v < 0.7 ? 'text-yellow-400' : 'text-red-400'}" style="font-family:'Cascadia Code','Consolas',monospace">${v.toFixed(2)}</span>
     </div>`;
   };
 
@@ -1096,18 +1371,18 @@ function renderMetricsTable(data, filter) {
   el.className = 'card overflow-auto';
   el.innerHTML = `
     <div class="flex items-center justify-between mb-3">
-      <div class="section-title mb-0">耦合度指标</div>
-      ${hasCycle ? '<span class="tag" style="background:#7f1d1d;color:#fca5a5">⚠ 检测到循环依赖</span>' : ''}
+      <div class="section-title mb-0" style="border:none;padding:0">Coupling Metrics</div>
+      ${hasCycle ? '<span class="tag" style="background:#7f1d1d;color:#fca5a5">Cycle detected</span>' : ''}
     </div>
     <table class="w-full text-xs">
       <thead>
         <tr class="border-b border-gray-800 text-gray-500">
           <th class="text-left py-2 pr-4 font-medium">Target</th>
-          <th class="text-left py-2 pr-4 font-medium" title="Afferent: 依赖本模块的数量">Ca ↑</th>
-          <th class="text-left py-2 pr-4 font-medium" title="Efferent: 本模块依赖的数量">Ce ↓</th>
-          <th class="text-left py-2 pr-4 font-medium" title="Instability = Ce/(Ca+Ce)，0=稳定 1=不稳定">I 不稳定性</th>
-          <th class="text-left py-2 pr-4 font-medium" title="传递依赖总数">传递依赖</th>
-          <th class="text-left py-2 font-medium">状态</th>
+          <th class="text-left py-2 pr-4 font-medium" title="Afferent coupling: how many modules depend on this one">Ca</th>
+          <th class="text-left py-2 pr-4 font-medium" title="Efferent coupling: how many modules this one depends on">Ce</th>
+          <th class="text-left py-2 pr-4 font-medium" title="Instability = Ce/(Ca+Ce), 0=stable 1=unstable">Instability</th>
+          <th class="text-left py-2 pr-4 font-medium" title="Transitive dependency count">Transitive</th>
+          <th class="text-left py-2 font-medium">Status</th>
         </tr>
       </thead>
       <tbody>
@@ -1117,20 +1392,20 @@ function renderMetricsTable(data, filter) {
           const stableTag = m.instability !== null && m.instability < 0.3 && m.ca > 0
             ? '<span class="tag tag-green" style="font-size:0.6rem">STABLE</span>' : '';
           return `<tr class="border-b border-gray-800 hover:bg-gray-900">
-            <td class="py-2 pr-4 font-mono text-gray-200">${esc(n.id)}</td>
-            <td class="py-2 pr-4 text-blue-400 font-mono">${m.ca}</td>
-            <td class="py-2 pr-4 text-purple-400 font-mono">${m.ce}</td>
+            <td class="py-2 pr-4 text-gray-200" style="font-family:'Cascadia Code','Consolas',monospace">${esc(n.id)}</td>
+            <td class="py-2 pr-4 text-blue-400" style="font-family:'Cascadia Code','Consolas',monospace">${m.ca}</td>
+            <td class="py-2 pr-4 text-purple-400" style="font-family:'Cascadia Code','Consolas',monospace">${m.ce}</td>
             <td class="py-2 pr-4">${iBar(m.instability)}</td>
-            <td class="py-2 pr-4 text-gray-400 font-mono">${m.transitive_count}</td>
+            <td class="py-2 pr-4 text-gray-400" style="font-family:'Cascadia Code','Consolas',monospace">${m.transitive_count}</td>
             <td class="py-2 flex gap-1">${cycleTag}${stableTag}</td>
           </tr>`;
         }).join('')}
       </tbody>
     </table>
     <div class="mt-3 text-xs space-y-0.5" style="color:var(--c-text-dim)">
-      <div><span class="text-blue-400">Ca</span> Afferent Coupling — 有多少模块依赖本模块（越高越稳定，改动影响面越大）</div>
-      <div><span class="text-purple-400">Ce</span> Efferent Coupling — 本模块依赖多少模块（越高越脆弱）</div>
-      <div><span style="color:var(--c-text-mid)">I</span>  Instability = Ce ÷ (Ca + Ce)，0 = 完全稳定，1 = 完全不稳定</div>
+      <div><span class="text-blue-400">Ca</span> Afferent Coupling -- modules that depend on this (higher = more stable, bigger blast radius)</div>
+      <div><span class="text-purple-400">Ce</span> Efferent Coupling -- modules this depends on (higher = more fragile)</div>
+      <div><span style="color:var(--c-text-mid)">I</span>  Instability = Ce / (Ca + Ce), 0 = fully stable, 1 = fully unstable</div>
     </div>`;
 }
 
@@ -1140,14 +1415,12 @@ async function renderTargetGraph(data, filter) {
 
   const nodeMap = Object.fromEntries(nodes.map(n => [n.id, n]));
 
-  // Determine which nodes to show
   let visible = new Set(nodes.map(n => n.id));
   if (filter === 'exec')  visible = new Set(nodes.filter(n => n.type === 'executable' && !n.is_test).map(n => n.id));
   else if (filter === 'test')  visible = new Set(nodes.filter(n => n.is_test).map(n => n.id));
   else if (filter === 'lib')   visible = new Set(nodes.filter(n => n.type === 'library').map(n => n.id));
   else if (filter === 'iface') visible = new Set(nodes.filter(n => n.type === 'interface').map(n => n.id));
 
-  // Include direct deps of visible nodes
   if (filter !== 'all') {
     for (const e of edges) {
       if (visible.has(e.from)) visible.add(e.to);
@@ -1155,7 +1428,7 @@ async function renderTargetGraph(data, filter) {
   }
 
   if (!visible.size) {
-    graphEl.innerHTML = '<div class="text-sm py-8" style="color:var(--c-text-dim);text-align:center">无匹配 target</div>';
+    graphEl.innerHTML = '<div class="text-sm py-8" style="color:var(--c-text-dim);text-align:center">No matching targets</div>';
     return;
   }
 
@@ -1226,29 +1499,29 @@ function renderTargetTable(data, filter) {
 
   tableEl.innerHTML = nodes.map(n => {
     const deps = (directDeps[n.id] || []).map(e =>
-      `<span class="font-mono text-xs ${kindColor(e.kind)}">${esc(e.to)}</span>
+      `<span class="text-xs ${kindColor(e.kind)}" style="font-family:'Cascadia Code','Consolas',monospace">${esc(e.to)}</span>
        <span class="text-xs" style="color:var(--c-text-dim)">${e.kind}</span>`
-    ).join(`<span class="mx-1" style="color:var(--c-border2)">·</span>`);
+    ).join(`<span class="mx-1" style="color:var(--c-border2)">|</span>`);
 
     const trans = n.transitive_deps.filter(d => !(directDeps[n.id]||[]).some(e=>e.to===d));
     const transHtml = trans.length
-      ? `<div class="mt-2 text-xs" style="color:var(--c-text-dim)">传递依赖：${trans.map(d=>`<span class="font-mono" style="color:var(--c-text-mid)">${esc(d)}</span>`).join(' › ')}</div>`
+      ? `<div class="mt-2 text-xs" style="color:var(--c-text-dim)">Transitive: ${trans.map(d=>`<span style="color:var(--c-text-mid);font-family:'Cascadia Code','Consolas',monospace">${esc(d)}</span>`).join(' > ')}</div>`
       : '';
 
     return `<div class="card space-y-2">
       <div class="flex items-center gap-2 flex-wrap">
         ${typeBadge(n)}
-        <span class="font-mono font-semibold text-sm" style="color:var(--c-text)">${esc(n.id)}</span>
-        ${n.alias ? `<span class="text-xs font-mono" style="color:var(--c-text-dim)">${esc(n.alias)}</span>` : ''}
-        <span class="ml-auto text-xs font-mono" style="color:var(--c-text-dim)">${esc(n.file)}</span>
+        <span class="font-semibold text-sm" style="color:var(--c-text);font-family:'Cascadia Code','Consolas',monospace">${esc(n.id)}</span>
+        ${n.alias ? `<span class="text-xs" style="color:var(--c-text-dim);font-family:'Cascadia Code','Consolas',monospace">${esc(n.alias)}</span>` : ''}
+        <span class="ml-auto text-xs" style="color:var(--c-text-dim);font-family:'Cascadia Code','Consolas',monospace">${esc(n.file)}</span>
       </div>
-      ${deps ? `<div class="flex flex-wrap items-center gap-2">${deps}</div>` : `<div class="text-xs" style="color:var(--c-text-dim)">无依赖</div>`}
+      ${deps ? `<div class="flex flex-wrap items-center gap-2">${deps}</div>` : `<div class="text-xs" style="color:var(--c-text-dim)">No dependencies</div>`}
       ${transHtml}
     </div>`;
   }).join('');
 }
 
-// ─── Reports ──────────────────────────────────────────────────────────────────
+// Reports
 let _allReports = [];
 
 async function loadReports() {
@@ -1257,10 +1530,9 @@ async function loadReports() {
   ]);
   _allReports = list;
 
-  // 填充目录过滤器
   const sel = document.getElementById('reports-filter');
   const prev = sel.value;
-  sel.innerHTML = '<option value="">所有构建目录</option>' +
+  sel.innerHTML = '<option value="">All build dirs</option>' +
     buildDirs.map(d => `<option value="${esc(d.name)}">${esc(d.name)}</option>`).join('');
   if (prev) sel.value = prev;
 
@@ -1273,31 +1545,26 @@ function filterReports() {
   const filtered = filter ? _allReports.filter(r => r.build_dir === filter) : _allReports;
 
   if (!filtered.length) {
-    el.innerHTML = '<p class="text-xs p-2" style="color:var(--c-text-dim)">暂无报告。<br>执行 Build → Report 后刷新。</p>';
+    el.innerHTML = '<p class="text-xs p-2" style="color:var(--c-text-dim)">No reports yet. Run Build > Report then refresh.</p>';
     return;
   }
 
-  // 按 build_dir 分组
   const groups = {};
   for (const r of filtered) {
     (groups[r.build_dir] = groups[r.build_dir] || []).push(r);
   }
 
-  const fileIcon = { json: '▣', xml: '◎', log: '≡' };
   el.innerHTML = Object.entries(groups).map(([dir, files]) => `
     <div class="mb-3">
-      ${filter ? '' : `<div class="text-xs px-2 py-1 font-mono" style="color:var(--c-text-dim)">${esc(dir)}</div>`}
+      ${filter ? '' : `<div class="text-xs px-2 py-1" style="color:var(--c-text-dim);font-family:'Cascadia Code','Consolas',monospace">${esc(dir)}</div>`}
       ${files.map(r => {
-        const ext = r.name.split('.').pop();
-        const icon = fileIcon[ext] || '▪';
         return `<button class="w-full text-left rounded px-3 py-2 transition-colors"
                   style="background:none;border:none;cursor:pointer"
-                  onmouseover="this.style.background='rgba(0,200,232,0.05)'"
+                  onmouseover="this.style.background='#2a2a2a'"
                   onmouseout="this.style.background='none'"
                   onclick="viewReport('${esc(r.path)}','${esc(r.build_dir)}')">
           <div class="flex items-center gap-1.5">
-            <span style="color:var(--c-cyan);font-size:0.75rem">${icon}</span>
-            <span class="text-xs font-mono" style="color:var(--c-text)">${esc(r.name)}</span>
+            <span class="text-xs" style="color:var(--c-text);font-family:'Cascadia Code','Consolas',monospace">${esc(r.name)}</span>
           </div>
         </button>`;
       }).join('')}
@@ -1307,16 +1574,15 @@ function filterReports() {
 
 async function viewReport(path, buildDir) {
   const viewer = document.getElementById('report-viewer');
-  viewer.innerHTML = '<div class="text-sm" style="color:var(--c-text-mid)">Loading…</div>';
+  viewer.innerHTML = '<div class="text-sm" style="color:var(--c-text-mid)">Loading...</div>';
 
   const name = path.split('/').pop();
-  const header = `<div class="text-xs font-mono mb-4" style="color:var(--c-text-dim)">${esc(path)}</div>`;
+  const header = `<div class="text-xs mb-4" style="color:var(--c-text-dim);font-family:'Cascadia Code','Consolas',monospace">${esc(path)}</div>`;
 
-  // JUnit XML 和 tests.log：复用 test results API
   if (name === 'tests.junit.xml' || name === 'tests.log') {
     const tr = await api('GET', '/api/test-results?build=' + encodeURIComponent(buildDir));
     if (!tr || !tr.total) {
-      viewer.innerHTML = header + '<p class="text-sm" style="color:var(--c-text-dim)">暂无测试结果数据。</p>';
+      viewer.innerHTML = header + '<p class="text-sm" style="color:var(--c-text-dim)">No test results available.</p>';
       return;
     }
     viewer.innerHTML = header + renderTestReportFull(tr);
@@ -1340,7 +1606,7 @@ function renderBuildReport(o) {
   const row = (label, val, mono) => val
     ? `<div class="flex gap-3 py-2 last:border-0" style="border-bottom:1px solid var(--c-border)">
          <div class="text-xs w-36 shrink-0" style="color:var(--c-text-dim)">${label}</div>
-         <div class="text-xs ${mono ? 'font-mono' : ''}" style="color:var(--c-text)">${esc(String(val))}</div>
+         <div class="text-xs ${mono ? '' : ''}" style="color:var(--c-text);${mono ? "font-family:'Cascadia Code','Consolas',monospace" : ''}">${esc(String(val))}</div>
        </div>` : '';
   const badge = (txt, color) => `<span class="tag tag-${color} mr-1">${esc(txt)}</span>`;
 
@@ -1351,34 +1617,34 @@ function renderBuildReport(o) {
   return `
   <div class="space-y-4 max-w-2xl">
     <div class="card">
-      <div class="section-title">项目</div>
-      ${row('名称', o.project)}
-      ${row('生成时间', o.timestamp)}
-      ${row('Git 提交', o.git_hash, true)}
-      ${row('耗时', o.elapsed_seconds !== 'unknown' ? o.elapsed_seconds + ' 秒' : '—')}
+      <div class="section-title">Project</div>
+      ${row('Name', o.project)}
+      ${row('Generated', o.timestamp)}
+      ${row('Git Commit', o.git_hash, true)}
+      ${row('Elapsed', o.elapsed_seconds !== 'unknown' ? o.elapsed_seconds + ' s' : '--')}
     </div>
     <div class="card">
-      <div class="section-title">构建</div>
-      ${row('生成器', o.generator, true)}
+      <div class="section-title">Build</div>
+      ${row('Generator', o.generator, true)}
       <div class="flex gap-3 py-2" style="border-bottom:1px solid var(--c-border)">
-        <div class="text-xs w-36 shrink-0" style="color:var(--c-text-dim)">配置</div>
+        <div class="text-xs w-36 shrink-0" style="color:var(--c-text-dim)">Config</div>
         <div>${configs.map(c => badge(c, 'gray')).join('')}</div>
       </div>
-      ${row('源码目录', o.source_dir, true)}
-      ${row('构建目录', o.build_dir, true)}
-      ${row('包含测试', o.tests_included ? '是' : '否')}
+      ${row('Source Dir', o.source_dir, true)}
+      ${row('Build Dir', o.build_dir, true)}
+      ${row('Tests Included', o.tests_included ? 'Yes' : 'No')}
     </div>
     <div class="card">
-      <div class="section-title">编译器</div>
+      <div class="section-title">Compiler</div>
       ${row('CXX', o.compiler_cxx, true)}
-      ${row('编译器 ID', o.compiler_cxx_id)}
-      ${row('版本', o.compiler_cxx_version, true)}
+      ${row('Compiler ID', o.compiler_cxx_id)}
+      ${row('Version', o.compiler_cxx_version, true)}
     </div>
     <div class="card">
-      <div class="section-title">系统</div>
+      <div class="section-title">System</div>
       ${row('OS', o.system_name)}
-      ${row('版本', o.system_version, true)}
-      ${row('处理器', o.system_processor, true)}
+      ${row('Version', o.system_version, true)}
+      ${row('Processor', o.system_processor, true)}
     </div>
   </div>`;
 }
@@ -1389,19 +1655,19 @@ function renderTestReportFull(tr) {
   const barColor = allPassed ? 'bg-green-500' : 'bg-red-500';
 
   const rows = tr.tests.map(t => {
-    const icon = t.status === 'passed' ? '<span class="text-green-400 text-base">✓</span>'
-               : t.status === 'skipped' ? '<span class="text-yellow-400 text-base">⊝</span>'
-               : '<span class="text-red-400 text-base">✗</span>';
+    const icon = t.status === 'passed' ? '<span class="text-green-400">OK</span>'
+               : t.status === 'skipped' ? '<span class="text-yellow-400">SKIP</span>'
+               : '<span class="text-red-400">FAIL</span>';
     const nameCol = t.status === 'failed' ? '#fca5a5'
                   : t.status === 'skipped' ? '#fde68a' : 'var(--c-text)';
     const msg = t.message
-      ? `<div class="mt-1 ml-6 text-xs font-mono rounded p-2 whitespace-pre-wrap" style="color:#fca5a5;background:rgba(127,29,29,0.25)">${esc(t.message)}</div>`
+      ? `<div class="mt-1 ml-6 text-xs rounded p-2 whitespace-pre-wrap" style="color:#fca5a5;background:rgba(127,29,29,0.25);font-family:'Cascadia Code','Consolas',monospace">${esc(t.message)}</div>`
       : '';
     return `<div class="py-2 last:border-0" style="border-bottom:1px solid var(--c-border)">
       <div class="flex items-center gap-3">
         ${icon}
         <span class="text-sm flex-1" style="color:${nameCol}">${esc(t.name)}</span>
-        <span class="text-xs font-mono" style="color:var(--c-text-dim)">${t.time}s</span>
+        <span class="text-xs" style="color:var(--c-text-dim);font-family:'Cascadia Code','Consolas',monospace">${t.time}s</span>
       </div>${msg}
     </div>`;
   }).join('');
@@ -1409,35 +1675,35 @@ function renderTestReportFull(tr) {
   return `
   <div class="max-w-2xl space-y-4">
     <div class="card">
-      <div class="section-title">测试汇总</div>
+      <div class="section-title">Test Summary</div>
       <div class="flex items-center gap-4 mb-3">
-        <div class="text-3xl font-bold ${allPassed ? 'glow-green' : ''}" style="color:${allPassed ? 'var(--c-green)' : '#f87171'}">${passRate}%</div>
+        <div class="text-3xl font-bold" style="color:${allPassed ? '#5cb85c' : '#f87171'}">${passRate}%</div>
         <div class="flex-1">
           <div class="h-2 rounded-full overflow-hidden mb-1" style="background:var(--c-border)">
             <div class="${barColor} h-full rounded-full" style="width:${passRate}%"></div>
           </div>
           <div class="text-xs" style="color:var(--c-text-mid)">
-            <span style="color:var(--c-green)">${tr.passed} 通过</span>
-            ${tr.failed ? ` · <span style="color:#f87171">${tr.failed} 失败</span>` : ''}
-            ${tr.skipped ? ` · <span style="color:#fde68a">${tr.skipped} 跳过</span>` : ''}
-            · 共 ${tr.total} 个
+            <span style="color:#5cb85c">${tr.passed} passed</span>
+            ${tr.failed ? ` / <span style="color:#f87171">${tr.failed} failed</span>` : ''}
+            ${tr.skipped ? ` / <span style="color:#fde68a">${tr.skipped} skipped</span>` : ''}
+            / ${tr.total} total
           </div>
         </div>
       </div>
     </div>
     <div class="card">
-      <div class="section-title">测试明细</div>
+      <div class="section-title">Test Details</div>
       ${rows}
     </div>
   </div>`;
 }
 
-// ─── Utilities ────────────────────────────────────────────────────────────────
+// Utilities
 function esc(s) {
   return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 }
 
-// ─── Init ─────────────────────────────────────────────────────────────────────
+// Init
 navigate('dashboard');
 </script>
 </body>

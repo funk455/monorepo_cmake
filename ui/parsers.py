@@ -1,10 +1,11 @@
-"""Parsers — CMake target graph, test results, and workspace discovery."""
+"""Parsers — CMake target graph, test results, workspace discovery, and toolchains."""
 
 import re
 import xml.etree.ElementTree as ET
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
+TOOLCHAINS_DIR = ROOT / "cmake" / "toolchains"
 
 
 # ─── Workspace discovery ──────────────────────────────────────────────────────
@@ -241,6 +242,60 @@ def _parse_junit(path: Path) -> dict:
     except Exception as e:
         return {"total": 0, "passed": 0, "failed": 0, "skipped": 0,
                 "tests": [], "source": "junit", "error": str(e)}
+
+
+# ─── Toolchain management ────────────────────────────────────────────────────
+
+def list_toolchains() -> list:
+    if not TOOLCHAINS_DIR.exists():
+        return []
+    result = []
+    for f in sorted(TOOLCHAINS_DIR.iterdir()):
+        if f.is_file() and f.suffix == ".cmake":
+            text = f.read_text(encoding="utf-8", errors="replace")
+            system = ""
+            processor = ""
+            for line in text.splitlines():
+                line = line.strip()
+                m = re.match(r'set\s*\(\s*CMAKE_SYSTEM_NAME\s+([A-Za-z0-9_]+)', line)
+                if m:
+                    system = m.group(1)
+                m = re.match(r'set\s*\(\s*CMAKE_SYSTEM_PROCESSOR\s+([A-Za-z0-9_]+)', line)
+                if m:
+                    processor = m.group(1)
+            result.append({
+                "name": f.stem,
+                "filename": f.name,
+                "system": system,
+                "processor": processor,
+                "path": str(f.relative_to(ROOT)).replace("\\", "/"),
+            })
+    return result
+
+
+def read_toolchain(name: str) -> dict:
+    f = TOOLCHAINS_DIR / (name + ".cmake")
+    if not f.exists() or not f.is_file():
+        return {"error": "not found"}
+    return {"name": name, "content": f.read_text(encoding="utf-8", errors="replace")}
+
+
+def save_toolchain(name: str, content: str) -> dict:
+    TOOLCHAINS_DIR.mkdir(parents=True, exist_ok=True)
+    safe = re.sub(r'[^a-zA-Z0-9_\-]', '', name)
+    if not safe:
+        return {"error": "invalid name"}
+    f = TOOLCHAINS_DIR / (safe + ".cmake")
+    f.write_text(content, encoding="utf-8")
+    return {"ok": True, "path": str(f.relative_to(ROOT)).replace("\\", "/")}
+
+
+def delete_toolchain(name: str) -> dict:
+    f = TOOLCHAINS_DIR / (name + ".cmake")
+    if not f.exists():
+        return {"error": "not found"}
+    f.unlink()
+    return {"ok": True}
 
 
 def _parse_lasttest(path: Path) -> dict:

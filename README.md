@@ -1,106 +1,243 @@
-# CMake 工作区示例（monorepo-cmake-sample）
+# monorepo-cmake-sample
 
-这是一个基于 CMake 的多项目工作区示例，统一了构建输出、构建类型、目标创建、安装导出与测试注册，并提供命令行引导生成新项目骨架。
+A CMake-based monorepo build system with a web dashboard. Provides unified target creation, dependency management, cross-compilation, testing, packaging, and a browser UI for the full build workflow.
 
-## 目录结构
-- `cmake/`：自定义 CMake 模块与引导式模板生成器（`cli.py`）。
-- `projects/`：工作区内子项目（示例包含 `netlib`、`projectlib`、`utils`）。
-- `CMakeLists.txt`：工作区入口，统一加载模块并聚合子项目。
-- `config.md`：`cmake/` 中可配置变量说明。
-- `SUMMARY.md` / `DIAGRAMS.md`：项目总结与图示说明。
+## Directory Structure
 
-## 快速开始
+```
+CMakeLists.txt              workspace entry point
+cmake/
+  AddTarget.cmake           unified target creation (exe / lib / interface)
+  AddWorkspaces.cmake       auto-discover and aggregate subprojects
+  AddModules.cmake          per-project module aggregation
+  SetupPackage.cmake        install / export / find_package support
+  SetupGTest.cmake          Google Test integration via FetchContent
+  BuildType.cmake           default build type enforcement
+  UnifiedOutputDirs.cmake   centralized output directories
+  Reports.cmake             build & test report generation
+  AddUninstall.cmake        `make uninstall` target
+  DeployPackage.cmake       packaging script
+  toolchains/               cross-compilation toolchain files
+    linux-aarch64-gcc.cmake
+    linux-armv7-gcc.cmake
+    mingw-w64.cmake
+    emscripten.cmake
+    android-ndk.cmake
+    macos-arm64-clang.cmake
+  cli.py                    interactive project scaffolding
+  build.py                  multi-platform build helper
+  watch_build.py            file-watch auto-rebuild
+projects/
+  netlib/                   example: header-only + library with install/export
+  projectlib/               example: library + app + GTest tests
+  utils/                    example: utility library
+ui/
+  static/index.html         web dashboard (single-file SPA)
+  handler.py                HTTP routing & SSE streaming
+  jobs.py                   subprocess job runner
+  parsers.py                CMake graph, test results, toolchain parsers
+ui.py                       dashboard server entry point
+```
+
+## Quick Start
+
 ```bash
+# configure and build
 cmake -S . -B build
 cmake --build build
+
+# run tests
+ctest --test-dir build --output-on-failure
 ```
 
-运行测试（若启用）：
+## Web Dashboard
+
 ```bash
-ctest --test-dir build
+python ui.py
+# open http://localhost:8080
 ```
 
-## 多平台构建目录
-使用构建助手生成不同平台/生成器的独立构建目录：
+Features:
+- **Dashboard** -- project overview, build directory status, test results
+- **Build** -- configure / build / test / install with generator, build type, toolchain selection
+- **Targets** -- dependency graph visualization (Mermaid), coupling metrics (Ca / Ce / Instability), cycle detection
+- **New Project** -- scaffolding wizard with live preview, GTest option, preset save/load
+- **Cross Compile** -- toolchain file management (create from template / edit / delete), one-click cross-build
+- **Watch Mode** -- auto-rebuild on file changes
+- **Reports** -- build report and test result viewer (JSON / JUnit XML)
+
+## Adding a New Project
+
+### Via CLI
+
+```bash
+python cmake/cli.py                    # interactive
+python cmake/cli.py --preset preset.json  # from saved preset
+```
+
+### Via Web UI
+
+Open the dashboard, go to **New Project**, fill in the form, click **Generate Project**.
+
+### Manual
+
+Create `projects/<name>/CMakeLists.txt`:
+
+```cmake
+project(<name> VERSION 0.1.0 LANGUAGES CXX)
+list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake")
+include(AddModules)
+set(PROJECT_NAMESPACE "<ns>")
+add_modules(<module1> <module2>)
+```
+
+Each module directory gets its own `CMakeLists.txt` using `AddTarget.cmake`:
+
+```cmake
+set(DIR_TARGET_NAME  <target>)
+set(DIR_TARGET_TYPE  LIBRARY)          # EXECUTABLE | LIBRARY | INTERFACE
+set(DIR_SOURCES      foo.cpp)
+set(DIR_HEADERS      foo.h)
+set(DIR_PUBLIC_DEPS  some::lib)
+set(DIR_ALIAS_PREFIX <ns>)
+include(${CMAKE_SOURCE_DIR}/cmake/AddTarget.cmake)
+```
+
+Then register the project in the root `CMakeLists.txt`:
+
+```cmake
+add_workspace_projects(
+  ROOT "${CMAKE_SOURCE_DIR}/projects"
+  ONLY netlib projectlib utils <name>
+)
+```
+
+## AddTarget.cmake Variables
+
+| Variable | Required | Default | Description |
+|---|---|---|---|
+| `DIR_TARGET_NAME` | yes | -- | Target name |
+| `DIR_TARGET_TYPE` | yes | -- | `EXECUTABLE`, `LIBRARY`, or `INTERFACE` |
+| `DIR_SOURCES` | for non-INTERFACE | -- | Source file list (no glob) |
+| `DIR_HEADERS` | no | `""` | Header file list |
+| `DIR_LIBRARY_KIND` | no | auto | `STATIC`, `SHARED`, or omit for CMake default |
+| `DIR_ALIAS_PREFIX` | no | `project` | Creates `<prefix>::<name>` alias |
+| `DIR_PUBLIC_DEPS` | no | -- | PUBLIC link dependencies |
+| `DIR_PRIVATE_DEPS` | no | -- | PRIVATE link dependencies |
+| `DIR_INTERFACE_DEPS` | no | -- | INTERFACE link dependencies |
+| `DIR_CXX_STD` | no | `cxx_std_20` | C++ standard feature |
+| `DIR_INCLUDE_CURRENT` | no | `ON` | Add current dir to include path |
+| `DIR_ENABLE_INSTALL` | no | `OFF` | Generate install rules |
+| `DIR_EXPORT_NAME` | no | `<project>Targets` | Export set name |
+| `DIR_REGISTER_TEST` | no | auto | Register as CTest (auto-on in `/tests/`) |
+| `DIR_USE_GTEST` | no | `OFF` | Link GTest and use `gtest_discover_tests` |
+| `DIR_ENABLE_FILE_SET` | no | `ON` | Use CMake 3.23+ file sets |
+| `DIR_POSITION_INDEPENDENT` | no | `ON` for libs | Set `POSITION_INDEPENDENT_CODE` |
+
+## Cross-Compilation
+
+### Via Web UI
+
+Go to **Cross Compile**, select a toolchain, set build directory, click **Configure** then **Build**.
+
+### Via CLI
+
+```bash
+cmake -S . -B build-arm64 \
+  -DCMAKE_TOOLCHAIN_FILE=cmake/toolchains/linux-aarch64-gcc.cmake \
+  -DCMAKE_BUILD_TYPE=Release
+cmake --build build-arm64
+```
+
+Included toolchain files:
+
+| File | Target |
+|---|---|
+| `linux-aarch64-gcc.cmake` | Linux ARM64 via GCC cross-compiler |
+| `linux-armv7-gcc.cmake` | Linux ARMv7 (32-bit) via GCC |
+| `mingw-w64.cmake` | Windows x86_64 via MinGW-w64 |
+| `emscripten.cmake` | WebAssembly via Emscripten |
+| `android-ndk.cmake` | Android via NDK |
+| `macos-arm64-clang.cmake` | macOS Apple Silicon via Clang |
+
+Custom toolchain files can be created in the web UI's toolchain editor or placed directly in `cmake/toolchains/`.
+
+## Install & Export
+
+Libraries with `DIR_ENABLE_INSTALL ON` can be installed and consumed via `find_package`:
+
+```cmake
+# in the library's CMakeLists.txt
+include(${CMAKE_SOURCE_DIR}/cmake/SetupPackage.cmake)
+setup_package(
+  PACKAGE_NAME      "mylib"
+  PACKAGE_NAMESPACE "myns"
+  APPEND_GIT_HASH   ON        # optional: version suffix with git hash
+)
+```
+
+```bash
+cmake --install build --prefix /usr/local
+```
+
+Consumers:
+
+```cmake
+find_package(mylib REQUIRED)
+target_link_libraries(app PRIVATE myns::mylib)
+```
+
+## Testing
+
+CTest is enabled at the workspace root. Test targets in `tests/` directories are auto-registered.
+
+For Google Test:
+
+```cmake
+set(DIR_USE_GTEST ON)    # links GTest::gtest_main, uses gtest_discover_tests
+```
+
+GTest is fetched automatically via `SetupGTest.cmake` (FetchContent with `find_package` fallback).
+
+## Reports
+
+```bash
+cmake --build build --target report-build   # build-report.json
+cmake --build build --target report-test    # tests.log + tests.junit.xml
+cmake --build build --target report-all     # both
+```
+
+Reports are written to `<build-dir>/reports/` and viewable in the web dashboard.
+
+## Watch Mode
+
+Auto-rebuild on source file changes:
+
+```bash
+python cmake/watch_build.py --build build --build-type Release
+```
+
+Options: `--interval` (seconds), `--exts` (file extensions), `--generator`, `--config` (multi-config).
+
+Also available in the web dashboard under **Watch Mode**.
+
+## Multi-Platform Build Helper
+
 ```bash
 python cmake/build.py --platform windows --generator "Visual Studio 17 2022" --config Release --build
 python cmake/build.py --platform linux --generator Ninja --build-type Release --build
 ```
 
-## 自动实时构建（监视模式）
-启动监听，文件变更后自动重新配置并构建：
-```bash
-python cmake/watch_build.py --build build --build-type Release
-```
+## Packaging
 
-可调参数：
-- `--interval`：扫描间隔（秒）
-- `--exts`：监听后缀（逗号分隔）
-- `--generator` / `--config`：多配置生成器支持
-
-## 生成新项目（引导式）
-交互式创建：
-```bash
-python cmake/cli.py
-```
-
-使用预设直接生成：
-```bash
-python cmake/cli.py --preset preset.json
-```
-
-> 首次引导会保存 `preset.json`，方便复用配置。
-
-## 打包（可选）
-根据当前结构打包构建产物、源码与文档：
 ```bash
 cmake -P cmake/DeployPackage.cmake
 ```
 
-可通过缓存变量控制是否复制源码/文档：
-- `DEPLOY_COPY_PROJECTS`（默认 ON）
-- `DEPLOY_COPY_DOCS`（默认 ON）
+Options via cache variables: `DEPLOY_COPY_PROJECTS` (ON), `DEPLOY_COPY_DOCS` (ON).
 
-## 构建/测试报告
-生成构建报告（`build/reports/build-report.json`）：
-```bash
-cmake --build build
-cmake --build build --target report-build
-```
-构建报告包含时间戳、`tests_included`、编译器信息、系统信息与 `elapsed_seconds` 等字段。
+## Requirements
 
-生成测试报告（`build/reports/tests.log`，若 CMake >= 3.21 还会生成 `tests.junit.xml`）：
-```bash
-cmake --build build
-cmake --build build --target report-test
-```
-
-一次生成全部报告：
-```bash
-cmake --build build
-cmake --build build --target report-all
-```
-
-## 目标创建与导出
-库目标使用 `AddTarget.cmake` 创建，导出与安装由 `SetupPackage.cmake` 完成。  
-目前导出配置在 **库目标所在目录** 管理，命名空间在 **上级项目目录** 统一设置：
-```cmake
-# projects/<proj>/CMakeLists.txt
-set(PROJECT_NAMESPACE "your_ns")
-
-# projects/<proj>/<lib>/CMakeLists.txt
-set(PKG_TARGET_NAME "your_lib")
-set(DIR_TARGET_NAME ${PKG_TARGET_NAME})
-include(${CMAKE_SOURCE_DIR}/cmake/AddTarget.cmake)
-include(${CMAKE_SOURCE_DIR}/cmake/SetupPackage.cmake)
-setup_package(
-  PACKAGE_NAME      "${PKG_TARGET_NAME}"
-  PACKAGE_NAMESPACE "${PROJECT_NAMESPACE}"
-  EXPORT_NAME       "${PKG_TARGET_NAME}Targets"
-  APPEND_GIT_HASH   ON
-)
-```
-
-## 说明
-- 为减少不必要的重新配置，目标源文件必须显式列出（不使用 glob）。
-- 工作区入口使用 `add_workspace_projects(DIRS ...)` 聚合子项目。
+- CMake >= 3.20
+- Python >= 3.7 (for UI and CLI tools, no pip dependencies)
+- C++20 capable compiler
