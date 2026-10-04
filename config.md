@@ -47,9 +47,7 @@ Internal locals (often prefixed with `_`) and loop variables are intentionally o
 - `CMAKE_RUNTIME_OUTPUT_DIRECTORY`: PATH. Set by this module.
 - `CMAKE_LIBRARY_OUTPUT_DIRECTORY`: PATH. Set by this module.
 - `CMAKE_ARCHIVE_OUTPUT_DIRECTORY`: PATH. Set by this module.
-- `CMAKE_RUNTIME_OUTPUT_DIRECTORY_<CFG>`: PATH. Per-config output dir (multi-config only).
-- `CMAKE_LIBRARY_OUTPUT_DIRECTORY_<CFG>`: PATH. Per-config output dir (multi-config only).
-- `CMAKE_ARCHIVE_OUTPUT_DIRECTORY_<CFG>`: PATH. Per-config output dir (multi-config only).
+- Multi-config generators append `<Config>/` automatically (`bin/Debug`, `bin/Release`), so configs never overwrite each other.
 - `CMAKE_BUILD_RPATH`: STRING (UNIX/APPLE). Set to library output dir.
 - `CMAKE_INSTALL_RPATH_USE_LINK_PATH`: BOOL (UNIX/APPLE). Set to `TRUE`.
 

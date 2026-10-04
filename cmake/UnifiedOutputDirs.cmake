@@ -23,20 +23,11 @@ else()
   set(_LIB "${CMAKE_BINARY_DIR}/${UNIFIED_LIB_SUBDIR}")
 endif()
 
-# 为单配置生成器设置统一输出目录。
+# 统一输出目录。多配置生成器（VS/Xcode/Ninja Multi-Config）会自动追加 <Config>/ 子目录，
+# 即 bin/Debug、bin/Release，不同配置的产物互不覆盖，因此不设置按配置的覆盖变量。
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${_BIN}")
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${_LIB}")
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${_LIB}")
-
-if(CMAKE_CONFIGURATION_TYPES)
-  # 为多配置生成器设置按配置的输出目录。
-  foreach(cfg IN LISTS CMAKE_CONFIGURATION_TYPES)
-    string(TOUPPER "${cfg}" cfgU)
-    set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_${cfgU} "${_BIN}")
-    set(CMAKE_LIBRARY_OUTPUT_DIRECTORY_${cfgU} "${_LIB}")
-    set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY_${cfgU} "${_LIB}")
-  endforeach()
-endif()
 
 if(UNIX OR APPLE)
   # 改善类 UNIX 系统上的运行时链接行为。
