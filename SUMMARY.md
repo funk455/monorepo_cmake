@@ -48,10 +48,11 @@
 **为什么这样做：**
 - CMake 默认不带卸载目标，补齐开发体验。
 
-### 7) `DeployPackage.cmake`
-**做什么：** 将构建产物与必要文件打包为 zip/tar.gz。
+### 7) `Packaging.cmake`
+**做什么：** 基于 CPack 生成二进制包（`package`）和源码包（`package_source`），Windows 为 zip，其他平台为 tar.gz。
 **为什么这样做：**
 - 提供一键交付能力，降低手工打包风险。
+- 直接复用 `install()` 规则，不再手写复制逻辑；早期手写的 DeployPackage 在 `cmake -P` 模式下拿不到构建目录，已被替换。
 
 ### 8) `cmake/cli.py`（引导式模板生成器）
 **做什么：** 类似 Vue CLI 的交互式创建流程，生成可复用的项目骨架，并保存 `preset.json`。

@@ -6,6 +6,7 @@ include(UnifiedOutputDirs)
 include(AddUninstall)
 include(BuildType)
 include(Reports)
+include(Packaging)
 add_uninstall_target()
 # Enable tests at the root so CTest can discover tests in subprojects
 include(CTest)

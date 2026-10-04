@@ -53,12 +53,9 @@ Internal locals (often prefixed with `_`) and loop variables are intentionally o
 - `CMAKE_BUILD_RPATH`: STRING (UNIX/APPLE). Set to library output dir.
 - `CMAKE_INSTALL_RPATH_USE_LINK_PATH`: BOOL (UNIX/APPLE). Set to `TRUE`.
 
-## DeployPackage.cmake
-- `BIN_DIR`: PATH (cache). Output directory for binaries.
-- `LIB_DIR`: PATH (cache). Output directory for libraries.
-- `INCLUDE_DIR`: PATH (cache). Output directory for headers.
-- `SOURCE_DIR`: PATH (cache). Output directory for sources.
-- `PACKAGE_NAME`: STRING. Package name with git hash suffix.
+## Packaging.cmake
+- `CPACK_GENERATOR`: LIST (optional, default `ZIP` on Windows, `TGZ` elsewhere). Archive format(s) for both binary and source packages.
+- Package file names: `<Project>-<git-sha>-<System>-<Processor>` (binary) and `<Project>-<git-sha>-src` (source).
 
 ## SetupPackage.cmake
 - `SP_PACKAGE_NAME`: STRING (required). Package base name.

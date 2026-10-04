@@ -194,11 +194,14 @@ python cmake/build.py --platform linux --generator Ninja --build-type Release --
 
 ## Packaging
 
+Packaging uses CPack (`cmake/Packaging.cmake`). Archives are ZIP on Windows and TGZ elsewhere.
+
 ```bash
-cmake -P cmake/DeployPackage.cmake
+cmake --build build --target package          # installed libs, headers, executables, find_package configs
+cmake --build build --target package_source   # source tree, excluding .git and build*/
 ```
 
-Options via cache variables: `DEPLOY_COPY_PROJECTS` (ON), `DEPLOY_COPY_DOCS` (ON).
+Override the format with `-DCPACK_GENERATOR="ZIP;TGZ"` at configure time.
 
 ## Requirements
 
