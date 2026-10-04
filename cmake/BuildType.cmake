@@ -43,6 +43,8 @@ else()
   elseif(NOT CMAKE_BUILD_TYPE)
     set(CMAKE_BUILD_TYPE "${PROJECT_DEFAULT_BUILD_TYPE}" CACHE STRING "Build type" FORCE)
   else()
+    # 不是冗余：-DCMAKE_BUILD_TYPE=X 不带类型时缓存类型为 UNINITIALIZED，
+    # 未启用语言的工程（project(x NONE)）不会被 CMake 自动改成 STRING，这里统一规范。
     set(CMAKE_BUILD_TYPE "${CMAKE_BUILD_TYPE}" CACHE STRING "Build type" FORCE)
   endif()
 
