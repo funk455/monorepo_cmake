@@ -91,24 +91,29 @@ else()
   target_compile_features(${DIR_TARGET_NAME} PUBLIC ${DIR_CXX_STD})
 endif()
 
+# 头文件走 FILE_SET 时，CMake 会自动把 BASE_DIRS 加入构建树的 include 路径，
+# 因此不再重复添加 BUILD_INTERFACE。
+set(_use_file_set FALSE)
+if(DIR_ENABLE_FILE_SET AND CMAKE_VERSION VERSION_GREATER_EQUAL "3.23" AND DIR_HEADERS)
+  set(_use_file_set TRUE)
+endif()
+
 if(DIR_INCLUDE_CURRENT)
-  if(DIR_TARGET_TYPE STREQUAL "LIBRARY")
-    target_include_directories(${DIR_TARGET_NAME}
-      PUBLIC
-        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
-        $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}/${DIR_TARGET_NAME}>
-    )
-  elseif(DIR_TARGET_TYPE STREQUAL "INTERFACE")
-    target_include_directories(${DIR_TARGET_NAME}
-      INTERFACE
-        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
-        $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}/${DIR_TARGET_NAME}>
-    )
-  else()
-    target_include_directories(${DIR_TARGET_NAME}
-      PRIVATE
-        ${CMAKE_CURRENT_SOURCE_DIR}
-    )
+  if(DIR_TARGET_TYPE STREQUAL "LIBRARY" OR DIR_TARGET_TYPE STREQUAL "INTERFACE")
+    if(DIR_TARGET_TYPE STREQUAL "LIBRARY")
+      set(_inc_scope PUBLIC)
+    else()
+      set(_inc_scope INTERFACE)
+    endif()
+    # INSTALL_INTERFACE 始终保留：导出文件里 FILE_SET 提供的 include 路径被包在
+    # if(CMAKE_VERSION >= 3.23) 中，用 3.20~3.22 的使用方只能靠这一条找到头文件。
+    set(_inc_dirs $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}/${DIR_TARGET_NAME}>)
+    if(NOT _use_file_set)
+      list(APPEND _inc_dirs $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>)
+    endif()
+    target_include_directories(${DIR_TARGET_NAME} ${_inc_scope} ${_inc_dirs})
+  elseif(NOT _use_file_set)
+    target_include_directories(${DIR_TARGET_NAME} PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
   endif()
 endif()
 
@@ -119,22 +124,18 @@ if(DIR_TARGET_TYPE STREQUAL "LIBRARY")
   set_target_properties(${DIR_TARGET_NAME} PROPERTIES POSITION_INDEPENDENT_CODE ${DIR_POSITION_INDEPENDENT})
 endif()
 
-if(DIR_ENABLE_FILE_SET AND CMAKE_VERSION VERSION_GREATER_EQUAL "3.23" AND DIR_HEADERS)
+if(_use_file_set)
   if(DIR_TARGET_TYPE STREQUAL "INTERFACE")
-    target_sources(${DIR_TARGET_NAME}
-      INTERFACE
-        FILE_SET HEADERS
-        BASE_DIRS ${CMAKE_CURRENT_SOURCE_DIR}
-        FILES ${DIR_HEADERS}
-    )
+    set(_fs_scope INTERFACE)
   else()
-    target_sources(${DIR_TARGET_NAME}
-      PUBLIC
-        FILE_SET HEADERS
-        BASE_DIRS ${CMAKE_CURRENT_SOURCE_DIR}
-        FILES ${DIR_HEADERS}
-    )
+    set(_fs_scope PUBLIC)
   endif()
+  target_sources(${DIR_TARGET_NAME}
+    ${_fs_scope}
+      FILE_SET HEADERS
+      BASE_DIRS ${CMAKE_CURRENT_SOURCE_DIR}
+      FILES ${DIR_HEADERS}
+  )
 endif()
 
 if(DEFINED DIR_PUBLIC_DEPS OR DEFINED DIR_PRIVATE_DEPS OR DEFINED DIR_INTERFACE_DEPS)
@@ -177,43 +178,25 @@ if(DIR_ENABLE_INSTALL)
     endif()
   endif()
 
+  set(_install_args EXPORT ${DIR_EXPORT_NAME})
   if(DIR_TARGET_TYPE STREQUAL "EXECUTABLE")
-    install(TARGETS ${DIR_TARGET_NAME}
-      EXPORT ${DIR_EXPORT_NAME}
-      RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
-    )
-  elseif(DIR_TARGET_TYPE STREQUAL "INTERFACE")
-    if(DIR_ENABLE_FILE_SET AND CMAKE_VERSION VERSION_GREATER_EQUAL "3.23" AND DIR_HEADERS)
-      install(TARGETS ${DIR_TARGET_NAME}
-        EXPORT ${DIR_EXPORT_NAME}
-        FILE_SET HEADERS DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/${DIR_TARGET_NAME}
-      )
-    else()
-      install(TARGETS ${DIR_TARGET_NAME} EXPORT ${DIR_EXPORT_NAME})
-      if(DIR_HEADERS)
-        install(FILES ${DIR_HEADERS} DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/${DIR_TARGET_NAME})
-      endif()
-    endif()
+    list(APPEND _install_args RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR})
   elseif(DIR_TARGET_TYPE STREQUAL "LIBRARY")
-    if(DIR_ENABLE_FILE_SET AND CMAKE_VERSION VERSION_GREATER_EQUAL "3.23" AND DIR_HEADERS)
-      install(TARGETS ${DIR_TARGET_NAME}
-        EXPORT ${DIR_EXPORT_NAME}
-        ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
-        LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
-        RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
-        FILE_SET HEADERS DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/${DIR_TARGET_NAME}
-      )
-    else()
-      install(TARGETS ${DIR_TARGET_NAME}
-        EXPORT ${DIR_EXPORT_NAME}
-        ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
-        LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
-        RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
-      )
-      if(DIR_HEADERS)
-        install(FILES ${DIR_HEADERS} DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/${DIR_TARGET_NAME})
-      endif()
-    endif()
+    list(APPEND _install_args
+      ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
+      LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+      RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR})
+  endif()
+  set(_header_dest ${CMAKE_INSTALL_INCLUDEDIR}/${DIR_TARGET_NAME})
+  if(_use_file_set)
+    list(APPEND _install_args FILE_SET HEADERS DESTINATION ${_header_dest})
+  endif()
+  install(TARGETS ${DIR_TARGET_NAME} ${_install_args})
+
+  # 不走 FILE_SET 时（CMake < 3.23 或关闭），头文件单独安装；
+  # include 路径由前面 target_include_directories 的 INSTALL_INTERFACE 提供。
+  if(DIR_HEADERS AND NOT _use_file_set AND NOT DIR_TARGET_TYPE STREQUAL "EXECUTABLE")
+    install(FILES ${DIR_HEADERS} DESTINATION ${_header_dest})
   endif()
 endif()
 
@@ -236,3 +219,9 @@ unset(DIR_TEST_NAME)
 unset(DIR_USE_GTEST)
 unset(DIR_ENABLE_INSTALL)
 unset(DIR_EXPORT_NAME)
+unset(_use_file_set)
+unset(_inc_scope)
+unset(_inc_dirs)
+unset(_fs_scope)
+unset(_install_args)
+unset(_header_dest)
