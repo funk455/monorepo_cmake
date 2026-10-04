@@ -1,0 +1,8 @@
+set(DIR_TARGET_NAME p041_c)
+set(DIR_TARGET_TYPE LIBRARY)
+set(DIR_ALIAS_PREFIX pp041)
+set(DIR_SOURCES p041_c.cpp)
+set(DIR_HEADERS p041_c.h)
+set(DIR_PUBLIC_DEPS pp006::p006_c pp007::p007_b pp010::p010_c)
+set(DIR_PRIVATE_DEPS pp004::p004_b)
+include(${CMAKE_SOURCE_DIR}/cmake/AddTarget.cmake)

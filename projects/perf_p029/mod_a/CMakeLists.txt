@@ -1,0 +1,7 @@
+set(DIR_TARGET_NAME p029_a)
+set(DIR_TARGET_TYPE LIBRARY)
+set(DIR_ALIAS_PREFIX pp029)
+set(DIR_SOURCES p029_a.cpp)
+set(DIR_HEADERS p029_a.h)
+set(DIR_PUBLIC_DEPS pp024::p024_b pp019::p019_a pp024::p024_c)
+include(${CMAKE_SOURCE_DIR}/cmake/AddTarget.cmake)

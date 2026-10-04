@@ -1,0 +1,6 @@
+set(DIR_TARGET_NAME p014_a)
+set(DIR_TARGET_TYPE LIBRARY)
+set(DIR_ALIAS_PREFIX pp014)
+set(DIR_SOURCES p014_a.cpp)
+set(DIR_HEADERS p014_a.h)
+include(${CMAKE_SOURCE_DIR}/cmake/AddTarget.cmake)

@@ -1,0 +1,6 @@
+set(DIR_TARGET_NAME test_perf_p027)
+set(DIR_TARGET_TYPE EXECUTABLE)
+set(DIR_ALIAS_PREFIX pp027)
+set(DIR_SOURCES test_perf_p027.cpp)
+set(DIR_PRIVATE_DEPS pp027::p027_c)
+include(${CMAKE_SOURCE_DIR}/cmake/AddTarget.cmake)
