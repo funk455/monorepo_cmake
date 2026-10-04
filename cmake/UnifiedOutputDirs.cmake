@@ -29,9 +29,19 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${_BIN}")
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${_LIB}")
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${_LIB}")
 
-if(UNIX OR APPLE)
-  # 改善类 UNIX 系统上的运行时链接行为。
+if(UNIX)
+  # 构建树内：可执行文件直接从 build/lib 找项目动态库。
   set(CMAKE_BUILD_RPATH "${_LIB}")
+  # 安装后：按可执行文件自身位置找 ../lib，安装目录整体移动后仍可运行。
+  # （USE_LINK_PATH 只会加入项目外部的库目录，不覆盖项目自己的库。）
+  if(NOT DEFINED CMAKE_INSTALL_RPATH)
+    include(GNUInstallDirs)
+    if(APPLE)
+      set(CMAKE_INSTALL_RPATH "@loader_path/../${CMAKE_INSTALL_LIBDIR}")
+    else()
+      set(CMAKE_INSTALL_RPATH "$ORIGIN/../${CMAKE_INSTALL_LIBDIR}")
+    endif()
+  endif()
   set(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
 endif()
 

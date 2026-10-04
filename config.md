@@ -46,7 +46,8 @@ Internal locals (often prefixed with `_`) and loop variables are intentionally o
 - `CMAKE_ARCHIVE_OUTPUT_DIRECTORY`: PATH. Set by this module.
 - Multi-config generators append `<Config>/` automatically (`bin/Debug`, `bin/Release`), so configs never overwrite each other.
 - `CMAKE_BUILD_RPATH`: STRING (UNIX/APPLE). Set to library output dir.
-- `CMAKE_INSTALL_RPATH_USE_LINK_PATH`: BOOL (UNIX/APPLE). Set to `TRUE`.
+- `CMAKE_INSTALL_RPATH`: STRING (UNIX/APPLE, only if not already defined). `$ORIGIN/../<libdir>` on Linux, `@loader_path/../<libdir>` on macOS, so installed executables find the project's shared libraries even after the install tree is moved.
+- `CMAKE_INSTALL_RPATH_USE_LINK_PATH`: BOOL (UNIX/APPLE). Set to `TRUE` (adds external library dirs only).
 
 ## Packaging.cmake
 - `CPACK_GENERATOR`: LIST (optional, default `ZIP` on Windows, `TGZ` elsewhere). Archive format(s) for both binary and source packages.
