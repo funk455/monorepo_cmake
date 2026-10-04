@@ -1621,7 +1621,6 @@ function renderBuildReport(o) {
       ${row('Name', o.project)}
       ${row('Generated', o.timestamp)}
       ${row('Git Commit', o.git_hash, true)}
-      ${row('Elapsed', o.elapsed_seconds !== 'unknown' ? o.elapsed_seconds + ' s' : '--')}
     </div>
     <div class="card">
       <div class="section-title">Build</div>
