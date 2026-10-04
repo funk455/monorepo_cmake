@@ -9,8 +9,13 @@ from shutil import which
 
 
 def run(cmd, cwd=None):
-    print(" ".join(cmd))
-    subprocess.run(cmd, cwd=cwd, check=True)
+    """Run a command; return True on success. Failures are reported, not raised,
+    so a compile error does not kill the watcher."""
+    print(" ".join(cmd), flush=True)
+    rc = subprocess.run(cmd, cwd=cwd).returncode
+    if rc != 0:
+        print(f"[watch] command failed (exit {rc}), waiting for next change...", flush=True)
+    return rc == 0
 
 
 def resolve_cmake(value):
@@ -178,10 +183,9 @@ def main():
             if len(changes) > 10:
                 print(f"  ... and {len(changes) - 10} more")
 
-            if any_config_change(changes):
-                run(config_cmd)
-                run(build_cmd)
-
+            if any_config_change(changes) and not run(config_cmd):
+                prev = curr
+                continue
             run(build_cmd)
 
             prev = curr
