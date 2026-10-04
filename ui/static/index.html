@@ -305,7 +305,7 @@
       <button class="btn btn-blue" onclick="runBuildAction('configure')">Configure</button>
       <button class="btn btn-blue" onclick="runBuildAction('build')">Build</button>
       <button class="btn btn-blue" onclick="runBuildAction('test')">Test</button>
-      <button class="btn btn-slate" onclick="runBuildAction('report-all')">Report</button>
+      <button class="btn btn-slate" onclick="runBuildAction('report-test')">Report</button>
       <button class="btn btn-slate" onclick="runBuildAction('install')">Install</button>
       <button class="btn btn-red" onclick="runBuildAction('uninstall')">Uninstall</button>
       <button class="btn btn-slate ml-auto text-xs" onclick="document.getElementById('build-log').textContent=''">Clear log</button>
@@ -812,8 +812,8 @@ async function runBuildAction(action) {
   } else if (action === 'test') {
     cmd = ['ctest', '--test-dir', dir, '--output-on-failure'];
     if (config) cmd.push('-C', config);
-  } else if (action === 'report-all') {
-    cmd = ['cmake', '--build', dir, '--target', 'report-all'];
+  } else if (action === 'report-test') {
+    cmd = ['cmake', '--build', dir, '--target', 'report-test'];
     if (config) cmd.push('--config', config);
   } else if (action === 'install') {
     cmd = ['cmake', '--install', dir];

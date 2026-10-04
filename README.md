@@ -167,8 +167,7 @@ GTest is fetched automatically via `SetupGTest.cmake` (FetchContent with `find_p
 
 ```bash
 cmake --build build --target report-build   # build-report.json
-cmake --build build --target report-test    # tests.log + tests.junit.xml
-cmake --build build --target report-all     # both
+cmake --build build --target report-test    # runs ctest: tests.log + tests.junit.xml, plus build-report.json
 ```
 
 Reports are written to `<build-dir>/reports/` and viewable in the web dashboard.
