@@ -64,7 +64,7 @@ Internal locals (often prefixed with `_`) and loop variables are intentionally o
 - `SP_PACKAGE_NAME`: STRING (required). Package base name.
 - `SP_PACKAGE_NAMESPACE`: STRING (optional, default `${PROJECT_NAMESPACE}` or `project`). CMake namespace.
 - `SP_EXPORT_NAME`: STRING (optional, default `${PROJECT_EXPORT_NAME}` or `${PROJECT_NAME}Targets`). Export set name.
-- `SP_APPEND_GIT_HASH`: BOOL (optional). Append git short hash to package name.
+- `SP_APPEND_GIT_HASH`: BOOL (optional). Record the git short hash as `<Name>_GIT_HASH` in the installed config file. The package name itself is unchanged, so `find_package(<Name>)` keeps working.
 - `SP_GIT_LENGTH`: INTEGER (optional, default `6`). Git short hash length.
 - `PROJECT_NAMESPACE`: STRING (optional). Used as default for `SP_PACKAGE_NAMESPACE`.
 - `PROJECT_EXPORT_NAME`: STRING (optional). Used as default for `SP_EXPORT_NAME`.

@@ -136,7 +136,7 @@ include(${CMAKE_SOURCE_DIR}/cmake/SetupPackage.cmake)
 setup_package(
   PACKAGE_NAME      "mylib"
   PACKAGE_NAMESPACE "myns"
-  APPEND_GIT_HASH   ON        # optional: version suffix with git hash
+  APPEND_GIT_HASH   ON        # optional: exposes mylib_GIT_HASH to consumers
 )
 ```
 

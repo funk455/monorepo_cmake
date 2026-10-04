@@ -6,7 +6,7 @@ include(GNUInstallDirs)
 #   PACKAGE_NAME "Name"
 #   PACKAGE_NAMESPACE "ns"
 #   EXPORT_NAME "NameTargets"
-#   APPEND_GIT_HASH ON
+#   APPEND_GIT_HASH ON   # 在 config 中记录 <Name>_GIT_HASH，包名不变
 #   GIT_LENGTH 6
 # )
 function(setup_package)
@@ -37,24 +37,29 @@ function(setup_package)
     endif()
   endif()
 
+  # 包名保持稳定，find_package(<name>) 才能找到；git 哈希只记录在 config 文件里。
   set(_pkg_name "${SP_PACKAGE_NAME}")
+  set(_git_line "")
   if(SP_APPEND_GIT_HASH)
-    # 可选的 git 哈希后缀，用于区分包版本。
     if(NOT SP_GIT_LENGTH)
       set(SP_GIT_LENGTH 6)
     endif()
-    find_program(GIT_EXECUTABLE git)
-    if(GIT_EXECUTABLE AND EXISTS "${CMAKE_SOURCE_DIR}/.git")
-      execute_process(
-        COMMAND "${GIT_EXECUTABLE}" -C "${CMAKE_SOURCE_DIR}" rev-parse --short=${SP_GIT_LENGTH} HEAD
-        OUTPUT_VARIABLE _git_sha
-        OUTPUT_STRIP_TRAILING_WHITESPACE
-        ERROR_QUIET
-      )
-      if(_git_sha MATCHES "^[0-9A-Fa-f]+$")
-        set(_pkg_name "${SP_PACKAGE_NAME}-${_git_sha}")
-        message(STATUS "[setup_package] Using git suffix: ${_git_sha} → package '${_pkg_name}'")
+    # 同一次配置内只调用一次 git，结果缓存在全局属性中。
+    get_property(_git_sha GLOBAL PROPERTY _SP_GIT_SHA_${SP_GIT_LENGTH})
+    if(NOT _git_sha)
+      find_program(GIT_EXECUTABLE git)
+      if(GIT_EXECUTABLE AND EXISTS "${CMAKE_SOURCE_DIR}/.git")
+        execute_process(
+          COMMAND "${GIT_EXECUTABLE}" -C "${CMAKE_SOURCE_DIR}" rev-parse --short=${SP_GIT_LENGTH} HEAD
+          OUTPUT_VARIABLE _git_sha
+          OUTPUT_STRIP_TRAILING_WHITESPACE
+          ERROR_QUIET
+        )
       endif()
+      set_property(GLOBAL PROPERTY _SP_GIT_SHA_${SP_GIT_LENGTH} "${_git_sha}")
+    endif()
+    if(_git_sha MATCHES "^[0-9A-Fa-f]+$")
+      set(_git_line "set(${_pkg_name}_GIT_HASH \"${_git_sha}\")\n")
     endif()
   endif()
 
@@ -67,7 +72,7 @@ function(setup_package)
 
   # 生成最小化的 <pkg>-config.cmake，并包含导出文件。
   set(_bt_cfg "${CMAKE_CURRENT_BINARY_DIR}/${_pkg_name}-config.cmake")
-  file(WRITE "${_bt_cfg}" "include(\"\${CMAKE_CURRENT_LIST_DIR}/${SP_EXPORT_NAME}.cmake\")\n")
+  file(WRITE "${_bt_cfg}" "include(\"\${CMAKE_CURRENT_LIST_DIR}/${SP_EXPORT_NAME}.cmake\")\n${_git_line}")
 
   # 安装导出目标与配置文件。
   install(EXPORT ${SP_EXPORT_NAME}
