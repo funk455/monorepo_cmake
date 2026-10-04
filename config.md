@@ -24,15 +24,12 @@ Internal locals (often prefixed with `_`) and loop variables are intentionally o
 - `PROJECT_EXPORT_NAME`: STRING (optional). Used as default for `DIR_EXPORT_NAME` when defined elsewhere.
 
 ## AddWorkspaces.cmake
-- `AWP_ROOT`: PATH (optional, default `${CMAKE_SOURCE_DIR}/projects`). Root directory to scan.
-- `AWP_MODE`: STRING (optional, default `FIRST`). One of `FIRST`, `ALL`, `LEAF`.
-- `AWP_ONLY`: LIST (optional). Only include directories with these leaf names.
-- `AWP_EXCLUDE`: LIST (optional). Exclude directories with these leaf names.
-- `AWP_EXCLUDE_DIR_NAMES`: LIST (optional, default `.git;build;cmake;.cache;out;dist;node_modules`). Skip directories by name.
-- `AWP_IGNORE_REGEX`: STRING (optional). Full path regex to ignore.
-- `AWP_MAX_DEPTH`: INTEGER (optional, default `0` = no limit). Depth limit from `AWP_ROOT`.
-- `AWP_DIRS`: LIST (optional). Explicit list of directories to add (relative to `CMAKE_SOURCE_DIR` or absolute). If set, scanning is skipped.
-- `PROJECT_EXPORT_NAME`: STRING (optional). Cleared from cache before adding subdirectories.
+- `ROOT`: PATH (optional, default `${CMAKE_SOURCE_DIR}/projects`). Directory that holds the projects.
+- `DIRS`: LIST (optional). Explicit directories to add (relative to `CMAKE_SOURCE_DIR` or absolute). Takes precedence over `ONLY`.
+- `ONLY`: LIST (optional). Project names under `ROOT`; each is checked directly as `ROOT/<name>/CMakeLists.txt`, without scanning the tree.
+- `EXCLUDE`: LIST (optional). Project names to skip.
+- With neither `DIRS` nor `ONLY`, every direct subdirectory of `ROOT` that contains a `CMakeLists.txt` is added.
+- Each directory is added at most once per configure (global property `AWP_ADDED_DIRS`). Missing entries produce a warning.
 
 ## BuildType.cmake
 - `PROJECT_BUILD_TYPE`: STRING (optional). Preferred build type; overrides `CMAKE_BUILD_TYPE`.

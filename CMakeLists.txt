@@ -18,7 +18,6 @@ add_workspace_projects(
     netlib
     projectlib
     utils
-    project1
     perf_p001
     perf_p002
     perf_p003
