@@ -7,6 +7,8 @@ import sys
 from pathlib import Path
 from shutil import which
 
+from generators import is_multi_config
+
 
 def run(cmd, cwd=None):
     """Run a command; return True on success. Failures are reported, not raised,
@@ -109,27 +111,14 @@ def any_config_change(changes):
     return False
 
 
-MULTI_CONFIG_GENERATORS = {
-    "ninja multi-config",
-    "visual studio 17 2022",
-    "visual studio 16 2019",
-    "visual studio 15 2017",
-    "xcode",
-}
-
-
-def is_multi_config(generator):
-    return generator.lower() in MULTI_CONFIG_GENERATORS if generator else False
-
-
 def main():
     parser = argparse.ArgumentParser(description="文件变更自动构建（监视模式）")
     parser.add_argument("--cmake", default="cmake", help="CMake 可执行文件路径或名称")
     parser.add_argument("--source", default=".", help="源码目录")
     parser.add_argument("--build", default="build", help="构建目录")
     parser.add_argument("--generator", help="CMake 生成器")
-    parser.add_argument("--build-type", default="Release", help="单配置生成器构建类型")
-    parser.add_argument("--config", help="多配置生成器配置名（Debug/Release）")
+    parser.add_argument("--build-type", default="Release", help="构建类型；多配置生成器未给 --config 时也用它")
+    parser.add_argument("--config", help="多配置生成器配置名（Debug/Release），默认同 --build-type")
     parser.add_argument("--interval", type=float, default=1.0, help="扫描间隔（秒）")
     parser.add_argument(
         "--exts",
@@ -146,24 +135,21 @@ def main():
     if not cmake_exe:
         raise SystemExit("未找到 cmake，可用 --cmake 指定完整路径，或将 cmake 加入 PATH。")
 
-    multi = is_multi_config(args.generator)
     build_dir.mkdir(parents=True, exist_ok=True)
 
-    # 初次配置
+    # 初次配置。CMAKE_BUILD_TYPE 对多配置生成器无效但无害，这里只按名字预判。
     config_cmd = [cmake_exe, "-S", str(root), "-B", str(build_dir)]
     if args.generator:
         config_cmd += ["-G", args.generator]
-    if not multi and args.build_type:
+    if not is_multi_config(args.generator) and args.build_type:
         config_cmd += [f"-DCMAKE_BUILD_TYPE={args.build_type}"]
     run(config_cmd)
 
-    # 初次构建
+    # 初次构建。配置完成后以 CMakeCache 为准判断是否多配置：未指定 --generator 时
+    # Windows 默认用 Visual Studio，若不传 --config 会默认编译 Debug。
     build_cmd = [cmake_exe, "--build", str(build_dir)]
-    if multi and args.config:
-        build_cmd += ["--config", args.config]
-    elif not multi and args.config:
-        # --config 对单配置生成器无效，忽略
-        pass
+    if is_multi_config(args.generator, build_dir):
+        build_cmd += ["--config", args.config or args.build_type]
     run(build_cmd)
 
     prev = snapshot_files(str(root), str(build_dir), exts)

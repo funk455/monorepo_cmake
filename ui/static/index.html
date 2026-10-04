@@ -777,12 +777,13 @@ async function deleteBuildDir(name) {
   loadDashboard();
 }
 
-const MULTI_CONFIG_GENS = ['Ninja Multi-Config', 'Visual Studio 17 2022', 'Visual Studio 16 2019'];
+// Same rule as cmake/generators.py: any Visual Studio version, Xcode, Ninja Multi-Config.
+const isMultiConfigGen = gen => /^(Visual Studio|Xcode|Ninja Multi-Config)/i.test(gen || '');
 
 function onGenChange() {
   const gen = document.getElementById('b-gen').value;
   const btypeEl = document.getElementById('b-type');
-  const isMulti = MULTI_CONFIG_GENS.includes(gen);
+  const isMulti = isMultiConfigGen(gen);
   btypeEl.disabled = isMulti;
   btypeEl.title = isMulti ? 'Multi-config generators set build type via --config, not CMAKE_BUILD_TYPE' : '';
 }
@@ -798,7 +799,7 @@ async function runBuildAction(action) {
   const logEl = document.getElementById('build-log');
   const statusEl = document.getElementById('build-status');
 
-  const multiConfig = ['Ninja Multi-Config', 'Visual Studio 17 2022', 'Visual Studio 16 2019'].includes(gen);
+  const multiConfig = isMultiConfigGen(gen);
   let cmd;
   if (action === 'configure') {
     cmd = ['cmake', '-S', '.', '-B', dir];
@@ -1244,7 +1245,7 @@ async function deleteCurrentToolchain() {
 // Watch
 function onWatchGenChange() {
   const gen = document.getElementById('w-gen').value;
-  const isMulti = MULTI_CONFIG_GENS.includes(gen);
+  const isMulti = isMultiConfigGen(gen);
   document.getElementById('w-type').disabled = isMulti;
   document.getElementById('w-config').disabled = !isMulti;
 }
@@ -1255,7 +1256,7 @@ async function startWatch() {
   const btype = document.getElementById('w-type').value;
   const config = document.getElementById('w-config').value;
   const interval = document.getElementById('w-interval').value;
-  const isMulti = MULTI_CONFIG_GENS.includes(gen);
+  const isMulti = isMultiConfigGen(gen);
   const logEl = document.getElementById('watch-log');
 
   const cmd = ['python', 'cmake/watch_build.py', '--build', dir, '--interval', String(interval)];
