@@ -5,8 +5,6 @@ set(PROJECT_NAMESPACE "pp027")
 
 add_modules(mod_a mod_b mod_c)
 
-include(CTest)
 if(BUILD_TESTING)
-  enable_testing()
   add_modules(tests)
 endif()

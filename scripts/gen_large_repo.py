@@ -115,11 +115,10 @@ def gen_project_cmake(project_name: str, namespace: str,
         f'add_modules({" ".join(modules)})',
     ]
     if has_tests:
+        # BUILD_TESTING comes from include(CTest) in the root CMakeLists.
         lines += [
             '',
-            'include(CTest)',
             'if(BUILD_TESTING)',
-            '  enable_testing()',
             '  add_modules(tests)',
             'endif()',
         ]

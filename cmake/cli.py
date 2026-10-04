@@ -160,10 +160,10 @@ def write_project_cmakelists(path, project_name, version, namespace, modules, in
         "",
     ]
     if include_tests:
+        # BUILD_TESTING comes from include(CTest) in the root CMakeLists. Including CTest
+        # again per subproject re-runs its tool probing and slows configure down.
         lines += [
-            "include(CTest)",
             "if(BUILD_TESTING)",
-            "  enable_testing()",
             "  add_modules(tests)",
             "endif()",
             "",
