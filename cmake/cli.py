@@ -173,10 +173,13 @@ def write_project_cmakelists(path, project_name, version, namespace, modules, in
 
 def write_target_cmakelists(path, target):
     ttype = target["type"]  # EXECUTABLE | LIBRARY | INTERFACE
+    name = target["name"]
+    # Only installed libraries join an export set; setup_package() exports that set,
+    # so emitting it without DIR_ENABLE_INSTALL fails with "unknown export".
+    export_pkg = ttype in ("LIBRARY", "INTERFACE") and target.get("enable_install")
     lines = [
-        f'set(PKG_TARGET_NAME "{target["name"]}")',
-        "set(DIR_TARGET_NAME ${PKG_TARGET_NAME})",
-        f'set(DIR_TARGET_TYPE {ttype})',
+        f"set(DIR_TARGET_NAME {name})",
+        f"set(DIR_TARGET_TYPE {ttype})",
     ]
     if target.get("alias_prefix"):
         lines.append(f'set(DIR_ALIAS_PREFIX {target["alias_prefix"]})')
@@ -188,8 +191,8 @@ def write_target_cmakelists(path, target):
         lines.append(f'set(DIR_INTERFACE_DEPS {";".join(target["interface_deps"])})')
     if target.get("enable_install"):
         lines.append("set(DIR_ENABLE_INSTALL ON)")
-    if ttype in ("LIBRARY", "INTERFACE"):
-        lines.append('set(PROJECT_EXPORT_NAME "${PKG_TARGET_NAME}Targets")')
+    if export_pkg:
+        lines.append(f"set(DIR_EXPORT_NAME {name}Targets)")
     if target.get("use_gtest"):
         lines.append("set(DIR_USE_GTEST ON)")
     if target.get("sources"):
@@ -197,13 +200,14 @@ def write_target_cmakelists(path, target):
     if target.get("headers"):
         lines.append(f'set(DIR_HEADERS {";".join(target["headers"])})')
     lines.append("include(${CMAKE_SOURCE_DIR}/cmake/AddTarget.cmake)")
-    if ttype in ("LIBRARY", "INTERFACE"):
+    if export_pkg:
         lines += [
+            "",
             "include(${CMAKE_SOURCE_DIR}/cmake/SetupPackage.cmake)",
             "setup_package(",
-            '  PACKAGE_NAME      "${PKG_TARGET_NAME}"',
+            f"  PACKAGE_NAME      {name}",
             '  PACKAGE_NAMESPACE "${PROJECT_NAMESPACE}"',
-            '  EXPORT_NAME       "${PROJECT_EXPORT_NAME}"',
+            f"  EXPORT_NAME       {name}Targets",
             "  APPEND_GIT_HASH   ON",
             ")",
         ]
@@ -216,7 +220,7 @@ def ensure_root_cmakelists(root, workspace_dir):
     if root_cmakelists.exists():
         return
 
-    # 根目录缺失时生成一个最小可用的 CMakeLists.txt
+    # 根目录缺失时生成 CMakeLists.txt；模块列表需与仓库根 CMakeLists.txt 保持一致。
     content = [
         "cmake_minimum_required(VERSION 3.20)",
         "project(Workspace LANGUAGES CXX)",
@@ -225,10 +229,11 @@ def ensure_root_cmakelists(root, workspace_dir):
         "include(UnifiedOutputDirs)",
         "include(AddUninstall)",
         "include(BuildType)",
+        "include(Reports)",
+        "include(Packaging)",
         "add_uninstall_target()",
         "# Enable tests at the root so CTest can discover tests in subprojects",
         "include(CTest)",
-        "enable_testing()",
         "",
         "include(AddWorkspaces)",
         "add_workspace_projects(",
