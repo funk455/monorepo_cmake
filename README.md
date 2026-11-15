@@ -49,8 +49,7 @@ Create `projects/<name>/CMakeLists.txt`:
 
 ```cmake
 project(<name> VERSION 0.1.0 LANGUAGES CXX)
-list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake")
-include(AddModules)
+include(AddModules)                    # CMAKE_MODULE_PATH is set by the root CMakeLists.txt
 set(PROJECT_NAMESPACE "<ns>")
 add_modules(<module1> <module2>)
 ```
@@ -64,7 +63,7 @@ set(DIR_SOURCES      foo.cpp)
 set(DIR_HEADERS      foo.h)
 set(DIR_PUBLIC_DEPS  some::lib)
 set(DIR_ALIAS_PREFIX <ns>)
-include(${CMAKE_SOURCE_DIR}/cmake/AddTarget.cmake)
+include(AddTarget)                     # resolved through CMAKE_MODULE_PATH
 ```
 
 Then register the project in the root `CMakeLists.txt`:
@@ -75,6 +74,25 @@ add_workspace_projects(
   ONLY netlib projectlib utils <name>
 )
 ```
+
+## Using the Framework from Another Repository
+
+Keep your own code in a separate repository and reference this one as a git submodule:
+
+```bash
+git init my-repo && cd my-repo
+git submodule add -b dev-sample https://github.com/funk455/monorepo_cmake monorepo_cmake
+
+python monorepo_cmake/cmake/cli.py --root .                       # interactive
+python monorepo_cmake/cmake/cli.py --root . --preset my.json      # from preset
+python monorepo_cmake/ui.py --root .                              # dashboard for this repo
+```
+
+The generated root `CMakeLists.txt` points `CMAKE_MODULE_PATH` at `monorepo_cmake/cmake`, and
+generated target files use `include(AddTarget)`, so no symlink or copy of `cmake/` is needed.
+With `--root`, the dashboard creates projects, runs builds and keeps `preset.json` in your
+repository; toolchains you save from the UI go to `<repo>/toolchains/`, and the framework's
+bundled toolchains are listed alongside them.
 
 ## AddTarget.cmake Variables
 

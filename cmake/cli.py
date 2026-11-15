@@ -4,6 +4,16 @@ import json
 import os
 from pathlib import Path
 
+# 框架自身的 cmake 模块目录（本文件所在目录）。工作区可以是框架仓库本身，
+# 也可以是以 submodule 等方式引用框架的其他仓库（见 --root）。
+FRAMEWORK_CMAKE_DIR = Path(__file__).resolve().parent
+
+
+def module_path_expr(root):
+    """生成 CMAKE_MODULE_PATH 用的表达式：框架 cmake 目录相对工作区根目录的位置。"""
+    rel = os.path.relpath(FRAMEWORK_CMAKE_DIR, Path(root).resolve()).replace(os.sep, "/")
+    return "${CMAKE_SOURCE_DIR}/" + rel
+
 
 def prompt(text, default=None, required=False):
     suffix = f" [默认: {default}]" if default is not None else ""
@@ -152,7 +162,6 @@ def gen_test_files(dir_path, sources, lib_target, lib_header, use_lib=True, use_
 def write_project_cmakelists(path, project_name, version, namespace, modules, include_tests):
     lines = [
         f"project({project_name} VERSION {version} LANGUAGES CXX)",
-        'list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake")',
         "include(AddModules)",
         f'set(PROJECT_NAMESPACE "{namespace}")',
         "",
@@ -199,11 +208,11 @@ def write_target_cmakelists(path, target):
         lines.append(f'set(DIR_SOURCES {";".join(target["sources"])})')
     if target.get("headers"):
         lines.append(f'set(DIR_HEADERS {";".join(target["headers"])})')
-    lines.append("include(${CMAKE_SOURCE_DIR}/cmake/AddTarget.cmake)")
+    lines.append("include(AddTarget)")
     if export_pkg:
         lines += [
             "",
-            "include(${CMAKE_SOURCE_DIR}/cmake/SetupPackage.cmake)",
+            "include(SetupPackage)",
             "setup_package(",
             f"  PACKAGE_NAME      {name}",
             '  PACKAGE_NAMESPACE "${PROJECT_NAMESPACE}"',
@@ -225,7 +234,7 @@ def ensure_root_cmakelists(root, workspace_dir):
         "cmake_minimum_required(VERSION 3.20)",
         "project(Workspace LANGUAGES CXX)",
         "",
-        'list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake")',
+        f'list(APPEND CMAKE_MODULE_PATH "{module_path_expr(root)}")',
         "include(UnifiedOutputDirs)",
         "include(AddUninstall)",
         "include(BuildType)",
@@ -469,9 +478,13 @@ def main():
     parser.add_argument("--preset", help="使用预设文件直接生成项目")
     parser.add_argument("--save-preset", action="store_true", help="保存为 preset.json")
     parser.add_argument("--force", action="store_true", help="目标目录已存在时强制生成")
+    parser.add_argument(
+        "--root",
+        help="工作区根目录（默认是框架仓库本身）。用于以 submodule 方式引用框架的其他仓库",
+    )
     args = parser.parse_args()
 
-    root = Path(__file__).resolve().parent.parent
+    root = Path(args.root).resolve() if args.root else FRAMEWORK_CMAKE_DIR.parent
     preset_path = Path(args.preset) if args.preset else root / "preset.json"
 
     if args.preset:

@@ -153,7 +153,7 @@ if(DEFINED DIR_PUBLIC_DEPS OR DEFINED DIR_PRIVATE_DEPS OR DEFINED DIR_INTERFACE_
 endif()
 
 if(DIR_USE_GTEST AND DIR_TARGET_TYPE STREQUAL "EXECUTABLE")
-  include("${CMAKE_SOURCE_DIR}/cmake/SetupGTest.cmake")
+  include("${CMAKE_CURRENT_LIST_DIR}/SetupGTest.cmake")
   setup_gtest()
   target_link_libraries(${DIR_TARGET_NAME} PRIVATE GTest::gtest_main)
   if(DIR_REGISTER_TEST)

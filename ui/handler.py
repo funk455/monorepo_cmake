@@ -16,7 +16,7 @@ from .parsers import (
     list_toolchains, read_toolchain, save_toolchain, delete_toolchain,
 )
 
-ROOT = Path(__file__).resolve().parent.parent
+from .paths import FRAMEWORK_DIR, workspace, inside_workspace
 _HTML_PATH = Path(__file__).resolve().parent / "static" / "index.html"
 
 
@@ -85,8 +85,8 @@ class Handler(BaseHTTPRequestHandler):
             if not rel:
                 self.send_json({"error": "missing path"}, 400)
                 return
-            fp = (ROOT / rel).resolve()
-            if fp.exists() and fp.is_file() and str(fp).startswith(str(ROOT)):
+            fp = (workspace() / rel).resolve()
+            if fp.exists() and fp.is_file() and inside_workspace(fp):
                 self.send_json({"content": fp.read_text(encoding="utf-8", errors="replace")})
             else:
                 self.send_json({"error": "not found"}, 404)
@@ -98,7 +98,7 @@ class Handler(BaseHTTPRequestHandler):
                 self.send_json({"error": str(e)}, 500)
 
         elif route == "/api/preset":
-            preset_path = ROOT / "preset.json"
+            preset_path = workspace() / "preset.json"
             if preset_path.exists():
                 try:
                     self.send_json(json.loads(preset_path.read_text(encoding="utf-8")))
@@ -112,8 +112,8 @@ class Handler(BaseHTTPRequestHandler):
             if not build:
                 self.send_json({"error": "missing build"}, 400)
                 return
-            build_path = (ROOT / build).resolve()
-            if not str(build_path).startswith(str(ROOT.resolve())):
+            build_path = (workspace() / build).resolve()
+            if not inside_workspace(build_path):
                 self.send_json({"error": "invalid path"}, 400)
                 return
             result = parse_test_results(build_path)
@@ -186,15 +186,15 @@ class Handler(BaseHTTPRequestHandler):
     def _handle_new_project(self, data: dict):
         try:
             spec = importlib.util.spec_from_file_location(
-                "cli", str(ROOT / "cmake" / "cli.py")
+                "cli", str(FRAMEWORK_DIR / "cmake" / "cli.py")
             )
             cli = importlib.util.module_from_spec(spec)
             spec.loader.exec_module(cli)
-            cli.generate_from_config(ROOT, data, force=data.get("force", False))
+            cli.generate_from_config(workspace(), data, force=data.get("force", False))
             if data.get("save_preset", False):
                 save_data = {k: v for k, v in data.items()
                              if k not in ("force", "save_preset")}
-                (ROOT / "preset.json").write_text(
+                (workspace() / "preset.json").write_text(
                     json.dumps(save_data, ensure_ascii=False, indent=2),
                     encoding="utf-8",
                 )
@@ -209,14 +209,14 @@ class Handler(BaseHTTPRequestHandler):
             self.send_json({"error": "missing kind or path"}, 400)
             return
 
-        target = (ROOT / path).resolve()
-        root_s = str(ROOT.resolve())
-        if not str(target).startswith(root_s + os.sep) or target == ROOT.resolve():
+        target = (workspace() / path).resolve()
+        root_s = str(workspace().resolve())
+        if not str(target).startswith(root_s + os.sep) or target == workspace().resolve():
             self.send_json({"error": "invalid path"}, 400)
             return
 
         try:
-            rel_parts = target.relative_to(ROOT).parts
+            rel_parts = target.relative_to(workspace()).parts
         except ValueError:
             self.send_json({"error": "invalid path"}, 400)
             return

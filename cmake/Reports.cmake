@@ -27,7 +27,7 @@ set(_report_args
 add_custom_target(report-build
   COMMAND ${CMAKE_COMMAND} -E make_directory ${REPORTS_DIR}
   COMMAND ${CMAKE_COMMAND} ${_report_args} -DREPORT_TESTS_INCLUDED=false
-          -P ${CMAKE_SOURCE_DIR}/cmake/BuildReport.cmake
+          -P ${CMAKE_CURRENT_LIST_DIR}/BuildReport.cmake
   COMMENT "Generate build report"
   VERBATIM
 )
@@ -45,7 +45,7 @@ add_custom_target(report-test
   COMMAND ${CMAKE_COMMAND} -E make_directory ${REPORTS_DIR}
   COMMAND ${_ctest_cmd}
   COMMAND ${CMAKE_COMMAND} ${_report_args} -DREPORT_TESTS_INCLUDED=true
-          -P ${CMAKE_SOURCE_DIR}/cmake/BuildReport.cmake
+          -P ${CMAKE_CURRENT_LIST_DIR}/BuildReport.cmake
   WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
   COMMENT "Run tests and generate test + build reports"
   VERBATIM

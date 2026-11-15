@@ -100,7 +100,7 @@ def gen_target_cmake(target_name: str, alias_prefix: str,
     if priv_deps:
         lines.append(f'set(DIR_PRIVATE_DEPS {" ".join(priv_deps)})')
 
-    lines.append(f'include(${{CMAKE_SOURCE_DIR}}/cmake/AddTarget.cmake)')
+    lines.append('include(AddTarget)')
     return "\n".join(lines) + "\n"
 
 

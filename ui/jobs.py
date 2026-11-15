@@ -6,7 +6,7 @@ import threading
 import uuid
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parent.parent
+from .paths import workspace
 
 
 class Job:
@@ -23,7 +23,7 @@ class Job:
                 self.cmd,
                 stdout=subprocess.PIPE,
                 stderr=subprocess.STDOUT,
-                cwd=str(ROOT),
+                cwd=str(workspace()),
                 text=True,
                 encoding="utf-8",
                 errors="replace",

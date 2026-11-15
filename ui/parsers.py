@@ -4,14 +4,13 @@ import re
 import xml.etree.ElementTree as ET
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parent.parent
-TOOLCHAINS_DIR = ROOT / "cmake" / "toolchains"
+from .paths import workspace, toolchain_dirs, workspace_toolchains_dir, rel_to_workspace
 
 
 # ─── Workspace discovery ──────────────────────────────────────────────────────
 
 def list_projects() -> list:
-    projects_dir = ROOT / "projects"
+    projects_dir = workspace() / "projects"
     if not projects_dir.exists():
         return []
     result = []
@@ -26,14 +25,14 @@ def list_projects() -> list:
         result.append({
             "name": proj.name,
             "modules": modules,
-            "path": str(proj.relative_to(ROOT)).replace("\\", "/"),
+            "path": str(proj.relative_to(workspace())).replace("\\", "/"),
         })
     return result
 
 
 def list_build_dirs() -> list:
     result = []
-    for d in sorted(ROOT.iterdir()):
+    for d in sorted(workspace().iterdir()):
         if not d.is_dir():
             continue
         n = d.name
@@ -41,14 +40,14 @@ def list_build_dirs() -> list:
             result.append({
                 "name": n,
                 "configured": (d / "CMakeCache.txt").exists(),
-                "path": str(d.relative_to(ROOT)).replace("\\", "/"),
+                "path": str(d.relative_to(workspace())).replace("\\", "/"),
             })
     return result
 
 
 def list_reports() -> list:
     result = []
-    for d in sorted(ROOT.iterdir()):
+    for d in sorted(workspace().iterdir()):
         if not d.is_dir():
             continue
         rdir = d / "reports"
@@ -58,7 +57,7 @@ def list_reports() -> list:
                     result.append({
                         "name": f.name,
                         "build_dir": d.name,
-                        "path": str(f.relative_to(ROOT)).replace("\\", "/"),
+                        "path": str(f.relative_to(workspace())).replace("\\", "/"),
                     })
     return result
 
@@ -68,7 +67,7 @@ def list_reports() -> list:
 def parse_target_graph() -> dict:
     """Parse CMakeLists.txt files under projects/ and return a target dep graph
     with per-node coupling metrics (Ca, Ce, I) and cycle detection."""
-    projects_dir = ROOT / "projects"
+    projects_dir = workspace() / "projects"
     nodes: dict = {}
     raw_edges: list = []
 
@@ -90,7 +89,7 @@ def parse_target_graph() -> dict:
 
     for cmake_file in sorted(projects_dir.rglob("CMakeLists.txt")):
         text = cmake_file.read_text(encoding="utf-8", errors="replace")
-        rel = str(cmake_file.relative_to(ROOT)).replace("\\", "/")
+        rel = str(cmake_file.relative_to(workspace())).replace("\\", "/")
         is_test = "/tests/" in rel
 
         v = extract_vars(text)
@@ -246,58 +245,75 @@ def _parse_junit(path: Path) -> dict:
 
 # ─── Toolchain management ────────────────────────────────────────────────────
 
+def _toolchain_info(f: Path) -> dict:
+    text = f.read_text(encoding="utf-8", errors="replace")
+    system = ""
+    processor = ""
+    for line in text.splitlines():
+        line = line.strip()
+        m = re.match(r'set\s*\(\s*CMAKE_SYSTEM_NAME\s+([A-Za-z0-9_]+)', line)
+        if m:
+            system = m.group(1)
+        m = re.match(r'set\s*\(\s*CMAKE_SYSTEM_PROCESSOR\s+([A-Za-z0-9_]+)', line)
+        if m:
+            processor = m.group(1)
+    return {
+        "name": f.stem,
+        "filename": f.name,
+        "system": system,
+        "processor": processor,
+        # 相对工作区的路径，直接用于 -DCMAKE_TOOLCHAIN_FILE
+        "path": rel_to_workspace(f),
+    }
+
+
+def _find_toolchain(name: str):
+    for d in toolchain_dirs():
+        f = d / (name + ".cmake")
+        if f.is_file():
+            return f
+    return None
+
+
 def list_toolchains() -> list:
-    if not TOOLCHAINS_DIR.exists():
-        return []
-    result = []
-    for f in sorted(TOOLCHAINS_DIR.iterdir()):
-        if f.is_file() and f.suffix == ".cmake":
-            text = f.read_text(encoding="utf-8", errors="replace")
-            system = ""
-            processor = ""
-            for line in text.splitlines():
-                line = line.strip()
-                m = re.match(r'set\s*\(\s*CMAKE_SYSTEM_NAME\s+([A-Za-z0-9_]+)', line)
-                if m:
-                    system = m.group(1)
-                m = re.match(r'set\s*\(\s*CMAKE_SYSTEM_PROCESSOR\s+([A-Za-z0-9_]+)', line)
-                if m:
-                    processor = m.group(1)
-            result.append({
-                "name": f.stem,
-                "filename": f.name,
-                "system": system,
-                "processor": processor,
-                "path": str(f.relative_to(ROOT)).replace("\\", "/"),
-            })
+    """工作区自己的工具链在前；与之同名的框架工具链被覆盖，不重复列出。"""
+    result, seen = [], set()
+    for d in toolchain_dirs():
+        if not d.exists():
+            continue
+        for f in sorted(d.iterdir()):
+            if f.is_file() and f.suffix == ".cmake" and f.stem not in seen:
+                seen.add(f.stem)
+                result.append(_toolchain_info(f))
     return result
 
 
 def read_toolchain(name: str) -> dict:
-    f = TOOLCHAINS_DIR / (name + ".cmake")
-    if not f.exists() or not f.is_file():
+    f = _find_toolchain(name)
+    if f is None:
         return {"error": "not found"}
     return {"name": name, "content": f.read_text(encoding="utf-8", errors="replace")}
 
 
 def save_toolchain(name: str, content: str) -> dict:
-    TOOLCHAINS_DIR.mkdir(parents=True, exist_ok=True)
+    """保存到工作区的工具链目录（外部工作区为 <root>/toolchains，不写进框架）。"""
+    d = workspace_toolchains_dir()
+    d.mkdir(parents=True, exist_ok=True)
     safe = re.sub(r'[^a-zA-Z0-9_\-]', '', name)
     if not safe:
         return {"error": "invalid name"}
-    f = TOOLCHAINS_DIR / (safe + ".cmake")
+    f = d / (safe + ".cmake")
     f.write_text(content, encoding="utf-8")
-    return {"ok": True, "path": str(f.relative_to(ROOT)).replace("\\", "/")}
+    return {"ok": True, "path": rel_to_workspace(f)}
 
 
 def delete_toolchain(name: str) -> dict:
-    f = TOOLCHAINS_DIR / (name + ".cmake")
-    if not f.exists():
+    """只删除工作区自己的工具链；框架自带的工具链不从 UI 删除。"""
+    f = workspace_toolchains_dir() / (name + ".cmake")
+    if not f.is_file():
         return {"error": "not found"}
     f.unlink()
     return {"ok": True}
-
-
 def _parse_lasttest(path: Path) -> dict:
     text = path.read_text(encoding="utf-8", errors="replace")
     tests = []
